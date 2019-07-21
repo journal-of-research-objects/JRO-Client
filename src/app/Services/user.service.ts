@@ -1,13 +1,17 @@
 import {Injectable} from '@angular/core';
+import {CREDENTIALS} from '../Credentials/credentials';
+import {Observable} from 'rxjs';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable()
-export class User {
-    constructor() {}
+export class UserService {
+    public urlBase = CREDENTIALS.backendURL;
 
-    public
+    constructor(protected http: HttpClient) {}
 
-    public autenticate(username: string, pass: string) {
-        return
+    public autenticate(code: string) {
+        const url = `${this.urlBase}/login/?orcid_auth_code=${code}`;
+        return this.http.get(url);
     }
 
 }
