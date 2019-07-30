@@ -1,0 +1,20 @@
+<h2>My Github Repos</h2>
+<hr />
+<a [href]="githubURL" class="btn btn-primary" [hidden]="githubRepos?.length > 0"><i class="fa fa-github"></i>&nbsp;Connect to Gihub</a>
+<hr [hidden]="githubRepos?.length > 0"/>
+<!-- <p><ngb-progressbar type="info" [value]="100" [striped]="true" [animated]="true" [hidden]="githubRepos?.length > 0 || !searching">Loading your Github Repos</ngb-progressbar></p> -->
+<div class="row">
+    <div class="col-10" *ngFor="let repo of githubRepos">
+        <div class="card mb-3">
+            <div  class="card-header card-default">
+                {{repo.name}}&nbsp;<i class="fa fa-code-fork" [hidden]="!repo.fork"></i>&nbsp;<!--<button class="btn btn-sm btn-primary" (click)="claim(repo)" [hidden]="repo.claimed">Claim <span class="fa fa-plus-circle"></span></button>-->
+                <!-- <a class="btn btn-sm btn-success" [hidden]="!repo.claimed">Claimed <span class="fa fa-flag"></span></a> -->
+            </div>
+            <div  class="card-block">
+              <small class="text-muted">{{repo.html_url}}</small>
+              <p>{{repo.description}}</p>
+              <p><small class="text-muted">{{repo.language}}</small><p>
+            </div>
+        </div>
+    </div>
+</div>
