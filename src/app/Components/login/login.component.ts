@@ -36,6 +36,6 @@ export class LoginComponent implements OnInit {
     }
 
     onLoggedin() {
-        const oauthWindow = window.open(`https://sandbox.orcid.org/oauth/authorize?client_id=${CREDENTIALS.clientId}&response_type=code&scope=/authenticate&redirect_uri=${window.location.href}`, '_self', 'toolbar=no, scrollbars=yes, width=500, height=600, top=500, left=500');
+        const oauthWindow = window.open(`https://orcid.org/oauth/authorize?client_id=${CREDENTIALS.clientId}&response_type=code&scope=/authenticate&redirect_uri=${window.location.href}`, '_self', 'toolbar=no, scrollbars=yes, width=500, height=600, top=500, left=500');
     }
 }

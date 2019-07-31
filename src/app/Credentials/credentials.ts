@@ -5,8 +5,8 @@ interface Credentials {
 }
 
 export const CREDENTIALS: Credentials = {
-    backendURL: 'http://localhost:8000',
-    clientId: 'APP-M29Z8EEBM7HAB10J',
-    // clientId: 'APP-NNXW1QUFSJRHMC0C'
+    backendURL: 'http://localhost:8001',
+    // backendURL: 'http://50.116.16.56:8008',
+    clientId: 'APP-K70GZLOWTPC33OAB',
     ghClientId: '6398f62bbae4c0aedd39'
 };
