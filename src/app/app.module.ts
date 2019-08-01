@@ -11,6 +11,7 @@ import {SubmitService} from './Services/submit.service';
 import {HttpClientModule} from '@angular/common/http';
 import {HomeComponent} from './Components/home/home.component';
 import {AppCustomPrimeNgModule} from './Modules/app-custom-primeng.module';
+import {NavbarComponent} from './Components/navbar/navbar.component';
 
 
 
@@ -19,6 +20,7 @@ import {AppCustomPrimeNgModule} from './Modules/app-custom-primeng.module';
         AppComponent,
         LoginComponent,
         SubmitComponent,
+        NavbarComponent,
         HomeComponent
     ],
     imports: [

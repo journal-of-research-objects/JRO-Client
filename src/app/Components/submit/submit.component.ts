@@ -1,6 +1,6 @@
-import {Component, ElementRef, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
-import {Observable, Subscription, fromEvent} from 'rxjs';
+import {Subscription} from 'rxjs';
 import {CREDENTIALS} from '../../Credentials/credentials';
 import {SubmitService} from '../../Services/submit.service';
 import {MessageService} from 'primeng/api';
