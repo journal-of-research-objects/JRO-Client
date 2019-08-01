@@ -9,7 +9,7 @@
 </div>
 <div *ngIf="githubRepos?.length > 0 && !searching" class="p-grid p-dir-col">
     <p-card class="repo-card p-col" styleClass="p-grid" *ngFor="let repo of githubRepos">
-        <div class="p-grid p-justify-center">
+        <div class="p-grid p-nogutter">
 
             <div class="p-col">
                 <h4>{{repo.name}}</h4>
@@ -17,9 +17,12 @@
                 <p>{{repo.description}}</p>
                 <span class="language"><small class="text-muted">{{repo.language}}</small></span>
             </div>
-            <a (click)="fork(repo)" class="p-col-fixed p-grid p-justify-center p-align-center p-nogutter fork-icon" style="width:100px">
-                <i class="fa fa-code-fork" style="font-size: 3em"></i>
-            </a>
+            <div class="submit-btn">
+                <button (click)="fork(repo)" pButton label="Submit" class="ui-button-rounded ui-button-success"></button>
+            </div>
+            <!--<a (click)="fork(repo)" class="p-col-fixed p-grid p-justify-center p-align-center p-nogutter fork-icon" style="width:100px">-->
+                <!--<i class="fa fa-code-fork" style="font-size: 3em"></i>-->
+            <!--</a>-->
         </div>
 
     </p-card>

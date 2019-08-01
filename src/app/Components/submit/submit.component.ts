@@ -17,7 +17,6 @@ export class SubmitComponent implements OnInit {
     public routeSubscription: Subscription;
     public searching = false;
     public githubURL = 'https://github.com/login/oauth/authorize?scope=user:email&client_id=' + CREDENTIALS.ghClientId;
-    // public githubURL = 'https://github.com/login/oauth/authorize';
 
 
     constructor(protected route: ActivatedRoute,
@@ -49,8 +48,8 @@ export class SubmitComponent implements OnInit {
             this.messageService.add({
                 key: 'confirmFork',
                 severity: 'info',
-                summary: 'Fork Repo',
-                detail: `Are you sure you want clone the repo ${repo.name}?`,
+                summary: 'Submit Repo',
+                detail: `Are you sure you want submit the repo ${repo.name}?`,
                 sticky: true,
                 data: repo
             });
@@ -60,7 +59,7 @@ export class SubmitComponent implements OnInit {
     onConfirm(repo) {
         if (repo) {
             this.closeConfirmation();
-            this.submitService.forkRepo(repo.clone_url).subscribe(response => {
+            this.submitService.forkRepo(repo.forks_url).subscribe(response => {
                 console.log(response);
                 this.notify(repo, true);
             }, error => {
@@ -75,10 +74,10 @@ export class SubmitComponent implements OnInit {
         let status: string;
         if (isSuccess) {
             status = 'success';
-            message = `Fork of ${repo.name} created successfully`;
+            message = `${repo.name} submitted successfully`;
         } else {
             status = 'error';
-            message = `Fail creating fork of ${repo.name}`;
+            message = `Fail submitting ${repo.name}`;
         }
         this.messageService.add({
             key: 'notification',
