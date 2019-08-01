@@ -8,9 +8,39 @@
         h4 {
             margin: 0;
         }
+        .fork-icon {
+            cursor: pointer;
+        }
 
     }
     .ui-card-body {
         width: 100%;
     }
+
+    p-progressSpinner {
+        text-align: center;
+    }
+
+    .confirmation-toast {
+        .ui-toast-message {
+            background-color: white !important;
+        }
+    }
+
+    .notification-toast {
+        .ui-toast {
+            width: 50%;
+            margin: 0;
+            left: 25%;
+
+            .ui-toast-message-content {
+                padding: 1em 2em;
+            }
+
+            .ui-toast-icon {
+                top: .5em;
+            }
+        }
+    }
+
 }

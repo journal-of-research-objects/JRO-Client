@@ -7,6 +7,12 @@ import {ButtonModule} from 'primeng/button';
 import {TableModule} from 'primeng/table';
 import {DialogModule} from 'primeng/dialog';
 import {CardModule} from 'primeng/card';
+import {ToastModule} from 'primeng/toast';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
+
+// PrimeNg Services
+import {MessageService} from 'primeng/api';
+
 @NgModule({
     imports: [
         BrowserAnimationsModule,
@@ -14,7 +20,9 @@ import {CardModule} from 'primeng/card';
         DialogModule,
         ButtonModule,
         TableModule,
-        CardModule
+        CardModule,
+        ToastModule,
+        ProgressSpinnerModule
     ],
     exports: [
         BrowserAnimationsModule,
@@ -22,7 +30,12 @@ import {CardModule} from 'primeng/card';
         DialogModule,
         ButtonModule,
         TableModule,
-        CardModule
+        CardModule,
+        ToastModule,
+        ProgressSpinnerModule
+    ],
+    providers: [
+        MessageService
     ]
 })
 

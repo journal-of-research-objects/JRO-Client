@@ -14,4 +14,9 @@ export class SubmitService {
         return this.http.get<Array<any>>(url);
     }
 
+    public forkRepo(repoURL: string) {
+        const url = `${this.urlBase}/fork/?repo_url_fork=${repoURL}`;
+        return this.http.get(url);
+    }
+
 }

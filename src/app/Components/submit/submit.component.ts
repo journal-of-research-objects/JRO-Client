@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
-import {Subscription} from 'rxjs';
+import {Observable, Subscription, fromEvent} from 'rxjs';
 import {CREDENTIALS} from '../../Credentials/credentials';
 import {SubmitService} from '../../Services/submit.service';
+import {MessageService} from 'primeng/api';
 
 @Component({
     selector: 'app-submit',
@@ -12,15 +13,17 @@ import {SubmitService} from '../../Services/submit.service';
 })
 
 export class SubmitComponent implements OnInit {
-    public githubRepos: Array <any>;
+    public githubRepos: Array<any>;
     public routeSubscription: Subscription;
-    public searching: boolean = true;
-    public githubURL = "https://github.com/login/oauth/authorize?scope=user:email&client_id=" + CREDENTIALS.ghClientId;
+    public searching = false;
+    public githubURL = 'https://github.com/login/oauth/authorize?scope=user:email&client_id=' + CREDENTIALS.ghClientId;
+    // public githubURL = 'https://github.com/login/oauth/authorize';
 
 
     constructor(protected route: ActivatedRoute,
-        private submitService: SubmitService,
-        public router: Router) {
+                protected  messageService: MessageService,
+                private submitService: SubmitService,
+                public router: Router) {
     }
 
     ngOnInit() {
@@ -28,9 +31,10 @@ export class SubmitComponent implements OnInit {
             const code = params.hasOwnProperty('code') ? params.code : null;
 
             if (code) {
-                    this.submitService.getRepos(code).subscribe(repos => {
+                this.searching = true;
+                this.submitService.getRepos(code).subscribe(repos => {
                     console.log(repos);
-                    this.githubRepos = repos;//.json() as Array<any>;
+                    this.githubRepos = repos;
                     this.router.navigateByUrl('/submit');
                     this.searching = false;
                 });
@@ -40,4 +44,50 @@ export class SubmitComponent implements OnInit {
         });
     }
 
+    fork(repo) {
+        if (repo) {
+            this.messageService.add({
+                key: 'confirmFork',
+                severity: 'info',
+                summary: 'Fork Repo',
+                detail: `Are you sure you want clone the repo ${repo.name}?`,
+                sticky: true,
+                data: repo
+            });
+        }
+    }
+
+    onConfirm(repo) {
+        if (repo) {
+            this.closeConfirmation();
+            this.submitService.forkRepo(repo.clone_url).subscribe(response => {
+                console.log(response);
+                this.notify(repo, true);
+            }, error => {
+                console.log('error', error);
+                this.notify(repo, false);
+            });
+        }
+    }
+
+    notify(repo, isSuccess: boolean) {
+        let message: string;
+        let status: string;
+        if (isSuccess) {
+            status = 'success';
+            message = `Fork of ${repo.name} created successfully`;
+        } else {
+            status = 'error';
+            message = `Fail creating fork of ${repo.name}`;
+        }
+        this.messageService.add({
+            key: 'notification',
+            severity: status,
+            detail: message,
+        });
+    }
+
+    closeConfirmation() {
+        this.messageService.clear('confirmFork');
+    }
 }
