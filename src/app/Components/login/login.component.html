@@ -1,10 +1,12 @@
-<div fxLayout="column" fxLayoutAlign="center center">
+<div class="p-grid p-dir-col p-align-center">
     <h1>Welcome to our Application</h1>
     <p>Are you Author or Editor</p>
 
-    <button mat-raised-button id="connect-orcid-button" (click)="onLoggedin()" class="btn rounded-btn">
-        <img id="orcid-id-logo" src="http://orcid.org/sites/default/files/images/orcid_24x24.png" width='24' height='24' alt="ORCID logo"/>
-        Create or Connect your ORCID iD
+    <button pButton id="connect-orcid-button"
+            label="Create or Connect your ORCID iD"
+            (click)="onLoggedin()"
+            class="ui-button-raised ui-button-secondary p-grid p-align-center">
+        <img class="p-col" src="http://orcid.org/sites/default/files/images/orcid_24x24.png" alt="ORCID logo"/>
     </button>
 </div>
 

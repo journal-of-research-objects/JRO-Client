@@ -1,0 +1,16 @@
+:host ::ng-deep {
+    margin-top: 100px;
+    .repos-header {
+        margin-bottom: 20px;
+    }
+    .repo-card {
+        margin: 2.5px 0;
+        h4 {
+            margin: 0;
+        }
+
+    }
+    .ui-card-body {
+        width: 100%;
+    }
+}
