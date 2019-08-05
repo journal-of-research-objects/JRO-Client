@@ -4,6 +4,9 @@
     display: block;
     .repos-header {
         margin-bottom: 20px;
+        a {
+            cursor: pointer;
+        }
     }
     .repo-card {
         margin: 2.5px 0;

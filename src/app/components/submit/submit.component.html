@@ -1,7 +1,7 @@
 <div class="repos-header">
     <h2>My Github Repos</h2>
     <hr />
-    <a [href]="githubURL"  *ngIf="!githubRepos?.length > 0"><i class="fa fa-github"></i>&nbsp;Connect to Gihub</a>
+    <a (click)="onLoginGithub()"  *ngIf="!githubRepos?.length > 0"><i class="fa fa-github"></i>&nbsp;Connect to Gihub</a>
     <hr *ngIf="!githubRepos?.length > 0"/>
 </div>
 <div *ngIf="searching" class="p-grid">

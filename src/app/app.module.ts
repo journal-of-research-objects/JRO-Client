@@ -2,18 +2,19 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
 import {AppRoutingModule} from './app-routing.module';
-import {AppComponent} from './app.component';
-import {LoginComponent} from './Components/login/login.component';
-import {SubmitComponent} from './Components/submit/submit.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
-import {UserService} from './Services/user.service';
-import {SubmitService} from './Services/submit.service';
 import {HttpClientModule} from '@angular/common/http';
-import {HomeComponent} from './Components/home/home.component';
-import {AppCustomPrimeNgModule} from './Modules/app-custom-primeng.module';
-import {NavbarComponent} from './Components/navbar/navbar.component';
+import {AppCustomPrimeNgModule} from './modules/app-custom-primeng.module';
 
+// Local Components
+import {AppComponent} from './app.component';
+import {LoginComponent} from './components/login/login.component';
+import {SubmitComponent} from './components/submit/submit.component';
+import {HomeComponent} from './components/home/home.component';
+import {NavbarComponent} from './components/navbar/navbar.component';
 
+// Local Services
+import {RouteGuard, SubmitService, UserService, UtilityService, StorageService} from './services';
 
 @NgModule({
     declarations: [
@@ -30,7 +31,13 @@ import {NavbarComponent} from './Components/navbar/navbar.component';
         FlexLayoutModule,
         HttpClientModule,
     ],
-    providers: [],
+    providers: [
+        RouteGuard,
+        UtilityService,
+        StorageService,
+        UserService,
+        SubmitService
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {

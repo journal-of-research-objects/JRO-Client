@@ -2,8 +2,6 @@
 ================================================== -->
 <header class="header p-grid p-nogutter">
     <div class="header-logo p-col p-grid p-nogutter p-align-center">
-        <!--<a href="index.html">Logo goes here</a>-->
-        <!--<span>Logo goes here</span>-->
         <i class="fa fa-github"></i>
     </div>
 
@@ -13,9 +11,9 @@
             <li><a class="smoothscroll"  href="#about" title="about">About</a></li>
             <li><a class="smoothscroll"  href="#pricing" title="pricing">Pricing</a></li>
             <li><a class="smoothscroll"  href="#repos" title="repos">Repos</a></li>
-            <li><a class="smoothscroll"  href="#papers" title="papers">Papers</a></li>
+            <li><a class="smoothscroll"  href="#footer" title="papers">Papers</a></li>
         </ul>
 
-        <button pButton label="Sign in" class="ui-button-rounded ui-button-secondary"></button>
+        <button (click)="login()" pButton label="Sign in with Orcid" class="ui-button-rounded ui-button-secondary"></button>
     </nav>
 </header> <!-- /header -->

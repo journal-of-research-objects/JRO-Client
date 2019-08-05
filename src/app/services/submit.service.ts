@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {CREDENTIALS} from '../Credentials/credentials';
+import {CREDENTIALS} from '../credentials/credentials';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 

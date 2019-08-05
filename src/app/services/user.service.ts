@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {CREDENTIALS} from '../Credentials/credentials';
+import {CREDENTIALS} from '../credentials/credentials';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 
@@ -9,9 +9,8 @@ export class UserService {
 
     constructor(protected http: HttpClient) {}
 
-    public autenticate(code: string) {
+    public autenticate(code: string): Observable<User> {
         const url = `${this.urlBase}/login/?orcid_auth_code=${code}`;
-        return this.http.get(url);
+        return this.http.get<User>(url);
     }
-
 }

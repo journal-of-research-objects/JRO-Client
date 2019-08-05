@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {UtilityService} from '../../services/utility.service';
 
 @Component({
     selector: 'app-home',
@@ -12,6 +13,10 @@ export class HomeComponent implements OnInit {
     }
 
     ngOnInit() {
+    }
+
+    goToSubmit() {
+        this.router.navigate(['/submit']);
     }
 
 }

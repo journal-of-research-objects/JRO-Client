@@ -1,0 +1,23 @@
+:host {
+    //h1 h2 h3 {
+    //    margin: 0;
+    //}
+    //.login {
+    //    height: 100vh;
+    //}
+    //.login-container {
+    //    box-shadow: 0 2px 8px 0 grey;
+    //    margin-top: 5%;
+    //    text-align: center;
+    //    padding: 30px 40px;
+    //    background-color: white;
+    //}
+    .loading {
+        height: 100vh;
+        text-align: center;
+        overflow-y: hidden;
+        .spinner {
+            margin-top: 10%;
+        }
+    }
+}

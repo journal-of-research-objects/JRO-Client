@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
-// PrimeNg Modules
+// PrimeNg modules
 import {InputTextModule} from 'primeng/inputtext';
 import {ButtonModule} from 'primeng/button';
 import {TableModule} from 'primeng/table';
@@ -10,7 +10,7 @@ import {CardModule} from 'primeng/card';
 import {ToastModule} from 'primeng/toast';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 
-// PrimeNg Services
+// PrimeNg services
 import {MessageService} from 'primeng/api';
 
 @NgModule({

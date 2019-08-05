@@ -1,14 +1,15 @@
 import {RouterModule, Routes} from '@angular/router';
-import {LoginComponent} from './Components/login/login.component';
-import {SubmitComponent} from './Components/submit/submit.component';
+import {LoginComponent} from './components/login/login.component';
+import {SubmitComponent} from './components/submit/submit.component';
 import {NgModule} from '@angular/core';
-import {HomeComponent} from './Components/home/home.component';
+import {HomeComponent} from './components/home/home.component';
+import {RouteGuard} from './services/route-guard.service';
 
 const routes: Routes = [
     // {path: '', redirectTo: 'login', pathMatch: 'full'},
     {path: '', component: HomeComponent},
     {path: 'login', component: LoginComponent},
-    {path: 'submit', component: SubmitComponent}
+    {path: 'submit', component: SubmitComponent, canActivate: [RouteGuard]}
 ];
 
 @NgModule({

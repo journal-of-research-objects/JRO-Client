@@ -1,45 +1,54 @@
 import {Component, OnInit} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
 import {Subscription} from 'rxjs';
-import {CREDENTIALS} from '../../Credentials/credentials';
-import {SubmitService} from '../../Services/submit.service';
+import {CREDENTIALS} from '../../credentials/credentials';
+import {StorageService, SubmitService, UtilityService} from '../../services';
 import {MessageService} from 'primeng/api';
 
 @Component({
     selector: 'app-submit',
     templateUrl: './submit.component.html',
-    styleUrls: ['./submit.component.scss'],
-    providers: [SubmitService]
+    styleUrls: ['./submit.component.scss']
 })
 
 export class SubmitComponent implements OnInit {
     public githubRepos: Array<any>;
     public routeSubscription: Subscription;
     public searching = false;
-    public githubURL = 'https://github.com/login/oauth/authorize?scope=user:email&client_id=' + CREDENTIALS.ghClientId;
+    // public githubURL = 'https://github.com/login/oauth/authorize?scope=user:email&client_id=' + CREDENTIALS.ghClientId;
 
 
     constructor(protected route: ActivatedRoute,
                 protected  messageService: MessageService,
                 private submitService: SubmitService,
-                public router: Router) {
+                protected router: Router,
+                protected utilityService: UtilityService,
+                protected storage: StorageService) {
     }
 
     ngOnInit() {
-        this.routeSubscription = this.route.queryParams.subscribe(params => {
-            const code = params.hasOwnProperty('code') ? params.code : null;
+        // const code = this.storage.read('gh_code');
+        // if (code) {
+        //     this.getRepos(code);
+        // } else {
 
-            if (code) {
-                this.searching = true;
-                this.submitService.getRepos(code).subscribe(repos => {
-                    console.log(repos);
-                    this.githubRepos = repos;
-                    this.router.navigateByUrl('/submit');
-                    this.searching = false;
-                });
-            }
+            this.routeSubscription = this.route.queryParams.subscribe(params => {
+                const ghCode = params.hasOwnProperty('code') ? params.code : null;
+                if (ghCode) {
+                    this.storage.write('gh_code', ghCode);
+                    this.getRepos(ghCode);
+                }
+            });
+        // }
+    }
 
-            console.log(params);
+    getRepos(code: string) {
+        this.searching = true;
+        this.submitService.getRepos(code).subscribe(repos => {
+            console.log(repos);
+            this.githubRepos = repos;
+            this.router.navigateByUrl('/submit');
+            this.searching = false;
         });
     }
 
@@ -88,5 +97,9 @@ export class SubmitComponent implements OnInit {
 
     closeConfirmation() {
         this.messageService.clear('confirmFork');
+    }
+
+    onLoginGithub() {
+        this.utilityService.loginGithub();
     }
 }
