@@ -14,15 +14,19 @@ import {HomeComponent} from './components/home/home.component';
 import {NavbarComponent} from './components/navbar/navbar.component';
 
 // Local Services
-import {RouteGuard, SubmitService, UserService, UtilityService, StorageService} from './services';
+import {RouteGuard, ReposService, UserService, UtilityService, StorageService} from './services';
+import {RepoComponent} from './components/repo/repo.component';
+import {ReviewComponent} from './components/review/review.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         LoginComponent,
         SubmitComponent,
+        ReviewComponent,
         NavbarComponent,
-        HomeComponent
+        HomeComponent,
+        RepoComponent
     ],
     imports: [
         BrowserModule,
@@ -36,7 +40,7 @@ import {RouteGuard, SubmitService, UserService, UtilityService, StorageService} 
         UtilityService,
         StorageService,
         UserService,
-        SubmitService
+        ReposService
     ],
     bootstrap: [AppComponent]
 })

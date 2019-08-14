@@ -1,0 +1,13 @@
+<p-card class="repo-card p-col" styleClass="p-grid">
+    <div class="p-grid p-nogutter">
+        <div class="p-col p-grid  p-dir-col p-nogutter p-justify-center">
+            <h4 *ngIf="repo.name">{{repo.name}}</h4>
+            <span *ngIf="repo.url"><a [href]="repo.url">{{repo.url}}</a></span>
+            <p *ngIf="repo.description">{{repo.description}}</p>
+            <span *ngIf="repo.language" class="language"><small class="text-muted">{{repo.language}}</small></span>
+        </div>
+        <div *ngIf="buttonLabel" class="submit-btn">
+            <button (click)="click()" pButton [label]="buttonLabel" class="ui-button-rounded" [class]="buttonClass"></button>
+        </div>
+    </div>
+</p-card>

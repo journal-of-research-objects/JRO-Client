@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
 import {Subscription} from 'rxjs';
-import {CREDENTIALS} from '../../credentials/credentials';
-import {StorageService, SubmitService, UtilityService} from '../../services';
+import {StorageService, ReposService, UtilityService} from '../../services';
 import {MessageService} from 'primeng/api';
+import {RepoDescriptor} from '../../types';
 
 @Component({
     selector: 'app-submit',
@@ -12,7 +12,7 @@ import {MessageService} from 'primeng/api';
 })
 
 export class SubmitComponent implements OnInit {
-    public githubRepos: Array<any>;
+    public githubRepos: Array<RepoDescriptor>;
     public routeSubscription: Subscription;
     public searching = false;
     // public githubURL = 'https://github.com/login/oauth/authorize?scope=user:email&client_id=' + CREDENTIALS.ghClientId;
@@ -20,39 +20,55 @@ export class SubmitComponent implements OnInit {
 
     constructor(protected route: ActivatedRoute,
                 protected  messageService: MessageService,
-                private submitService: SubmitService,
+                private reposService: ReposService,
                 protected router: Router,
                 protected utilityService: UtilityService,
                 protected storage: StorageService) {
     }
 
     ngOnInit() {
-        // const code = this.storage.read('gh_code');
-        // if (code) {
-        //     this.getRepos(code);
-        // } else {
-
+        const accessToken = <string>this.storage.read('access_token');
+        console.log(accessToken);
+        if (accessToken) {
+            this.getRepos(accessToken);
+        } else {
             this.routeSubscription = this.route.queryParams.subscribe(params => {
                 const ghCode = params.hasOwnProperty('code') ? params.code : null;
                 if (ghCode) {
-                    this.storage.write('gh_code', ghCode);
-                    this.getRepos(ghCode);
+                    this.loginGithub(ghCode);
+                    // this.storage.write('gh_code', ghCode);
+                    // this.getRepos(ghCode);
+
                 }
             });
-        // }
+        }
     }
 
-    getRepos(code: string) {
+    loginGithub(code: string) {
+        this.reposService.loginGithub(code).subscribe(token => {
+            console.log('token', token);
+            if (token && token['access_token']) {
+                this.storage.write('access_token', token['access_token']);
+                this.getRepos(token['access_token'])
+            }
+        })
+    }
+
+    getRepos(accessToken: string) {
         this.searching = true;
-        this.submitService.getRepos(code).subscribe(repos => {
-            console.log(repos);
-            this.githubRepos = repos;
+        this.githubRepos = [];
+        this.reposService.getRepos(accessToken).subscribe(repos => {
+            repos.forEach(repo => {
+                this.githubRepos.push(RepoDescriptor.import(repo))
+            });
+            console.log(this.githubRepos);
             this.router.navigateByUrl('/submit');
             this.searching = false;
         });
     }
 
-    fork(repo) {
+    submit(repo: RepoDescriptor) {
+        console.log('repo', repo);
         if (repo) {
             this.messageService.add({
                 key: 'confirmFork',
@@ -65,10 +81,12 @@ export class SubmitComponent implements OnInit {
         }
     }
 
-    onConfirm(repo) {
-        if (repo) {
+    onConfirm(repo: RepoDescriptor) {
+        const user = <User>this.storage.read('user');
+        console.log(repo);
+        if (repo && user) {
             this.closeConfirmation();
-            this.submitService.forkRepo(repo.forks_url).subscribe(response => {
+            this.reposService.submitRepo(repo.name, repo.properties.owner.login, user.orcid).subscribe(response => {
                 console.log(response);
                 this.notify(repo, true);
             }, error => {
@@ -101,5 +119,31 @@ export class SubmitComponent implements OnInit {
 
     onLoginGithub() {
         this.utilityService.loginGithub();
+    }
+
+    checkButtonAction(state: string): boolean {
+        let isSubmittable = false;
+        if (state === 'initial') {
+            isSubmittable = true;
+        }
+        return isSubmittable;
+    }
+
+    buttonAction(repo: RepoDescriptor) {
+        if (this.checkButtonAction(repo.status)) {
+            this.submit(repo);
+        } else {
+            this.deleteRepo(repo);
+        }
+    }
+
+    deleteRepo(repo: RepoDescriptor) {
+        this.reposService.deleteRepo(repo.properties['forked_url']).subscribe( response => {
+            this.messageService.add({
+                key: 'notification',
+                severity: 'success',
+                detail: 'Repository deleted successfully',
+            });
+        })
     }
 }

@@ -13,8 +13,8 @@ export class RouteGuard implements CanActivate {
             return true;
         }
 
-        // this.router.navigate(['/login']);
-        this.utilityService.loginOrcid();
+        this.router.navigate(['/login']);
+        // this.utilityService.loginOrcid();
         return false;
     }
 }

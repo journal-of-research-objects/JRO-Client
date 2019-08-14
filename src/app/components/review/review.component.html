@@ -1,0 +1,7 @@
+<div>
+    <h2>List of repos submitted</h2>
+
+    <app-repo *ngFor="let repo of repos"
+              [repo]="repo" buttonLabel="Review" (buttonClicked)="onButtonClicked($event)"></app-repo>
+
+</div>

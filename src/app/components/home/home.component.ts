@@ -19,4 +19,8 @@ export class HomeComponent implements OnInit {
         this.router.navigate(['/submit']);
     }
 
+    goToReview() {
+        this.router.navigate(['/review'])
+    }
+
 }

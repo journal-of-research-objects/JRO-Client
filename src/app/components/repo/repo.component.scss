@@ -1,0 +1,16 @@
+:host  ::ng-deep {
+    .repo-card {
+        margin: 2.5px 0;
+        .ui-card-body {
+            padding-right: 30px;
+            width: 100%;
+            h4 {
+                margin: 0;
+            }
+            .submit-btn {
+                margin: auto;
+            }
+        }
+
+    }
+}
