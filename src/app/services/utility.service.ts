@@ -19,9 +19,9 @@ export class UtilityService {
         this.navigate(url)
     }
 
-    // public goToJupyter() {
-    //     const url =
-    // }
+    public goToJupyter(forkName: string) {
+        const url = `${cred.backendURL}/user/brayan_admin/notebooks/${forkName}/paper.ipynb`
+    }
 
     private navigate(url: string){
         window.open(url, '_self', 'toolbar=no, scrollbars=yes, width=500, height=600, top=500, left=500');
