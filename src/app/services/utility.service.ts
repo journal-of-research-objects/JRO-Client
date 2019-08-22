@@ -16,11 +16,12 @@ export class UtilityService {
 
     public loginGithub() {
         const url = 'https://github.com/login/oauth/authorize?scope=user:email&client_id=' + cred.ghClientId;
-        this.navigate(url)
+        this.navigate(url);
     }
 
     public goToJupyter(forkName: string) {
-        const url = `${cred.backendURL}/user/brayan_admin/notebooks/${forkName}/paper.ipynb`
+        const url = `${cred.jupyterURL}/user/brayan_admin/notebooks/${forkName}/paper.ipynb`;
+        this.navigate(url);
     }
 
     private navigate(url: string){

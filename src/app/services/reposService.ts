@@ -32,9 +32,11 @@ export class ReposService {
         return this.http.get(url, {params: params});
     }
 
-    public getSubmitedRepo() {
-        const url = `${this.urlBase}/listsubmitted/`;
-        return this.http.get<Array<any>>(url);
+    public getSubmittedRepo(status: string) {
+        let params = new HttpParams();
+        params = params.set('status', status);
+        const url = `${this.urlBase}/list/`;
+        return this.http.get<Array<any>>(url, {params: params});
     }
 
     public deleteRepo(forkedURL: string) {
