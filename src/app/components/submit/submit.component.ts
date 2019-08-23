@@ -15,6 +15,7 @@ export class SubmitComponent implements OnInit {
     public githubRepos: Array<RepoDescriptor>;
     public routeSubscription: Subscription;
     public searching = false;
+    public accessToken;
     // public githubURL = 'https://github.com/login/oauth/authorize?scope=user:email&client_id=' + CREDENTIALS.ghClientId;
 
 
@@ -27,10 +28,10 @@ export class SubmitComponent implements OnInit {
     }
 
     ngOnInit() {
-        const accessToken = <string>this.storage.read('access_token');
-        console.log(accessToken);
-        if (accessToken) {
-            this.getRepos(accessToken);
+        this.accessToken = <string>this.storage.read('access_token');
+        console.log(this.accessToken);
+        if (this.accessToken) {
+            this.getRepos(this.accessToken);
         } else {
             this.routeSubscription = this.route.queryParams.subscribe(params => {
                 const ghCode = params.hasOwnProperty('code') ? params.code : null;
@@ -49,7 +50,8 @@ export class SubmitComponent implements OnInit {
             console.log('token', token);
             if (token && token['access_token']) {
                 this.storage.write('access_token', token['access_token']);
-                this.getRepos(token['access_token'])
+                this.accessToken = token['access_token'];
+                this.getRepos(this.accessToken);
             }
         })
     }
@@ -89,6 +91,7 @@ export class SubmitComponent implements OnInit {
             this.reposService.submitRepo(repo.name, repo.properties.owner.login, user.orcid).subscribe(response => {
                 console.log(response);
                 this.notify(repo, true);
+                this.getRepos(this.accessToken);
             }, error => {
                 console.log('error', error);
                 this.notify(repo, false);
@@ -144,6 +147,7 @@ export class SubmitComponent implements OnInit {
                 severity: 'success',
                 detail: 'Repository deleted successfully',
             });
+            this.getRepos(this.accessToken);
         })
     }
 }

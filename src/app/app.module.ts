@@ -14,7 +14,7 @@ import {HomeComponent} from './components/home/home.component';
 import {NavbarComponent} from './components/navbar/navbar.component';
 
 // Local Services
-import {RouteGuard, ReposService, UserService, UtilityService, StorageService} from './services';
+import {RouteGuard, ReposService, UserService, UtilityService, StorageService, AuthService} from './services';
 import {RepoComponent} from './components/repo/repo.component';
 import {ReviewComponent} from './components/review/review.component';
 
@@ -40,7 +40,8 @@ import {ReviewComponent} from './components/review/review.component';
         UtilityService,
         StorageService,
         UserService,
-        ReposService
+        ReposService,
+        AuthService
     ],
     bootstrap: [AppComponent]
 })
