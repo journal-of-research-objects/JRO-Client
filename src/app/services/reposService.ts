@@ -46,9 +46,10 @@ export class ReposService {
         return this.http.get(url, {params: params});
     }
 
-    public publish(forkURL: string) {
+    public publish(forkURL: string, repoName: string) {
         let params = new HttpParams();
         params = params.set('fork_url', forkURL);
+        params = params.set('repo_name', repoName);
         const url = this.urlBase + '/publish/';
         return this.http.get(url, {params: params});
     }

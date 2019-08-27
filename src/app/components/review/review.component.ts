@@ -34,7 +34,7 @@ export class ReviewComponent implements OnInit {
 
     publish(repo: RepoDescriptor) {
         console.log(repo);
-        this.reposService.publish(repo.properties['fork_url']).subscribe( response => {
+        this.reposService.publish(repo.properties['fork_url'], repo.name).subscribe( response => {
             console.log(response);
             this.messageService.add({
                 key: 'notification',
