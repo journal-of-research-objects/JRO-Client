@@ -17,6 +17,7 @@ import {NavbarComponent} from './components/navbar/navbar.component';
 import {RouteGuard, ReposService, UserService, UtilityService, StorageService, AuthService} from './services';
 import {RepoComponent} from './components/repo/repo.component';
 import {ReviewComponent} from './components/review/review.component';
+import {ZeroStateComponent} from './components/zero-state/zero-state.component';
 
 @NgModule({
     declarations: [
@@ -26,7 +27,8 @@ import {ReviewComponent} from './components/review/review.component';
         ReviewComponent,
         NavbarComponent,
         HomeComponent,
-        RepoComponent
+        RepoComponent,
+        ZeroStateComponent
     ],
     imports: [
         BrowserModule,

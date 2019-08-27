@@ -9,6 +9,7 @@ import {DialogModule} from 'primeng/dialog';
 import {CardModule} from 'primeng/card';
 import {ToastModule} from 'primeng/toast';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import {TooltipModule} from 'primeng/tooltip';
 
 // PrimeNg services
 import {MessageService} from 'primeng/api';
@@ -22,7 +23,8 @@ import {MessageService} from 'primeng/api';
         TableModule,
         CardModule,
         ToastModule,
-        ProgressSpinnerModule
+        ProgressSpinnerModule,
+        TooltipModule
     ],
     exports: [
         BrowserAnimationsModule,
@@ -32,7 +34,8 @@ import {MessageService} from 'primeng/api';
         TableModule,
         CardModule,
         ToastModule,
-        ProgressSpinnerModule
+        ProgressSpinnerModule,
+        TooltipModule
     ],
     providers: [
         MessageService

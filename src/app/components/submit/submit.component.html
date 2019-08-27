@@ -1,6 +1,6 @@
 <div class="repos-header">
     <h2>My Github Repos</h2>
-    <hr />
+    <hr/>
     <a (click)="onLoginGithub()"  *ngIf="!githubRepos?.length > 0"><i class="fa fa-github"></i>&nbsp;Connect to Gihub</a>
     <hr *ngIf="!githubRepos?.length > 0"/>
 </div>
@@ -9,10 +9,14 @@
 </div>
 <div *ngIf="githubRepos?.length > 0 && !searching" class="p-grid p-dir-col">
     <app-repo *ngFor="let repo of githubRepos"
-              [repo]="repo"
-              [buttonLabel]="checkButtonAction(repo.status) ? 'Submit' : 'Delete'"
-              [buttonClass]="checkButtonAction(repo.status) ? 'ui-button-success' : 'ui-button-danger'"
-              (buttonClicked)="buttonAction($event)"></app-repo>
+              [repo]="repo">
+        <div class="buttons">
+            <button pButton
+                    (click)="buttonAction(repo)"
+                    [label]="checkButtonAction(repo.status) ? 'Submit' : 'Delete'"
+                    [class]="checkButtonAction(repo.status) ? 'ui-button-success' : 'ui-button-danger'"></button>
+        </div>
+    </app-repo>
 </div>
 <p-toast class="confirmation-toast" position="center" key="confirmFork" [modal]="true" [baseZIndex]="5000">
     <ng-template let-message pTemplate="message">
@@ -32,4 +36,4 @@
     </ng-template>
 </p-toast>
 
-<p-toast class="notification-toast" position="bottom-center" key="notification"></p-toast>
+

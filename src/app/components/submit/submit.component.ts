@@ -90,8 +90,10 @@ export class SubmitComponent implements OnInit {
             this.closeConfirmation();
             this.reposService.submitRepo(repo.name, repo.properties.owner.login, user.orcid).subscribe(response => {
                 console.log(response);
-                this.notify(repo, true);
-                this.getRepos(this.accessToken);
+                setTimeout(() => { // TODO: Delete this line
+                    this.notify(repo, true);
+                    this.getRepos(this.accessToken);
+                }, 500)
             }, error => {
                 console.log('error', error);
                 this.notify(repo, false);

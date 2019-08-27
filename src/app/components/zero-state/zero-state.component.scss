@@ -1,0 +1,14 @@
+:host ::ng-deep{
+    .zero-state {
+        margin-top: 50px;
+        p-card {
+            .ui-card-title {
+                text-align: center;
+            }
+            i {
+                font-size: 4em;
+                margin-top: 24px;
+            }
+        }
+    }
+}

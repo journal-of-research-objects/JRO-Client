@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {RepoDescriptor} from '../../types';
 import {ReposService, UtilityService} from '../../services';
+import {MessageService} from 'primeng/api';
 
 @Component({
     selector: 'app-review',
@@ -13,7 +14,8 @@ export class ReviewComponent implements OnInit {
     public repos: Array<RepoDescriptor> = [];
 
     constructor(protected reposService: ReposService,
-                protected utility: UtilityService) {
+                protected utility: UtilityService,
+                protected messageService: MessageService) {
     }
 
     ngOnInit() {
@@ -26,8 +28,19 @@ export class ReviewComponent implements OnInit {
         });
     }
 
-    onButtonClicked(repo: RepoDescriptor) {
-        console.log(repo);
+    goToReview(repo: RepoDescriptor) {
         this.utility.goToJupyter(repo.name);
+    }
+
+    publish(repo: RepoDescriptor) {
+        console.log(repo);
+        this.reposService.publish(repo.properties['fork_url']).subscribe( response => {
+            console.log(response);
+            this.messageService.add({
+                key: 'notification',
+                severity: 'success',
+                detail: 'Repository published successfully',
+            });
+        });
     }
 }

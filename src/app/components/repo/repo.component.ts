@@ -1,5 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {RepoDescriptor} from '../../types';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
     selector: 'app-repo',
@@ -10,10 +9,6 @@ import {RepoDescriptor} from '../../types';
 export class RepoComponent implements OnInit {
 
     @Input() repo: any;
-    @Input() buttonLabel: string;
-    @Input() buttonClass: string;
-
-    @Output() buttonClicked: EventEmitter<RepoDescriptor> = new EventEmitter();
 
     constructor() {
     }
@@ -21,7 +16,19 @@ export class RepoComponent implements OnInit {
     ngOnInit() {
     }
 
-    click() {
-        this.buttonClicked.emit(this.repo);
+    /**
+     * Check the color of the status dock based on the status message
+     * @param status: status code
+     */
+    checkColor(status: string): string{
+        let className = '';
+        if (status === 'initial') {
+            className = 'green';
+        } else if(status.includes('error')) {
+            className = 'red';
+        } else {
+            className = 'yellow';
+        }
+        return className;
     }
 }

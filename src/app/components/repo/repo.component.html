@@ -4,10 +4,12 @@
             <h4 *ngIf="repo.name">{{repo.name}}</h4>
             <span *ngIf="repo.url"><a [href]="repo.url">{{repo.url}}</a></span>
             <p *ngIf="repo.description">{{repo.description}}</p>
-            <span *ngIf="repo.language" class="language"><small class="text-muted">{{repo.language}}</small></span>
+            <div *ngIf="repo.status" class="repo-status p-grid p-nogutter p-align-center">
+                <span pTooltip="status" class="dot" [ngClass]="checkColor(repo.status)"></span>
+                <span>{{repo.status}}</span>
+            </div>
         </div>
-        <div *ngIf="buttonLabel" class="submit-btn">
-            <button (click)="click()" pButton [label]="buttonLabel" class="ui-button-rounded" [class]="buttonClass"></button>
-        </div>
+
+        <ng-content select=".buttons"></ng-content>
     </div>
 </p-card>

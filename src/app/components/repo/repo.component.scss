@@ -7,10 +7,30 @@
             h4 {
                 margin: 0;
             }
-            .submit-btn {
+            .buttons {
                 margin: auto;
             }
         }
+        .repo-status {
+            .dot {
+                height: 10px;
+                width: 10px;
+                background-color: gray;
+                //background: radial-gradient(circle at 100px 100px, #ff0000, #7d0000);
+                border-radius: 50%;
+                display: inline-block;
+                margin-right: 5px;
 
+                &.green {
+                    background: radial-gradient(circle at 100px 100px, #00ff00, #007d00);
+                }
+                &.red {
+                    background: radial-gradient(circle at 100px 100px, #ff0000, #7d0000);
+                }
+                &.yellow {
+                    background: radial-gradient(circle at 100px 100px, #ffff00, #7d7d00);
+                }
+            }
+        }
     }
 }

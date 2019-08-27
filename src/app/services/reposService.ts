@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {CREDENTIALS} from '../credentials/credentials';
-import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {RepoDescriptor} from '../types';
 
 @Injectable()
@@ -43,6 +43,13 @@ export class ReposService {
         let params = new HttpParams();
         params = params.set('forked_url', forkedURL);
         const url = this.urlBase + '/deletesubmitted/';
+        return this.http.get(url, {params: params});
+    }
+
+    public publish(forkURL: string) {
+        let params = new HttpParams();
+        params = params.set('fork_url', forkURL);
+        const url = this.urlBase + '/publish/';
         return this.http.get(url, {params: params});
     }
 }

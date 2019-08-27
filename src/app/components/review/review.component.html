@@ -1,7 +1,15 @@
 <div>
     <h2>List of repos submitted</h2>
-
-    <app-repo *ngFor="let repo of repos"
-              [repo]="repo" buttonLabel="Review" (buttonClicked)="onButtonClicked($event)"></app-repo>
-
+    <hr/>
+    <ng-template [ngIf]="repos.length > 0" [ngIfElse]="zeroState">
+        <app-repo *ngFor="let repo of repos" [repo]="repo">
+            <div class="buttons">
+                <button (click)="publish(repo)" pButton label="Post" class="ui-button-danger"></button>
+                <button (click)="goToReview(repo)" pButton label="Review"></button>
+            </div>
+        </app-repo>
+    </ng-template>
+    <ng-template #zeroState>
+        <app-zero-state></app-zero-state>
+    </ng-template>
 </div>

@@ -1,4 +1,9 @@
 :host {
     margin: 100px 15%;
     display: block;
+    .buttons {
+        button {
+            margin: 0 10px;
+        }
+    }
 }

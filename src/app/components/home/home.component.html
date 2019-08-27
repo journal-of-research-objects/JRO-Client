@@ -18,7 +18,16 @@
         </div>
 
     </div>
-    <div class="about p-grid p-dir-col p-nogutter">
+    <div class="repos">
+        <h2>List of repos published</h2>
+        <ng-template [ngIf]="repos.length > 0" [ngIfElse]="zeroState">
+            <app-repo *ngFor="let repo of repos" [repo]="repo"></app-repo>
+        </ng-template>
+        <ng-template #zeroState>
+            <app-zero-state></app-zero-state>
+        </ng-template>
+    </div>
+    <div *ngIf="false" class="about p-grid p-dir-col p-nogutter">
         <h2 class="p-col-fixed">About US</h2>
         <p class="p-col">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac dui ac quam consequat iaculis.
