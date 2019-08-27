@@ -4,7 +4,7 @@
     <ng-template [ngIf]="repos.length > 0" [ngIfElse]="zeroState">
         <app-repo *ngFor="let repo of repos" [repo]="repo">
             <div class="buttons">
-                <button (click)="publish(repo)" pButton label="Post" class="ui-button-danger"></button>
+                <button (click)="publish(repo)" pButton label="Publish" class="ui-button-danger"></button>
                 <button (click)="goToReview(repo)" pButton label="Review"></button>
             </div>
         </app-repo>

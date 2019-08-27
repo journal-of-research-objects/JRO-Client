@@ -13,7 +13,8 @@ import {ReposService} from '../../services';
 export class HomeComponent implements OnInit {
     public repos: Array<RepoDescriptor> = [];
     constructor(protected router: Router,
-                protected reposService: ReposService) {
+                protected reposService: ReposService,
+                protected utility: UtilityService) {
     }
 
     ngOnInit() {
@@ -33,6 +34,11 @@ export class HomeComponent implements OnInit {
 
     goToReview() {
         this.router.navigate(['/review'])
+    }
+
+    tryIt(repo: RepoDescriptor) {
+        console.log(repo);
+        this.utility.goToMyBinder(repo.name);
     }
 
 }
