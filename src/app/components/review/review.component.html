@@ -3,9 +3,10 @@
     <hr/>
     <ng-template [ngIf]="repos.length > 0" [ngIfElse]="zeroState">
         <app-repo *ngFor="let repo of repos" [repo]="repo">
-            <div class="buttons">
-                <button (click)="publish(repo)" pButton label="Publish" class="ui-button-danger"></button>
-                <button (click)="goToReview(repo)" pButton label="Review"></button>
+            <div repo-buttons>
+                <button pButton (click)="publish(repo)" label="Publish" class="ui-button-danger"></button>
+                <button pButton (click)="regenerateNb(repo)" label="Regenerate Notebook" class="ui-button-success"></button>
+                <button pButton (click)="goToReview(repo)" label="Review"></button>
             </div>
         </app-repo>
     </ng-template>

@@ -15,7 +15,7 @@ import {NavbarComponent} from './components/navbar/navbar.component';
 
 // Local Services
 import {RouteGuard, ReposService, UserService, UtilityService, StorageService, AuthService} from './services';
-import {RepoComponent} from './components/repo/repo.component';
+import {RepoButtonsDirective, RepoComponent} from './components/repo/repo.component';
 import {ReviewComponent} from './components/review/review.component';
 import {ZeroStateComponent} from './components/zero-state/zero-state.component';
 
@@ -28,6 +28,7 @@ import {ZeroStateComponent} from './components/zero-state/zero-state.component';
         NavbarComponent,
         HomeComponent,
         RepoComponent,
+        RepoButtonsDirective,
         ZeroStateComponent
     ],
     imports: [

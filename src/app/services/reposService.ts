@@ -53,4 +53,12 @@ export class ReposService {
         const url = this.urlBase + '/publish/';
         return this.http.get(url, {params: params});
     }
+
+    public regenerateNb(forkedURL: string, repoName: string) {
+        let params = new HttpParams();
+        params = params.set('forked_url', forkedURL);
+        params = params.set('repo_name', repoName);
+        const url = this.urlBase + '/regenerate_nb/';
+        return this.http.get(url, {params: params});
+    }
 }

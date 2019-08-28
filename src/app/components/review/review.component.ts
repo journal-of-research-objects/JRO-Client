@@ -36,11 +36,26 @@ export class ReviewComponent implements OnInit {
         console.log(repo);
         this.reposService.publish(repo.properties['fork_url'], repo.name).subscribe( response => {
             console.log(response);
-            this.messageService.add({
-                key: 'notification',
-                severity: 'success',
-                detail: 'Repository published successfully',
-            });
+            this.sendNotification('success', 'Repository published successfully')
+        }, error => {
+            this.sendNotification('error', 'Error publishing repository');
+        });
+    }
+
+    regenerateNb(repo: RepoDescriptor) {
+        // console.log(repo);
+        this.reposService.regenerateNb(repo.properties['fork_url'], repo.name).subscribe( response => {
+            this.sendNotification('success', 'Repository regenerated successfully');
+        }, error => {
+            this.sendNotification('error', 'Error regenerating repository');
+        })
+    }
+
+    sendNotification(severity: string, detail: string) {
+        this.messageService.add({
+            key: 'notification',
+            severity: severity,
+            detail: detail,
         });
     }
 }

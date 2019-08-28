@@ -1,7 +1,7 @@
 :host {
     margin: 100px 15%;
     display: block;
-    .buttons {
+    [repo-buttons] {
         button {
             margin: 0 10px;
         }

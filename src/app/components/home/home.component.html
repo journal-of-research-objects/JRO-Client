@@ -22,7 +22,7 @@
         <h2>List of repos published</h2>
         <ng-template [ngIf]="repos.length > 0" [ngIfElse]="zeroState">
             <app-repo *ngFor="let repo of repos" [repo]="repo">
-                <div class="buttons">
+                <div repo-buttons>
                     <button (click)="tryIt(repo)" pButton label="Try It" class="ui-button-danger"></button>
                 </div>
             </app-repo>

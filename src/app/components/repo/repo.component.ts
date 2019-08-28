@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, Directive} from '@angular/core';
 
 @Component({
     selector: 'app-repo',
@@ -30,5 +30,13 @@ export class RepoComponent implements OnInit {
             className = 'yellow';
         }
         return className;
+    }
+}
+
+import {} from '@angular/core';
+
+@Directive({selector: '[repo-buttons]'})
+export class RepoButtonsDirective {
+    constructor() {
     }
 }

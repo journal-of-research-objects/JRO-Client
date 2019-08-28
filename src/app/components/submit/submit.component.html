@@ -10,7 +10,7 @@
 <div *ngIf="githubRepos?.length > 0 && !searching" class="p-grid p-dir-col">
     <app-repo *ngFor="let repo of githubRepos"
               [repo]="repo">
-        <div class="buttons">
+        <div repo-buttons>
             <button pButton
                     (click)="buttonAction(repo)"
                     [label]="checkButtonAction(repo.status) ? 'Submit' : 'Delete'"
