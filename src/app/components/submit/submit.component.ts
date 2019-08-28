@@ -93,7 +93,7 @@ export class SubmitComponent implements OnInit {
                 setTimeout(() => { // TODO: Delete this line
                     this.notify(repo, true);
                     this.getRepos(this.accessToken);
-                }, 500)
+                }, 1000);
             }, error => {
                 console.log('error', error);
                 this.notify(repo, false);

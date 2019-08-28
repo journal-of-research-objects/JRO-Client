@@ -19,6 +19,10 @@ export class ReviewComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.getRepos();
+    }
+
+    getRepos() {
         this.repos = [];
         this.reposService.getSubmittedRepo('submitted').subscribe(repos => {
             repos.forEach(repo => {
@@ -36,7 +40,10 @@ export class ReviewComponent implements OnInit {
         console.log(repo);
         this.reposService.publish(repo.properties['fork_url'], repo.name).subscribe( response => {
             console.log(response);
-            this.sendNotification('success', 'Repository published successfully')
+            setTimeout(() => {
+                this.sendNotification('success', 'Repository published successfully');
+                this.getRepos();
+            }, 1000);
         }, error => {
             this.sendNotification('error', 'Error publishing repository');
         });
