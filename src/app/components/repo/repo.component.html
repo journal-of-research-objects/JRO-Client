@@ -6,7 +6,7 @@
             <p *ngIf="repo.description">{{repo.description}}</p>
             <div *ngIf="repo.status" class="repo-status p-grid p-nogutter p-align-center">
                 <span pTooltip="status" class="dot" [ngClass]="checkColor(repo.status)"></span>
-                <span>{{repo.status}}</span>
+                <span>{{checkStatusMessage(repo.status)}}</span>
             </div>
         </div>
 

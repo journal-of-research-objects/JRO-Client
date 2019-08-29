@@ -33,7 +33,8 @@ export class ReviewComponent implements OnInit {
     }
 
     goToReview(repo: RepoDescriptor) {
-        this.utility.goToJupyter(repo.name);
+        // this.utility.goToJupyter(repo.name);
+        this.utility.goToMyBinder(repo.name);
     }
 
     publish(repo: RepoDescriptor) {

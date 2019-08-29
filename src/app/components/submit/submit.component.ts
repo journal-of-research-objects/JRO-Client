@@ -111,11 +111,7 @@ export class SubmitComponent implements OnInit {
             status = 'error';
             message = `Fail submitting ${repo.name}`;
         }
-        this.messageService.add({
-            key: 'notification',
-            severity: status,
-            detail: message,
-        });
+        this.sendNotification(status, message);
     }
 
     closeConfirmation() {
@@ -144,12 +140,18 @@ export class SubmitComponent implements OnInit {
 
     deleteRepo(repo: RepoDescriptor) {
         this.reposService.deleteRepo(repo.properties['forked_url']).subscribe( response => {
-            this.messageService.add({
-                key: 'notification',
-                severity: 'success',
-                detail: 'Repository deleted successfully',
-            });
+            this.sendNotification('success', 'Repository deleted successfully');
             this.getRepos(this.accessToken);
-        })
+        }, error => {
+            this.sendNotification('error', 'Error deleting repository');
+        });
+    }
+
+    sendNotification(severity: string, detail: string) {
+        this.messageService.add({
+            key: 'notification',
+            severity: severity,
+            detail: detail,
+        });
     }
 }

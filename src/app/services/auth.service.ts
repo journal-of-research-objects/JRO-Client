@@ -8,12 +8,12 @@ export class AuthService {
     constructor() {
     }
 
+    logOut() {
+        localStorage.clear();
+    }
+
     isLoggedIn(): boolean{
-        if (localStorage.getItem('isLoggedIn')) {
-            return true;
-        }else {
-            return false;
-        }
+        return localStorage.getItem('isLoggedIn') ? true : false;
     }
 
 }

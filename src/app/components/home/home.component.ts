@@ -37,8 +37,6 @@ export class HomeComponent implements OnInit {
     }
 
     tryIt(repo: RepoDescriptor) {
-        console.log(repo);
         this.utility.goToMyBinder(repo.name);
     }
-
 }

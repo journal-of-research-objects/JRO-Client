@@ -1,9 +1,11 @@
 :host {
-    margin: 100px 15%;
-    display: block;
-    [repo-buttons] {
-        button {
-            margin: 0 10px;
+    .review {
+        padding: 100px 15%;
+        display: block;
+        [repo-buttons] {
+            button {
+                margin: 0 10px;
+            }
         }
     }
 }

@@ -1,21 +1,22 @@
 :host ::ng-deep {
-    //margin-top: 100px;
-    margin: 100px 15%;
-    display: block;
-    .repos-header {
-        margin-bottom: 20px;
-        a {
-            cursor: pointer;
+    .submit {
+        padding: 100px 15%;
+        display: block;
+        .repos-header {
+            margin-bottom: 20px;
+            a {
+                cursor: pointer;
+            }
         }
-    }
 
-    p-progressSpinner {
-        text-align: center;
-    }
+        p-progressSpinner {
+            text-align: center;
+        }
 
-    .confirmation-toast {
-        .ui-toast-message {
-            background-color: white !important;
+        .confirmation-toast {
+            .ui-toast-message {
+                background-color: white !important;
+            }
         }
     }
 }
