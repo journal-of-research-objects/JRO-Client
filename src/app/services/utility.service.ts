@@ -20,7 +20,7 @@ export class UtilityService {
     }
 
     public goToJupyter(forkName: string) {
-        const url = `${cred.jupyterURL}/user/brayan_admin/notebooks/repos/${forkName}/paper.ipynb`;
+        const url = `${cred.jupyterURL}/user/brayan_admin/notebooks/repos/${forkName}/paper.ipynb?kernel_name=${forkName}`;
         this.navigate(url);
     }
 
