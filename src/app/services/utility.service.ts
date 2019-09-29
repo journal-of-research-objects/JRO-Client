@@ -11,26 +11,26 @@ export class UtilityService {
     public  loginOrcid() {
         const redirect = window.location.href;
         const url = `${cred.orcidURL}?client_id=${cred.clientId}&response_type=code&scope=/authenticate&redirect_uri=${redirect}`;
-        this.navigate(url);
+        this.navigate(url, '_self');
     }
 
     public loginGithub() {
         const url = 'https://github.com/login/oauth/authorize?scope=user:email&client_id=' + cred.ghClientId;
-        this.navigate(url);
+        this.navigate(url, '_self');
     }
 
     public goToJupyter(forkName: string) {
         const url = `${cred.jupyterURL}/user/brayan_admin/notebooks/repos/${forkName}/paper.ipynb?kernel_name=${forkName}`;
-        this.navigate(url);
+        this.navigate(url, '_blank');
     }
 
 
     public goToMyBinder(forkName: string) {
-        const url = `${cred.myBinderURL}/${cred.ghOrganizationName}/${forkName}/master`;
-        this.navigate(url);
+        const url = `${cred.myBinderURL}/${cred.ghOrganizationName}/${forkName}/master?filepath=paper.ipynb`;
+        this.navigate(url, '_blank');
     }
 
-    private navigate(url: string){
-        window.open(url, '_self', 'toolbar=no, scrollbars=yes, width=500, height=600, top=500, left=500');
+    private navigate(url: string, tab: string){
+        window.open(url, tab);
     }
 }
