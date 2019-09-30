@@ -56,6 +56,40 @@ export class SubmitComponent implements OnInit {
         })
     }
 
+    sortRepos(a: RepoDescriptor, b: RepoDescriptor){
+        const statusA = a.status;
+        const statusB = b.status;
+
+        let comparison = 0;
+        if (statusA == statusB){
+            comparison = 0;
+        }else if (statusA == "initial"){
+            comparison=1;
+        }else if (statusA.startsWith("error") && statusB.startsWith("error")){
+            comparison=0;
+        }else if (statusB == "initial"){
+            comparison=-1;
+        }else if (statusA == "published"){
+            comparison=1;
+        }else if (statusB == "published"){
+            comparison=-1;
+        }else if (statusA == "submitted"){
+            comparison=1;
+        }else if (statusB == "submitted"){
+            comparison=-1;
+        }else if (statusA.startsWith("error")){
+            comparison=1;
+        }else if (statusB.startsWith("error")){
+            comparison=-1;
+        }else if (statusA == "forked"){
+            comparison=1;
+        }else{
+            comparison=-1;
+        }
+        
+        return comparison;
+    }
+
     getRepos(accessToken: string) {
         this.searching = true;
         this.githubRepos = [];
@@ -63,6 +97,8 @@ export class SubmitComponent implements OnInit {
             repos.forEach(repo => {
                 this.githubRepos.push(RepoDescriptor.import(repo))
             });
+            console.log(this.githubRepos);
+            this.githubRepos = this.githubRepos.sort(this.sortRepos)
             console.log(this.githubRepos);
             this.router.navigateByUrl('/submit');
             this.searching = false;
