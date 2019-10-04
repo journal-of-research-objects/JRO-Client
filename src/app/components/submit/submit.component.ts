@@ -93,7 +93,7 @@ export class SubmitComponent implements OnInit {
     getRepos(accessToken: string) {
         this.searching = true;
         this.githubRepos = [];
-        this.reposService.getRepos(accessToken).subscribe(repos => {
+        this.reposService.getRepos(accessToken).subscribe((repos: Array<RepoDescriptor>) => {
             repos.forEach(repo => {
                 this.githubRepos.push(RepoDescriptor.import(repo))
             });

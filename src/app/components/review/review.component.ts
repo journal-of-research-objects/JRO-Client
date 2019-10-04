@@ -24,7 +24,7 @@ export class ReviewComponent implements OnInit {
 
     getRepos() {
         this.repos = [];
-        this.reposService.getSubmittedRepo('submitted').subscribe(repos => {
+        this.reposService.getSubmittedRepo('submitted').subscribe((repos: Array<RepoDescriptor>) => {
             repos.forEach(repo => {
                 repo['html_url'] = repo['fork_url'];
                 this.repos.push(RepoDescriptor.import(repo))

@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
                     this.userService.autenticate(code).subscribe(response => {
                         if (response.access_token) {
                             this.storageService.write('user', response);
-                            this.storageService.write('isLoggedIn', 'true');
+                            this.storageService.write('token', response.access_token);
                             // this.router.navigate(['/submit']);
                             this.redirect();
                         }
