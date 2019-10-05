@@ -20,6 +20,11 @@ export class NavbarComponent implements OnInit {
         this.isLoggedIn = this.authService.isLoggedIn();
     }
 
+    
+    goToHome() {
+        this.router.navigate(['/'])
+    }
+
 
     login() {
         this.utility.loginOrcid();

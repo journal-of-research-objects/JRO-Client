@@ -9,7 +9,10 @@
         padding: 15px 50px;
         .header-logo {
             font-size: 2.5em;
-            color: #bdbdbd
+            color: #bdbdbd;
+            i:hover {
+                cursor: pointer;
+            }
 
         }
         button {
