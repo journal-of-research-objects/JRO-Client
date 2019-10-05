@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
 
     ngOnInit() {
         this.repos = [];
-        this.reposService.getSubmittedRepo('published').subscribe((repos: Array<RepoDescriptor>) => {
+        this.reposService.getPublishedRepo().subscribe((repos: Array<RepoDescriptor>) => {
             console.log(repos);
             repos.forEach(repo => {
                 repo['html_url'] = repo['fork_url'];

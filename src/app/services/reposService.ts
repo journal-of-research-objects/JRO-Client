@@ -41,6 +41,12 @@ export class ReposService {
         return this.getResponse(url, params);
     }
 
+    public getPublishedRepo() {
+        let params = new HttpParams();
+        const url = `${this.urlBase}/listpub/`;
+        return this.getResponse(url, params);
+    }
+
     public deleteRepo(forkedURL: string) {
         let params = new HttpParams();
         params = params.set('forked_url', forkedURL);
