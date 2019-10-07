@@ -142,10 +142,10 @@ export class SubmitComponent implements OnInit {
         let status: string;
         if (isSuccess) {
             status = 'success';
-            message = `${repo.name} submitted successfully`;
+            message = `${repo.name} is in the automatic verification process`;
         } else {
             status = 'error';
-            message = `Fail submitting ${repo.name}`;
+            message = `Fail submitting ${repo.name}. Please try it again.`;
         }
         this.sendNotification(status, message);
     }
@@ -188,6 +188,7 @@ export class SubmitComponent implements OnInit {
             key: 'notification',
             severity: severity,
             detail: detail,
+            life: 10000
         });
     }
 }
