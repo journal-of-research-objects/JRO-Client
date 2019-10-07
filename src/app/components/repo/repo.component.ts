@@ -44,6 +44,8 @@ export class RepoComponent implements OnInit {
             message = 'Repository published successfully';
         }else if (status.includes('error:verify')) {
             message = 'Error verifying the existence of the paper.md and requirements.txt files.';
+        }else if (status.includes('error:libs')) {
+            message = 'Error installing the libraries of the requirements.txt.';
         } else if(status.includes('error:clone')) {
             message = ' Error cloning the repository';
         }else if (status.includes('error: verify:not exist')) {
