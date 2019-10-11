@@ -43,7 +43,7 @@ export class RepoComponent implements OnInit {
         } else if (status === 'published') {
             message = 'Repository published successfully';
         } else if (status.includes('error:verify')) {
-            message = 'Error verifying the existence of the paper.md and requirements.txt files.';
+            message = 'Error verifying the existence of the files paper.md, requirements.txt and references.bib.';
         } else if (status.includes('error:libs')) {
             message = 'Error installing the libraries of the requirements.txt.';
         } else if(status.includes('error:clone') || (status.includes('error:venvcreation') || status.includes('error:add_venv_gitignore'))) {
