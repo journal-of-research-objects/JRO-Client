@@ -46,12 +46,16 @@ export class RepoComponent implements OnInit {
             message = 'Error verifying the existence of the files paper.md, requirements.txt and references.bib.';
         } else if (status.includes('error:libs')) {
             message = 'Error installing the libraries of the requirements.txt.';
+        } else if (status.includes('error:metadata')) {
+            message = 'Error adding authors and keywords';
         } else if(status.includes('error:clone') || (status.includes('error:venvcreation') || status.includes('error:add_venv_gitignore'))) {
             message = ' Error cloning the repository';
         } else if (status.includes('error:verify not exist')) {
             message = 'Error. Please verify the existence of the files paper.md and requirements.txt.';
         } else if (status.includes('error:nbcreation')) {
             message = 'Error in the creation of the notebook. Please verify the files paper.md and requirements.txt are well structured.';
+        } else if (status.includes('error')) {
+            message = 'Error submitting the repo.'
         } else {
             message = status;
         }
