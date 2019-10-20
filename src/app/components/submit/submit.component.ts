@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {StorageService, ReposService, UtilityService} from '../../services';
@@ -11,12 +11,12 @@ import {RepoDescriptor} from '../../types';
     styleUrls: ['./submit.component.scss']
 })
 
-export class SubmitComponent implements OnInit {
+export class SubmitComponent implements OnInit, OnDestroy {
     public githubRepos: Array<RepoDescriptor>;
     public routeSubscription: Subscription;
     public searching = false;
-    public accessToken;
-    // public githubURL = 'https://github.com/login/oauth/authorize?scope=user:email&client_id=' + CREDENTIALS.ghClientId;
+    public accessToken: string;
+    private interval: number;
 
 
     constructor(protected route: ActivatedRoute,
@@ -31,74 +31,63 @@ export class SubmitComponent implements OnInit {
         this.accessToken = <string>this.storage.read('access_token');
         console.log(this.accessToken);
         if (this.accessToken) {
+            this.searching = true;
             this.getRepos(this.accessToken);
+            this.setGetReposInterval();
         } else {
             this.routeSubscription = this.route.queryParams.subscribe(params => {
                 const ghCode = params.hasOwnProperty('code') ? params.code : null;
                 if (ghCode) {
-                    this.loginGithub(ghCode);
-                    // this.storage.write('gh_code', ghCode);
-                    // this.getRepos(ghCode);
+                    this.searching = true;
+                    this.reposService.loginGithub(ghCode).subscribe(token => {
+                        if (token && token['access_token']) {
+                            this.storage.write('access_token', token['access_token']);
+                            this.accessToken = token['access_token'];
+                            this.getRepos(this.accessToken);
+                            this.setGetReposInterval();
+                        }
+                    });
 
                 }
             });
         }
     }
 
-    loginGithub(code: string) {
-        this.reposService.loginGithub(code).subscribe(token => {
-            console.log('token', token);
-            if (token && token['access_token']) {
-                this.storage.write('access_token', token['access_token']);
-                this.accessToken = token['access_token'];
-                this.getRepos(this.accessToken);
-            }
-        })
+    ngOnDestroy() {
+        if (this.interval) {
+            clearInterval(this.interval);
+        }
     }
 
-    sortRepos(a: RepoDescriptor, b: RepoDescriptor){
+    setGetReposInterval() {
+        this.interval = setInterval(() => {
+            this.getRepos(this.accessToken);
+        }, 15000);
+    }
+
+
+    sortRepos(a: RepoDescriptor, b: RepoDescriptor) {
         const statusA = a.status;
         const statusB = b.status;
 
-        let comparison = 0;
-        if (statusA == statusB){
-            comparison = 0;
-        }else if (statusA == "initial"){
-            comparison=1;
-        }else if (statusA.startsWith("error") && statusB.startsWith("error")){
-            comparison=0;
-        }else if (statusB == "initial"){
-            comparison=-1;
-        }else if (statusA == "published"){
-            comparison=1;
-        }else if (statusB == "published"){
-            comparison=-1;
-        }else if (statusA == "submitted"){
-            comparison=1;
-        }else if (statusB == "submitted"){
-            comparison=-1;
-        }else if (statusA.startsWith("error")){
-            comparison=1;
-        }else if (statusB.startsWith("error")){
-            comparison=-1;
-        }else if (statusA == "forked"){
-            comparison=1;
+        if (statusA == statusB || statusA.startsWith("error") && statusB.startsWith("error")){
+            return 0;
+        }else if (statusA.match('/^(initial|published|submitted|forked)$/') || statusA.startsWith("error")){
+            return 1;
+        }else if (statusB.match('/^(initial|published|submitted)$/') || statusB.startsWith("error")) {
+            return -1;
         }else{
-            comparison=-1;
+            return -1;
         }
-        
-        return comparison;
     }
 
     getRepos(accessToken: string) {
-        this.searching = true;
-        this.githubRepos = [];
         this.reposService.getRepos(accessToken).subscribe((repos: Array<RepoDescriptor>) => {
+            let tempRepos = [];
             repos.forEach(repo => {
-                this.githubRepos.push(RepoDescriptor.import(repo))
+                tempRepos.push(RepoDescriptor.import(repo))
             });
-            console.log(this.githubRepos);
-            this.githubRepos = this.githubRepos.sort(this.sortRepos)
+            this.githubRepos = tempRepos.sort(this.sortRepos);
             console.log(this.githubRepos);
             this.router.navigateByUrl('/submit');
             this.searching = false;
