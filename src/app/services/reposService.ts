@@ -1,15 +1,15 @@
-import {Injectable} from '@angular/core';
-import {CREDENTIALS} from '../credentials/credentials';
-import {HttpClient, HttpParams} from '@angular/common/http';
-import {RepoDescriptor} from '../types';
-import {StorageService} from './storage.service';
-import {Observable} from 'rxjs';
+import { Injectable } from '@angular/core';
+import { CREDENTIALS } from '../credentials/credentials';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { RepoDescriptor, RepoSubmit } from '../types';
+import { StorageService } from './storage.service';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class ReposService {
     public urlBase = CREDENTIALS.backendURL;
 
-    constructor(protected http: HttpClient, protected storageService: StorageService) {}
+    constructor(protected http: HttpClient, protected storageService: StorageService) { }
 
     public loginGithub(code: string) {
         let params = new HttpParams();
@@ -25,13 +25,21 @@ export class ReposService {
         return this.getResponse(url, params);
     }
 
-    public submitRepo(repoName: string, gitUser: string, orcid: string) {
-        let params = new HttpParams();
-        params = params.set('repo_name', repoName);
-        params = params.set('user_name', gitUser);
-        params = params.set('orcid', orcid);
+    public submitRepo(submitData: RepoSubmit) {
+        let params = new FormData();
+        params.append('repo_name', submitData.name);
+        params.append('user_name', submitData.gitUser);
+        params.append('orcid', submitData.orcid);
+        params.append('authors', <any>submitData.authors);
+        params.append('keywords', submitData.keywords ? submitData.keywords.join(',') : null);
         const url = `${this.urlBase}/submit/`;
-        return this.getResponse(url, params);
+        return this.http.post(url, {
+            repo_name: submitData.name,
+            user_name: submitData.gitUser,
+            orcid: submitData.orcid,
+            authors: submitData.authors,
+            keywords: submitData.keywords ? submitData.keywords.join(',') : null
+        }, { headers: this.headers });
     }
 
     public getSubmittedRepo(status: string) {
@@ -71,8 +79,12 @@ export class ReposService {
     }
 
     private getResponse(url: string, params) {
-        const token = this.storageService.read('token');
-        const options = {params: params, headers: token ? {'Authorization': `Bearer ${token}`} : {}};
+        const options = { params: params, headers: this.headers };
         return this.http.get(url, options);
+    }
+
+    private get headers(): { [key: string]: any } {
+        const token = this.storageService.authToken;
+        return token ? { 'Authorization': `Bearer ${token}` } : {};
     }
 }

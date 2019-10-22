@@ -18,6 +18,7 @@ import {RouteGuard, ReposService, UserService, UtilityService, StorageService, A
 import {RepoButtonsDirective, RepoComponent} from './components/repo/repo.component';
 import {ReviewComponent} from './components/review/review.component';
 import {ZeroStateComponent} from './components/zero-state/zero-state.component';
+import { SubmitRepoFormModule } from './components/submit-repo-form/submit-repo-form.module';
 
 @NgModule({
     declarations: [
@@ -37,6 +38,7 @@ import {ZeroStateComponent} from './components/zero-state/zero-state.component';
         AppCustomPrimeNgModule,
         FlexLayoutModule,
         HttpClientModule,
+        SubmitRepoFormModule
     ],
     providers: [
         RouteGuard,

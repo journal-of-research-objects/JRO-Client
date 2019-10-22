@@ -2,39 +2,27 @@
 <div class="submit p-grid p-nogutter p-dir-col">
     <div class="repos-header">
         <h2>My Github Repos</h2>
-        <hr/>
-        <a (click)="onLoginGithub()"  *ngIf="!githubRepos?.length > 0"><i class="fa fa-github"></i>&nbsp;Connect to Gihub</a>
-        <hr *ngIf="!githubRepos?.length > 0"/>
+        <hr />
+        <a (click)="onLoginGithub()" *ngIf="!(githubRepos?.length > 0)"><i class="fa fa-github"></i>&nbsp;Connect to
+            Gihub</a>
+        <hr *ngIf="!(githubRepos?.length > 0)" />
     </div>
     <div *ngIf="searching" class="p-grid">
         <p-progressSpinner class="p-col"></p-progressSpinner>
     </div>
     <div *ngIf="githubRepos?.length > 0 && !searching" class="p-grid p-dir-col">
-        <app-repo *ngFor="let repo of githubRepos"
-                  [repo]="repo">
+        <app-repo *ngFor="let repo of githubRepos" [repo]="repo">
             <div repo-buttons>
-                <button pButton
-                        (click)="buttonAction(repo)"
-                        [label]="checkButtonAction(repo.status) ? 'Submit' : 'Delete'"
-                        [class]="checkButtonAction(repo.status) ? 'ui-button-success' : 'ui-button-danger'"></button>
+                <button pButton (click)="buttonAction(repo)"
+                    [label]="checkButtonAction(repo.status) ? 'Submit' : 'Delete'"
+                    [class]="checkButtonAction(repo.status) ? 'ui-button-success' : 'ui-button-danger'"></button>
             </div>
         </app-repo>
     </div>
-    <p-toast class="confirmation-toast" position="center" key="confirmFork" [modal]="true" [baseZIndex]="5000">
-        <ng-template let-message pTemplate="message">
-            <div style="text-align: center">
-                <i class="pi pi-exclamation-triangle" style="font-size: 3em"></i>
-                <h3>{{message.summary}}</h3>
-                <p>{{message.detail}}</p>
-            </div>
-            <div class="ui-g ui-fluid">
-                <div class="ui-g-6">
-                    <button type="button" pButton (click)="onConfirm(message.data)" label="Yes" class="ui-button-success"></button>
-                </div>
-                <div class="ui-g-6">
-                    <button type="button" pButton (click)="closeConfirmation()" label="No" class="ui-button-secondary"></button>
-                </div>
-            </div>
-        </ng-template>
-    </p-toast>
+    <p-dialog [(visible)]="showRepoSubmitModal" [width]="650" [modal]="true" [responsive]="true" [resizable]="false"
+        header="Submit Repository" [closable]="true" >
+        <app-submit-repo-form *ngIf="repoSubmit" [showHeader]="false" [repoSubmit]="repoSubmit"
+            (onSubmit)="onConfirm($event)" (onCancel)="showRepoSubmitModal = false">
+        </app-submit-repo-form>
+    </p-dialog>
 </div>

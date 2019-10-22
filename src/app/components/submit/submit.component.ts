@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {Router, ActivatedRoute} from '@angular/router';
-import {Subscription} from 'rxjs';
-import {StorageService, ReposService, UtilityService} from '../../services';
-import {MessageService} from 'primeng/api';
-import {RepoDescriptor} from '../../types';
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { StorageService, ReposService, UtilityService } from '../../services';
+import { MessageService } from 'primeng/api';
+import { RepoDescriptor, User, RepoSubmit } from '../../types';
 
 @Component({
     selector: 'app-submit',
@@ -18,13 +18,15 @@ export class SubmitComponent implements OnInit {
     public accessToken;
     // public githubURL = 'https://github.com/login/oauth/authorize?scope=user:email&client_id=' + CREDENTIALS.ghClientId;
 
+    public repoSubmit: RepoSubmit;
+    public showRepoSubmitModal: boolean = false;
 
     constructor(protected route: ActivatedRoute,
-                protected  messageService: MessageService,
-                private reposService: ReposService,
-                protected router: Router,
-                protected utilityService: UtilityService,
-                protected storage: StorageService) {
+        protected messageService: MessageService,
+        private reposService: ReposService,
+        protected router: Router,
+        protected utilityService: UtilityService,
+        protected storage: StorageService) {
     }
 
     ngOnInit() {
@@ -56,37 +58,37 @@ export class SubmitComponent implements OnInit {
         })
     }
 
-    sortRepos(a: RepoDescriptor, b: RepoDescriptor){
+    sortRepos(a: RepoDescriptor, b: RepoDescriptor) {
         const statusA = a.status;
         const statusB = b.status;
 
         let comparison = 0;
-        if (statusA == statusB){
+        if (statusA == statusB) {
             comparison = 0;
-        }else if (statusA == "initial"){
-            comparison=1;
-        }else if (statusA.startsWith("error") && statusB.startsWith("error")){
-            comparison=0;
-        }else if (statusB == "initial"){
-            comparison=-1;
-        }else if (statusA == "published"){
-            comparison=1;
-        }else if (statusB == "published"){
-            comparison=-1;
-        }else if (statusA == "submitted"){
-            comparison=1;
-        }else if (statusB == "submitted"){
-            comparison=-1;
-        }else if (statusA.startsWith("error")){
-            comparison=1;
-        }else if (statusB.startsWith("error")){
-            comparison=-1;
-        }else if (statusA == "forked"){
-            comparison=1;
-        }else{
-            comparison=-1;
+        } else if (statusA == "initial") {
+            comparison = 1;
+        } else if (statusA.startsWith("error") && statusB.startsWith("error")) {
+            comparison = 0;
+        } else if (statusB == "initial") {
+            comparison = -1;
+        } else if (statusA == "published") {
+            comparison = 1;
+        } else if (statusB == "published") {
+            comparison = -1;
+        } else if (statusA == "submitted") {
+            comparison = 1;
+        } else if (statusB == "submitted") {
+            comparison = -1;
+        } else if (statusA.startsWith("error")) {
+            comparison = 1;
+        } else if (statusB.startsWith("error")) {
+            comparison = -1;
+        } else if (statusA == "forked") {
+            comparison = 1;
+        } else {
+            comparison = -1;
         }
-        
+
         return comparison;
     }
 
@@ -106,35 +108,21 @@ export class SubmitComponent implements OnInit {
     }
 
     submit(repo: RepoDescriptor) {
-        console.log('repo', repo);
-        if (repo) {
-            this.messageService.add({
-                key: 'confirmFork',
-                severity: 'info',
-                summary: 'Submit Repo',
-                detail: `Are you sure you want submit the repo ${repo.name}?`,
-                sticky: true,
-                data: repo
-            });
+        const user = this.storage.user;
+        if (repo && user) {
+            this.showRepoSubmitModal = true;
+            this.repoSubmit = { name: repo.name, gitUser: repo.properties.owner.login, orcid: user.orcid, authors: [] };
         }
     }
 
-    onConfirm(repo: RepoDescriptor) {
-        const user = <User>this.storage.read('user');
-        console.log(repo);
-        if (repo && user) {
-            this.closeConfirmation();
-            this.reposService.submitRepo(repo.name, repo.properties.owner.login, user.orcid).subscribe(response => {
-                console.log(response);
-                setTimeout(() => { // TODO: Delete this line
-                    this.notify(repo, true);
-                    this.getRepos(this.accessToken);
-                }, 1000);
-            }, error => {
-                console.log('error', error);
-                this.notify(repo, false);
-            });
+    onConfirm(event: { status: string, data: any }) {
+        if (event.status == 'success') {
+            setTimeout(() => {
+                this.getRepos(this.accessToken);
+            }, 1000);
         }
+        this.showRepoSubmitModal = false;
+        this.notify(this.repoSubmit, event.status == 'success');
     }
 
     notify(repo, isSuccess: boolean) {
@@ -175,7 +163,7 @@ export class SubmitComponent implements OnInit {
     }
 
     deleteRepo(repo: RepoDescriptor) {
-        this.reposService.deleteRepo(repo.properties['forked_url']).subscribe( response => {
+        this.reposService.deleteRepo(repo.properties['forked_url']).subscribe(response => {
             this.sendNotification('success', 'Repository deleted successfully');
             this.getRepos(this.accessToken);
         }, error => {

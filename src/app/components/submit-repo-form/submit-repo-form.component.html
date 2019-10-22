@@ -1,0 +1,72 @@
+<h1 *ngIf="showHeader">Submit Repo</h1>
+<div class="keywords ui-fluid forms">
+    <h3>
+        <li class="pi pi-search"></li>
+        <span class="required-field">KeyWords</span>
+    </h3>
+    <p-chips class="keywords-chips" [(ngModel)]="repoSubmit.keywords"></p-chips>
+</div>
+<div class="authors-wrapper">
+    <h3>
+        <li class="pi pi-users"></li> Authors
+    </h3>
+    <div class="authors-list-wrapper">
+        <div *ngFor="let lauthor of authors" class="authors-list-item" (click)="selectAuthor(lauthor)"
+            [ngClass]="{ 'selected':author == lauthor}">
+            <strong class="prop">
+                <i class="pi pi-user"></i>
+                <span>{{lauthor.name}}</span>
+            </strong>
+            <span class="prop">{{lauthor.aff}}</span>
+            <span class="prop">
+                <i class="pi pi-id-card"></i>
+                <span>{{lauthor.orcid}}</span>
+            </span>
+            <span class="commands">
+                <button pButton icon="pi pi-user-minus" type="submit" class="ui-button-rounded ui-button-danger"
+                    (click)="removeAuthor(lauthor)" title="delete"></button>
+            </span>
+        </div>
+    </div>
+    <div class="authors-plus-wrapper">
+        <form [formGroup]="authorForm" (submit)="processAuthor();new_author_start.focus()">
+            <h5 style="margin: 0;">Add Author</h5>
+            <div class="ui-g ui-fluid">
+                <div class="ui-g-12 ui-lg-4">
+                    <input #new_author_start pInputText [required]="true" formControlName="name" type="text"
+                        placeholder="Name">
+                    <ng-container
+                        *ngIf="(authorForm.controls['name'].touched || authorForm.controls['name'].dirty) && authorForm.controls['name'].errors">
+                        <small *ngFor="let error of this.authorForm.controls['name'].errors| keyvalue"
+                            class="invalid-field">This field is {{error.key}}</small>
+                    </ng-container>
+                </div>
+                <div class="ui-g-12 ui-lg-3">
+                    <input pInputText formControlName="aff" [required]="true" type="text" placeholder="Membership">
+                    <ng-container
+                        *ngIf="(authorForm.controls['aff'].touched || authorForm.controls['aff'].dirty) &&  authorForm.controls['aff'].errors">
+                        <small *ngFor="let error of this.authorForm.controls['aff'].errors| keyvalue"
+                            class="invalid-field">This field is {{error.key}}</small>
+                    </ng-container>
+                </div>
+                <div class="ui-g-12 ui-lg-4">
+                    <div class="ui-inputgroup">
+                        <span class="ui-inputgroup-addon"><i class="pi pi-id-card"></i></span>
+                        <input pInputText formControlName="orcid" type="text" placeholder="ORCID">
+                    </div>
+                </div>
+                <div class="ui-g-1">
+                    <button pButton [icon]="formAuthoMode == 'edit' ? 'pi pi-user-edit' : 'pi pi-user-plus'"
+                        type="submit" title="add"
+                        [ngClass]="{'ui-button-success':formAuthoMode == 'new','ui-button-info':formAuthoMode == 'edit'}"></button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+<div class="buttons-wrapper">
+    <button pButton type="button" class="ui-button-success" label="Submit" [disabled]="!valid"
+        (click)="submit()"></button>
+    <button pButton type="button" class="ui-button-danger" label="Cancel" (click)="cancel()"></button>
+</div>

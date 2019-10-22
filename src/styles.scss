@@ -5,3 +5,13 @@ body {
     background-color: #F4F4F6;
     font-family: "Open Sans", "Helvetica Neue", sans-serif;
 }
+
+.forms {
+    .required-field {
+        &:after {
+            content: "*";
+            color: red;
+            margin-left: 5px;
+        }
+    }
+}
