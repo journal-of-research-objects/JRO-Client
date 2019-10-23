@@ -70,11 +70,11 @@ export class SubmitComponent implements OnInit, OnDestroy {
     sortRepos(a: RepoDescriptor, b: RepoDescriptor) {
         const statusA = a.status;
         const statusB = b.status;
-        if (statusA == statusB || statusA.startsWith("error") && statusB.startsWith("error")){
+        if (statusA == statusB || statusA.startsWith("Error") && statusB.startsWith("Error")){
             return 0;
-        }else if (statusA.match('/^(initial|published|submitted|forked)$/') || statusA.startsWith("error")){
+        }else if (statusA.match('/^(initial|published|submitted|forked)$/') || statusA.startsWith("Error")){
             return 1;
-        }else if (statusB.match('/^(initial|published|submitted)$/') || statusB.startsWith("error")) {
+        }else if (statusB.match('/^(initial|published|submitted)$/') || statusB.startsWith("Error")) {
             return -1;
         }else{
             return -1;
@@ -154,7 +154,17 @@ export class SubmitComponent implements OnInit, OnDestroy {
             this.sendNotification('success', 'Repository deleted successfully');
             this.getRepos(this.accessToken);
         }, error => {
-            this.sendNotification('error', 'Error deleting repository');
+            if ('error' in error && 'status' in error) {
+                console.log(error.error.status);
+                if (error.error.status=='Error while deleting db record'){
+                    this.sendNotification('error', 'Error deleting repository')
+                }else{
+                    this.sendNotification('success', 'Repository deleted successfully');
+                    this.getRepos(this.accessToken);;
+                }
+            }else{
+                this.sendNotification('error', 'Error deleting repository');
+            }
         });
     }
 
