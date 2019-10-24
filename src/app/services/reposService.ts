@@ -25,6 +25,16 @@ export class ReposService {
         return this.getResponse(url, params);
     }
 
+    /**WARNING: Any user can access to the status of a repo of any other user.
+     * SUG: To employ sockets.
+     */
+    public getStatusRepo(oriUrl: string) {
+        let params = new HttpParams();
+        params = params.set('repo_url', oriUrl);
+        const url = `${this.urlBase}/get_status_repo/`;
+        return this.getResponse(url, params);
+    }
+
     public submitRepo(submitData: RepoSubmit) {
         let params = new FormData();
         params.append('repo_name', submitData.name);

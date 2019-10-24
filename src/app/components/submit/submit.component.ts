@@ -63,21 +63,58 @@ export class SubmitComponent implements OnInit, OnDestroy {
 
     setGetReposInterval() {
         this.interval = setInterval(() => {
-            this.getRepos(this.accessToken);
+            this.getStatusRepos();
+            if(this.githubRepos){
+                this.githubRepos.sort(this.sortRepos);
+            }
         }, 15000);
     }
 
-    sortRepos(a: RepoDescriptor, b: RepoDescriptor) {
+    /** order: forked, error, submitted, published, initial */
+    sortRepos(a: RepoDescriptor, b: RepoDescriptor){
         const statusA = a.status;
         const statusB = b.status;
-        if (statusA == statusB || statusA.startsWith("Error") && statusB.startsWith("Error")){
-            return 0;
-        }else if (statusA.match('/^(initial|published|submitted|forked)$/') || statusA.startsWith("Error")){
-            return 1;
-        }else if (statusB.match('/^(initial|published|submitted)$/') || statusB.startsWith("Error")) {
-            return -1;
+
+        let comparison = 0;
+        if (statusA == statusB){
+            comparison = 0;
+        }else if (statusA == "initial"){
+            comparison=1;
+        }else if (statusA.startsWith("error") && statusB.startsWith("error")){
+            comparison=0;
+        }else if (statusB == "initial"){
+            comparison=-1;
+        }else if (statusA == "published"){
+            comparison=1;
+        }else if (statusB == "published"){
+            comparison=-1;
+        }else if (statusA == "submitted"){
+            comparison=1;
+        }else if (statusB == "submitted"){
+            comparison=-1;
+        }else if (statusA.startsWith("error")){
+            comparison=1;
+        }else if (statusB.startsWith("error")){
+            comparison=-1;
+        }else if (statusA == "forked"){
+            comparison=1;
         }else{
-            return -1;
+            comparison=-1;
+        }
+
+        return comparison;
+    }
+
+    getStatusRepos(){
+        if(this.githubRepos){
+            this.githubRepos.forEach(repo => {
+                if (repo.status!='initial'){
+                    this.reposService.getStatusRepo(repo.url).subscribe((repoStatus: string) => {
+                        repo.status = repoStatus.status;
+                    });
+                    this.router.navigateByUrl('/submit');
+                }
+            });
         }
     }
 
