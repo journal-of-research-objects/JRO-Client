@@ -2,8 +2,10 @@
     .submit {
         padding: 100px 15%;
         display: block;
+
         .repos-header {
             margin-bottom: 20px;
+
             a {
                 cursor: pointer;
             }
@@ -18,5 +20,10 @@
                 background-color: white !important;
             }
         }
+    }
+
+    .submit-dialog-wrapper {
+        height: 100%;
+        overflow-y: auto;
     }
 }
