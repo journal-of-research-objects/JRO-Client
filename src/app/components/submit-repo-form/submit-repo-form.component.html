@@ -2,9 +2,12 @@
 <div class="keywords ui-fluid forms">
     <h3>
         <li class="pi pi-search"></li>
-        <span class="required-field">Keywords</span>
+        <span class="required-field">Keywords</span><br>
+        <small style="font-weight: normal;">(hit enter key to join each keyword)</small>
     </h3>
-    <p-chips class="keywords-chips" [(ngModel)]="repoSubmit.keywords"></p-chips>
+    <div pTooltip="Hit enter key to join each keyword" placeholder="Right">
+        <p-chips class="keywords-chips" [(ngModel)]="repoSubmit.keywords"></p-chips>
+    </div>
 </div>
 <div class="authors-wrapper">
     <h3>
@@ -32,7 +35,7 @@
         <form [formGroup]="authorForm" (submit)="processAuthor();new_author_start.focus()">
             <h5 style="margin: 0;">Add Author</h5>
             <div class="ui-g ui-fluid">
-                <div class="ui-g-12 ui-lg-4">
+                <div class="ui-g-12 ui-md-4 ui-lg-4">
                     <input #new_author_start pInputText [required]="true" formControlName="name" type="text"
                         placeholder="Name">
                     <ng-container
@@ -41,7 +44,7 @@
                             class="invalid-field">This field is {{error.key}}</small>
                     </ng-container>
                 </div>
-                <div class="ui-g-12 ui-lg-3">
+                <div class="ui-g-12 ui-md-3 ui-lg-3">
                     <input pInputText formControlName="aff" [required]="true" type="text" placeholder="Membership">
                     <ng-container
                         *ngIf="(authorForm.controls['aff'].touched || authorForm.controls['aff'].dirty) &&  authorForm.controls['aff'].errors">
@@ -49,16 +52,17 @@
                             class="invalid-field">This field is {{error.key}}</small>
                     </ng-container>
                 </div>
-                <div class="ui-g-12 ui-lg-4">
+                <div class="ui-g-12 ui-md-4 ui-lg-4">
                     <div class="ui-inputgroup">
                         <span class="ui-inputgroup-addon"><i class="pi pi-id-card"></i></span>
                         <input pInputText formControlName="orcid" type="text" placeholder="ORCID">
                     </div>
                 </div>
-                <div class="ui-g-1">
+                <div class="ui-g-12 ui-md-1 ui-lg-1">
                     <button pButton [icon]="formAuthoMode == 'edit' ? 'pi pi-user-edit' : 'pi pi-user-plus'"
                         type="submit" title="add"
-                        [ngClass]="{'ui-button-success':formAuthoMode == 'new','ui-button-info':formAuthoMode == 'edit'}"></button>
+                        [ngClass]="{'ui-button-success':formAuthoMode == 'new','ui-button-info':formAuthoMode == 'edit'}">
+                    </button>
                 </div>
             </div>
 
