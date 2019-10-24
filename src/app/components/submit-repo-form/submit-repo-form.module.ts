@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputTextModule } from "primeng/inputtext";
 import { ButtonModule } from "primeng/button";
 import { ChipsModule } from 'primeng/chips';
+import { TooltipModule } from 'primeng/tooltip';
 
 @NgModule({
   declarations: [SubmitRepoFormComponent],
@@ -15,7 +16,8 @@ import { ChipsModule } from 'primeng/chips';
     ReactiveFormsModule,
     InputTextModule,
     ButtonModule,
-    ChipsModule
+    ChipsModule,
+    TooltipModule
   ]
 })
 export class SubmitRepoFormModule { }
