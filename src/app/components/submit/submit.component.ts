@@ -109,7 +109,7 @@ export class SubmitComponent implements OnInit, OnDestroy {
         if(this.githubRepos){
             this.githubRepos.forEach(repo => {
                 if (repo.status!='initial'){
-                    this.reposService.getStatusRepo(repo.url).subscribe((repoStatus: string) => {
+                    this.reposService.getStatusRepo(repo.url).subscribe((repoStatus: any) => {
                         repo.status = repoStatus.status;
                     });
                     this.router.navigateByUrl('/submit');
