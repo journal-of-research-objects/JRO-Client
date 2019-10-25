@@ -70,7 +70,7 @@
     </div>
 </div>
 <div class="buttons-wrapper">
-    <button pButton type="button" class="ui-button-success" label="Submit" 
+    <button pButton type="button" class="ui-button-success" label="Submit" [disabled]="!valid"
         (click)="submit()"></button>
     <button pButton type="button" class="ui-button-danger" label="Cancel" (click)="cancel()"></button>
 </div>
