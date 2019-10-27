@@ -1,16 +1,68 @@
-:host  ::ng-deep {
+:host ::ng-deep {
     .repo-card {
         margin: 2.5px 0;
+
         .ui-card-body {
             padding-right: 30px;
             width: 100%;
+
             h4 {
                 margin: 0;
             }
+
             [repo-buttons] {
                 margin: auto;
             }
         }
+
+        .data-wrapper {
+            padding-top: .5em;
+            margin: 0 -.5em;
+
+            .comp {
+                padding: .5em;
+                display: inline-block;
+
+                .title {
+                    margin: 0 0 .2em
+                }
+
+                .badge {
+                    background-color: #333;
+                    border-radius: .4em;
+                    color: white;
+                    padding: .3em;
+                    margin: .2em;
+                    display: inline-block;
+                }
+            }
+        }
+
+        .badges-wrapper {
+            padding: .3em 0 .5em;
+            color: #524949;
+
+            .badge {
+                margin: 0 .5em;
+
+                &.star i {
+                    color: #f88800
+                }
+
+                &.blue i {
+                    color: #1272df;
+                }
+
+                &:first-child {
+                    padding-left: 0;
+                }
+
+                &:last-child {
+                    padding-right: 0;
+                }
+            }
+        }
+
         .repo-status {
             .dot {
                 height: 10px;
@@ -24,9 +76,11 @@
                 &.green {
                     background: radial-gradient(circle at 100px 100px, #00ff00, #007d00);
                 }
+
                 &.red {
                     background: radial-gradient(circle at 100px 100px, #ff0000, #7d0000);
                 }
+
                 &.yellow {
                     background: radial-gradient(circle at 100px 100px, #ffff00, #7d7d00);
                 }

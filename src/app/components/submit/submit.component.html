@@ -10,7 +10,7 @@
     <div *ngIf="searching" class="p-grid">
         <p-progressSpinner class="p-col"></p-progressSpinner>
     </div>
-    <div *ngIf="githubRepos?.length > 0 && !searching" class="p-grid p-dir-col">
+    <div *ngIf="githubRepos?.length > 0 && !searching">
         <app-repo *ngFor="let repo of githubRepos" [repo]="repo">
             <div repo-buttons>
                 <button pButton (click)="buttonAction(repo)"

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, Directive} from '@angular/core';
+import { Component, Input, OnInit, Directive } from '@angular/core';
 
 @Component({
     selector: 'app-repo',
@@ -8,7 +8,7 @@ import {Component, Input, OnInit, Directive} from '@angular/core';
 
 export class RepoComponent implements OnInit {
 
-    @Input() repo: any;
+    @Input() repo: RepoDescriptor;
 
     constructor() {
     }
@@ -20,11 +20,11 @@ export class RepoComponent implements OnInit {
      * Check the color of the status dock based on the status message
      * @param status: status code
      */
-    checkColor(status: string): string{
+    checkColor(status: string): string {
         let className = '';
         if (status === 'initial') {
             className = 'green';
-        } else if(status.includes('error')) {
+        } else if (status.includes('error')) {
             className = 'red';
         } else {
             className = 'yellow';
@@ -50,7 +50,7 @@ export class RepoComponent implements OnInit {
             message = 'Error installing the libraries of the requirements.txt.';
         } else if (status.includes('error:metadata')) {
             message = 'Error adding authors and keywords';
-        } else if(status.includes('error:clone') || (status.includes('error:venvcreation') || status.includes('error:add_venv_gitignore'))) {
+        } else if (status.includes('error:clone') || (status.includes('error:venvcreation') || status.includes('error:add_venv_gitignore'))) {
             message = ' Error cloning the repository';
         } else if (status.includes('error:nbcreation')) {
             message = 'Error in the creation of the notebook. Please verify the files paper.md and requirements.txt are well structured.';
@@ -63,9 +63,10 @@ export class RepoComponent implements OnInit {
     }
 }
 
-import {} from '@angular/core';
+import { } from '@angular/core';
+import { RepoDescriptor } from 'src/app/types';
 
-@Directive({selector: '[repo-buttons]'})
+@Directive({ selector: '[repo-buttons]' })
 export class RepoButtonsDirective {
     constructor() {
     }

@@ -1,15 +1,47 @@
 <p-card class="repo-card p-col" styleClass="p-grid">
     <div class="p-grid p-nogutter">
-        <div class="p-col p-grid  p-dir-col p-nogutter p-justify-center">
-            <h4 *ngIf="repo.name">{{repo.name}}</h4>
-            <span *ngIf="repo.url"><a [href]="repo.url">{{repo.url}}</a></span>
+        <div class="p-col-12 p-md-9 p-grid p-dir-col p-nogutter p-justify-center">
+            <h3 *ngIf="repo.name" style="margin: .5em 0;">
+                <i class="fa fas fa-book" style="padding-right: .5em;"></i>
+                <a [href]="repo.url" target="blank">{{repo.name}}</a>
+            </h3>
             <p *ngIf="repo.description">{{repo.description}}</p>
+            <div class="data-wrapper">
+                <div class="comp">
+                    <h5 class="title">Owner</h5>
+                    <app-github-user-card [user]="repo.properties.owner"></app-github-user-card>
+                </div>
+                <div *ngIf="repo.authors?.length" class="comp">
+                    <h5 class="title">Authors</h5>
+                    <span *ngFor="let author of repo.authors" class="badge">{{author.name}}</span>
+                </div>
+                <div *ngIf="repo.keywords?.length" class="comp">
+                    <h5 class="title">Keywords</h5>
+                    <span *ngFor="let word of repo.keywords" class="badge">{{word}}</span>
+                </div>
+            </div>
+            <div class="badges-wrapper">
+                <span *ngIf="repo.language" class="badge">{{repo.language}}</span>
+                <span class="badge star">
+                    <i class="fa fas fa-star"></i>
+                    {{repo.properties.stargazers_count}}
+                </span>
+                <span class="badge blue">
+                    <i class="fa fas fa-code-fork"></i>
+                    {{repo.properties.forks_count}}
+                </span>
+                <span *ngIf="repo.lastUpdate">
+                    Updated {{repo.lastUpdate|timeAgo}}
+                </span>
+            </div>
+
             <div *ngIf="repo.status" class="repo-status p-grid p-nogutter p-align-center">
                 <span pTooltip="status" class="dot" [ngClass]="checkColor(repo.status)"></span>
                 <span>{{checkStatusMessage(repo.status)}}</span>
             </div>
         </div>
-
-        <ng-content select="[repo-buttons]"></ng-content>
+        <div class="p-col-12 p-md-3 p-grid p-dir-col p-nogutter" style="padding: 1em 0;">
+            <ng-content select="[repo-buttons]"></ng-content>
+        </div>
     </div>
 </p-card>

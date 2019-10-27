@@ -1,0 +1,23 @@
+.user-card {
+    margin-bottom: .3em;
+    color: inherit;
+    font-weight: bold;
+    display: inline-block;
+    padding: .3em 0;
+
+    a {
+        cursor: pointer;
+    }
+
+    span.label,
+    .avatar-wrapper {
+        vertical-align: middle;
+    }
+
+    .avatar-wrapper {
+        border-radius: 50%;
+        overflow: hidden;
+        display: inline-flex;
+        margin-right: .3em;
+    }
+}
