@@ -1,20 +1,15 @@
 <app-navbar></app-navbar>
 <div class="content">
     <div class="home p-grid p-dir-col  p-nogutter">
-        <h1 class="p-col-fixed">Journal of Research Object</h1>
+        <h1>Journal of Research Object</h1>
 
         <p class="p-col">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-            et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-            commodo consequat.
-            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-            laborum.
+            Scholarly data and documents are of most value when they are interconnected rather than independent.
         </p>
 
         <div class="p-col-fixed p-grid p-justify-center">
-            <button (click)="goToSubmit()" pButton label="Submit a new repo" class="ui-button ui-button-secondary"></button>
-            <button (click)="goToReview()" pButton label="Review a repo" class="ui-button ui-button-secondary"></button>
+            <a (click)="goToSubmit()" pButton  class="btn">Submit a new repo</a>
+            <a (click)="goToReview()" pButton   class="btn">Review a repo</a>
         </div>
 
     </div>
