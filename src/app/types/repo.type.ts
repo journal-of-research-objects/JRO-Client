@@ -24,6 +24,10 @@ export class RepoDescriptor {
         asset.status = rawData.hasOwnProperty('status') ? rawData.status : '';
         asset.properties = rawData;
         asset.lastUpdate = rawData.hasOwnProperty('updated_at') ? new Date(rawData.updated_at) : null;
+        if (rawData.hasOwnProperty('metadata')) {
+            asset.authors = rawData.metadata.authors;
+            asset.keywords = rawData.metadata.keywords ? rawData.metadata.keywords.split(',') : null;
+        }
         return asset;
     }
 
