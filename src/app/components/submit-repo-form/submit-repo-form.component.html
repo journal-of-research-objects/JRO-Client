@@ -45,7 +45,7 @@
                     </ng-container>
                 </div>
                 <div class="ui-g-12 ui-md-3 ui-lg-3">
-                    <input pInputText formControlName="aff" [required]="true" type="text" placeholder="Membership">
+                    <input pInputText formControlName="aff" [required]="true" type="text" placeholder="Affiliation">
                     <ng-container
                         *ngIf="(authorForm.controls['aff'].touched || authorForm.controls['aff'].dirty) &&  authorForm.controls['aff'].errors">
                         <small *ngFor="let error of this.authorForm.controls['aff'].errors| keyvalue"
