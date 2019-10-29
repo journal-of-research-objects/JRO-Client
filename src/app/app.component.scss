@@ -1,6 +1,6 @@
 :host ::ng-deep {
     .container {
-        padding-top: 72px;
+        padding: 72px 1em 0;
         max-width: 1600px;
         margin: 0 auto;
         min-height: 80vh;
@@ -28,5 +28,12 @@
         background-color: #424242;
         color: white;
         text-align: center;
+    }
+}
+
+@media screen and (max-width: 40em) {
+    .container {
+        padding-left: .5em;
+        padding-right: .5em;
     }
 }
