@@ -1,6 +1,9 @@
 :host ::ng-deep {
     .container {
-        margin: 0 15%;
+        padding-top: 72px;
+        max-width: 1600px;
+        margin: 0 auto;
+        min-height: 80vh;
     }
 
     .notification-toast {
@@ -17,5 +20,13 @@
                 top: .5em;
             }
         }
+    }
+
+    .footer {
+        height: 250px;
+        padding: 0 80px;
+        background-color: #424242;
+        color: white;
+        text-align: center;
     }
 }

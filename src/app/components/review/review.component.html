@@ -1,12 +1,12 @@
-<app-navbar></app-navbar>
 <div class=" review p-grid p-nogutter p-dir-col">
     <h2>List of repos submitted</h2>
-    <hr/>
+    <hr />
     <ng-template [ngIf]="repos.length > 0" [ngIfElse]="zeroState">
         <app-repo *ngFor="let repo of repos" [repo]="repo">
             <div repo-buttons>
                 <button pButton (click)="publish(repo)" label="Publish" class="ui-button-danger"></button>
-                <button pButton (click)="regenerateNb(repo)" label="Regenerate Notebook" class="ui-button-success"></button>
+                <button pButton (click)="regenerateNb(repo)" label="Regenerate Notebook"
+                    class="ui-button-success"></button>
                 <button pButton (click)="goToReview(repo)" label="Review"></button>
             </div>
         </app-repo>

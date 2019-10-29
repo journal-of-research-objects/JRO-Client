@@ -1,0 +1,40 @@
+.nav-panel {
+    a {
+        padding: 2em 0;
+        display: block;
+        color: inherit;
+        position: relative;
+        font-weight: 400;
+        border-bottom: 1px solid #ccc;
+
+        >* {
+            font-size: 1.5em;
+        }
+
+        >i {
+            margin-right: .5em;
+        }
+
+        &:after {
+            content: "";
+            width: 0px;
+            height: 5px;
+            margin: auto;
+            background-color: #4D4482;
+            transition: 300ms width;
+            display: block;
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            right: 0;
+        }
+
+        &:hover {
+            color: inherit;
+
+            &:after {
+                width: 100%;
+            }
+        }
+    }
+}

@@ -7,18 +7,20 @@
 
     <nav class="p-col-fixed p-grid p-nogutter p-align-center header-nav-wrap">
         <ng-template [ngIf]="!isLoggedIn" [ngIfElse]="logOut">
-            <ul class="header-main-nav">
-                <li class="current"><a class="smoothscroll"  href="#home" title="home">Home</a></li>
-                <li><a class="smoothscroll"  href="#about" title="about">About</a></li>
-                <li><a class="smoothscroll"  href="#pricing" title="pricing">Pricing</a></li>
-                <li><a class="smoothscroll"  href="#repos" title="repos">Repos</a></li>
-                <li><a class="smoothscroll"  href="#footer" title="papers">Papers</a></li>
-            </ul>
-            <button (click)="login()" pButton label="Sign in with Orcid" class="ui-button-rounded ui-button-secondary"></button>
+            <div class="header-main-nav">
+                <a class="smoothscroll" href="#home" title="home">Home</a>
+                <a class="smoothscroll" href="#about" title="about">About</a>
+                <a class="smoothscroll" href="#pricing" title="pricing">Pricing</a>
+                <a class="smoothscroll" href="#repos" title="repos">Repos</a>
+                <a class="smoothscroll" href="#footer" title="papers">Papers</a>
+            </div>
+            <button (click)="login()" pButton label="Sign in with Orcid"
+                class="ui-button-rounded ui-button-success"></button>
         </ng-template>
 
         <ng-template #logOut>
-            <button (click)="logOutPage()" pButton label="Logout" class="ui-button-rounded ui-button-secondary"></button>
+            <button (click)="logOutPage()" pButton label="Logout"
+                class="ui-button-rounded ui-button-secondary"></button>
         </ng-template>
 
     </nav>
