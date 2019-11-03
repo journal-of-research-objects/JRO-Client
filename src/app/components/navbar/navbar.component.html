@@ -6,21 +6,20 @@
     </div>
 
     <nav class="p-col-fixed p-grid p-nogutter p-align-center header-nav-wrap">
-        <ng-template [ngIf]="!isLoggedIn" [ngIfElse]="logOut">
-            <div class="header-main-nav">
-                <a class="smoothscroll" href="#home" title="home">Home</a>
-                <a class="smoothscroll" href="#about" title="about">About</a>
-                <a class="smoothscroll" href="#pricing" title="pricing">Pricing</a>
-                <a class="smoothscroll" href="#repos" title="repos">Repos</a>
-                <a class="smoothscroll" href="#footer" title="papers">Papers</a>
-            </div>
+        <div class="header-main-nav">
+            <a class="smoothscroll" href="#home" title="home">Home</a>
+            <a class="smoothscroll" href="#about" title="about">About</a>
+            <a class="smoothscroll" href="#pricing" title="pricing">Pricing</a>
+            <a class="smoothscroll" href="#repos" title="repos">Repos</a>
+            <a class="smoothscroll" href="#footer" title="papers">Papers</a>
+        </div>
+        <ng-template [ngIf]="!isLoggedIn">
             <button (click)="login()" pButton label="Sign in with Orcid"
                 class="ui-button-rounded ui-button-success"></button>
         </ng-template>
-
-        <ng-template #logOut>
+        <ng-template [ngIf]="isLoggedIn">
             <button (click)="logOutPage()" pButton label="Logout"
-                class="ui-button-rounded ui-button-secondary"></button>
+                class="ui-button-rounded ui-button-danger"></button>
         </ng-template>
 
     </nav>
