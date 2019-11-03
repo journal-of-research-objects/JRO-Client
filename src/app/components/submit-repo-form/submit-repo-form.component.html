@@ -6,7 +6,8 @@
         <small style="font-weight: normal;">(Hit enter to join each keyword)</small>
     </h3>
     <div pTooltip="Hit enter to join each keyword" placeholder="Right">
-        <p-chips class="keywords-chips" [(ngModel)]="repoSubmit.keywords"></p-chips>
+        <p-chips [addOnBlur]="true" inputId="chip_submit_input" class="keywords-chips"
+            [(ngModel)]="repoSubmit.keywords"></p-chips>
     </div>
 </div>
 <div class="authors-wrapper">

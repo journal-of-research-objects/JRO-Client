@@ -1,20 +1,22 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ElementRef, ViewChild, ViewChildren, Renderer2, AfterViewInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { RepoSubmit, RepoSubmitAuthor } from 'src/app/types';
 import { FormsUtils } from 'src/app/core';
 import { StorageService, ReposService } from 'src/app/services';
+import { Chips } from 'primeng/chips';
 
 @Component({
   selector: 'app-submit-repo-form',
   templateUrl: './submit-repo-form.component.html',
   styleUrls: ['./submit-repo-form.component.scss']
 })
-export class SubmitRepoFormComponent implements OnInit {
+export class SubmitRepoFormComponent implements OnInit, AfterViewInit {
 
   @Input() repoSubmit: RepoSubmit;
   @Output() onSubmit: EventEmitter<{ status: 'success' | 'error', data: any }> = new EventEmitter();
   @Output() onCancel: EventEmitter<any> = new EventEmitter();
   @Input() showHeader: boolean = true;
+  @ViewChild(Chips, { static: false }) chips: Chips;
 
   private _auhtorForm: FormGroup;
   /**
@@ -22,10 +24,24 @@ export class SubmitRepoFormComponent implements OnInit {
    */
   public author: RepoSubmitAuthor = { name: '', aff: '' };
   public formAuthoMode: 'edit' | 'new' = 'new';
+  private regexAlphanumb = new RegExp(/^[a-zA-Z0-9 ]*$/);
 
   constructor(private formBuilder: FormBuilder, private reposService: ReposService) { }
 
   ngOnInit() {
+  }
+
+  ngAfterViewInit() {
+    console.log();
+    let input = this.chips.inputViewChild;
+    if (input && input.nativeElement) {
+      input.nativeElement.addEventListener("keydown", (event: KeyboardEvent) => {
+        if (!this.regexAlphanumb.test(event.key)) {
+          event.preventDefault();
+        }
+      }, false);
+    }
+
   }
 
   /**
