@@ -21,6 +21,7 @@ import { ZeroStateComponent } from './components/zero-state/zero-state.component
 import { SubmitRepoFormModule } from './components/submit-repo-form/submit-repo-form.module';
 import { TimeAgoPipe } from 'time-ago-pipe';
 import { GithubUserCardModule } from './components/github-user-card/github-user-card.module';
+import { AuthorsGuideModule } from './components/guides/authors-guide/authors-guide.module';
 
 @NgModule({
     declarations: [
@@ -42,7 +43,8 @@ import { GithubUserCardModule } from './components/github-user-card/github-user-
         FlexLayoutModule,
         HttpClientModule,
         SubmitRepoFormModule,
-        GithubUserCardModule
+        GithubUserCardModule,
+        AuthorsGuideModule
     ],
     providers: [
         RouteGuard,

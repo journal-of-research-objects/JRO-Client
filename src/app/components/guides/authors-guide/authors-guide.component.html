@@ -1,0 +1,101 @@
+<div class="doc">
+    <p class="c17 title" id="h.a3lwf0n0qhjl"><strong class="c9 c22">BioHackathon Author Guidelines</strong></p>
+    <h1 class="c15" id="h.rlqvi0n5zwh7"><span>Preparing Your Jupyter Notebook&rsquo;s Git Repo For
+            MyBinder</span></h1>
+    <p class="c4"><span class="c0"></span></p>
+    <p class="c5"><span>This document provides a simplified list of requirements for BioHackathon authors to prepare a
+            repository so that mybinder.org can build a corresponding Jupyter notebook. More detailed instructions can
+            be
+            found at </span><span class="c10"><a class="c8"
+                href="https://mybinder.readthedocs.io">https://mybinder.readthedocs.io/</a></span>
+    </p>
+    <h2 class="c16" id="h.acmr0zn9uvky"><span class="c9 c11">Requirements</span></h2>
+    <ul class="c3 lst-kix_w3jtbowemaak-0 start">
+        <li class="c2"><span class="c0">Software associated with the submission must be stored in a repository
+                that:</span>
+            <ul class="c3 lst-kix_w3jtbowemaak-1 start">
+                <li class="c1"><span class="c0">Is browsable online without user registration</span></li>
+                <li class="c1"><span class="c0">Can be cloned without user registration</span></li>
+                <li class="c1"><span class="c0">Has an issue tracker that is readable without user registration</span>
+                </li>
+                <li class="c1"><span class="c0">Permits individuals to create issues</span></li>
+                <li class="c1"><span class="c0">Abstracts the paper in the description</span></li>
+                <li class="c1"><span class="c0">Allows seeing the contributors</span></li>
+            </ul>
+        </li>
+        <li class="c2">
+            <span class="c0">The following repositories should work:</span>
+            <ul class="c3 lst-kix_w3jtbowemaak-1 start">
+                <li class="c1"><span class="c0">Git repositories including GitHub and GitLab.com</span></li>
+                <li class="c1"><span class="c0">Zenodo</span></li>
+            </ul>
+        </li>
+        <li class="c2"><span class="c0">Code executes without errors</span></li>
+        <li class="c2"><span class="c0">Code function and performance claims have been confirmed</span></li>
+        <li class="c2"><span class="c0">Python version: 3.2+</span></li>
+        <li class="c2"><span>Follow next paper: </span></li>
+    </ul>
+    <h2 class="c16" id="h.aagq7ywr7204"><span class="c9 c11">Typical paper submission flow</span></h2>
+    <ul class="c3 lst-kix_g7j9erps4i46-0 start">
+        <li class="c2"><span class="c0">Make an executable app in Python </span></li>
+        <li class="c2"><span class="c0">Make it available in an open repository (GitHub, Bitbucket etc.).</span></li>
+        <li class="c2"><span>Make sure that the software complies with the JRO</span>
+            <span class="c0">&nbsp;review criteria (a straightforward checklist that a technical editor will
+                process)</span>
+            <ul class="c3 lst-kix_g7j9erps4i46-1 start">
+                <li class="c1"><span class="c0">is the dataset available?</span></li>
+                <li class="c1"><span class="c0">is the work non-trivial (i.e. not just an empty experiment)?</span></li>
+            </ul>
+        </li>
+        <li class="c2"><span class="c0 c12">Author the Markdown paper &ldquo;paper.md&rdquo; which will be compiled to a
+                Jupyter Notebook. </span></li>
+        <li class="c2"><span class="c0 c12">Author a command-line (pip) installable list of dependencies in
+                requirements.txt.</span></li>
+        <li class="c2"><span class="c0 c12">Author a references file, called &ldquo;references.bib&rdquo;, in a BIBTEX
+                format with all the resources in which you based the app.</span></li>
+    </ul>
+    <h3 class="c6" id="h.nwg4eoq757r6"><span class="c19">Markdown Paper &ldquo;notebook.md&rdquo;</span></h3>
+    <p class="c5"><span class="c0">Besides the common parts of a research paper, your Markdown paper should include the
+            excerpts of working PYTHON code that support each part of the paper and generate the research outcomes.
+            These
+            excerpts of code will be enclosed between the following characters: </span></p>
+    <code>``` </code>
+    <p class="c5"><span class="c0">(block code marks in markdown language) WITHOUT any language indication.
+        </span><br><span class="c0">In the Markdown visor the Python code blocks in the file should look like: </span>
+    </p>
+    <p class="c5">
+        <img alt="" src="/assets/guides-images/image1.png" style="width:100%;max-width: 100%;" title=""></p>
+    <p class="c4"><span class="c0"></span></p>
+    <p class="c5"><span class="c0">These will be automatically converted into cells of code of the compiled Jupyter
+            Notebook. The remainder markdown document is to be written using the conventional marks. Please feel free to
+            use
+            any of them (except for the above mentioned). Note that you don&rsquo;t have to show the outcomes of the
+            code
+            excerpts because they will be automatically executed and the output shown.</span></p>
+    <p class="c5"><span class="c0">Finally, you need to make sure that any input data required by the algorithms or code
+            cells is available.</span></p>
+    <h2 class="c16" id="h.1buveqobrrc4"><span class="c9 c11">Installable List of Dependencies
+            &ldquo;requirements.txt&rdquo;</span></h2>
+    <p class="c5"><span class="c0">In this file, you should list ALL the dependencies that your code needs to run with
+            their
+            respective versions. </span></p>
+    <p class="c5"><span class="c0">You could check this file is well formatted by running the command: </span></p>
+    <code class="c20">pip install -r requirements.txt</code>
+    <hr class="c18">
+    <div>
+        <p class="c13"><span class="c7">&nbsp;The </span><span class="c10 c7"><a class="c8"
+                    href="https://mybinder.readthedocs.io/en/latest/about.html">Binder
+                    Project</a></span><span class="c7">&nbsp;is a member of </span><span class="c10 c7"><a class="c8"
+                    href="https://jupyter.org/about">Project
+                    Jupyter</a></span><span class="c7">. The BinderHub software it creates is used by the research
+                project
+            </span><span class="c10 c7"><a class="c8" href="https://mybinder.org">mybinder.org</a></span><span
+                class="c7 c9">&nbsp;to generate shareable, interactive, reproducible instances of a Jupyter notebook by
+                simply providing a link to the notebook&rsquo;s repository.</span></p>
+    </div>
+    <div>
+        <p class="c13"><span class="c7">&nbsp;Journal of Research Objects
+            </span><span class="c7 c10"><a class="c8" href="https://jro.world">jro.world</a></span>
+        </p>
+    </div>
+</div>
