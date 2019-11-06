@@ -1,15 +1,14 @@
-import {CREDENTIALS as cred} from '../credentials/credentials';
-import {Injectable} from '@angular/core';
-
+import { CREDENTIALS as cred } from '../credentials/credentials';
+import { Injectable } from '@angular/core';
 
 @Injectable()
-
 export class UtilityService {
 
-    constructor() {}
+    constructor() {
+    }
 
-    public  loginOrcid() {
-        const redirect = window.location.href;
+    public loginOrcid() {
+        const redirect = window.location.origin + "/login";
         const url = `${cred.orcidURL}?client_id=${cred.clientId}&response_type=code&scope=/authenticate&redirect_uri=${redirect}`;
         this.navigate(url, '_self');
     }
@@ -30,7 +29,7 @@ export class UtilityService {
         this.navigate(url, '_blank');
     }
 
-    private navigate(url: string, tab: string){
+    private navigate(url: string, tab: string) {
         window.open(url, tab);
     }
 }

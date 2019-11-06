@@ -1,7 +1,7 @@
-import {Component, OnChanges, OnInit} from '@angular/core';
-import {UtilityService} from '../../services/utility.service';
-import {Router} from '@angular/router';
-import {AuthService} from '../../services';
+import { Component, OnChanges, OnInit } from '@angular/core';
+import { UtilityService } from '../../services/utility.service';
+import { Router } from '@angular/router';
+import { AuthService } from '../../services';
 
 @Component({
     selector: 'app-navbar',
@@ -10,17 +10,19 @@ import {AuthService} from '../../services';
 })
 
 export class NavbarComponent implements OnInit {
-    public isLoggedIn: boolean;
+
     constructor(protected utility: UtilityService,
-                protected router: Router,
-                protected authService: AuthService) {
+        protected router: Router,
+        protected authService: AuthService) {
     }
 
     ngOnInit() {
-        this.isLoggedIn = this.authService.isLoggedIn();
     }
 
-    
+    get isLoggedIn() {
+        return this.authService.isLoggedIn();
+    }
+
     goToHome() {
         this.router.navigate(['/'])
     }
@@ -34,7 +36,6 @@ export class NavbarComponent implements OnInit {
     logOutPage() {
         this.authService.logOut();
         // this.utility.logOutOrcid();
-        this.isLoggedIn = this.authService.isLoggedIn();
         this.router.navigate(['']);
     }
 }
