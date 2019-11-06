@@ -127,6 +127,7 @@ export class SubmitComponent implements OnInit, OnDestroy {
                 tempRepo['name'] = repo['name'];
                 tempRepo['status'] = repo['status'];
                 tempRepo['properties'] = repo;
+                tempRepo['issueMsg'] = 'Issues';
                 tempRepos.push(RepoDescriptor.import(tempRepo))
             });
             this.githubRepos = tempRepos.sort(this.sortRepos);

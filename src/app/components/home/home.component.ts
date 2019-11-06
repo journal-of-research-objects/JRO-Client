@@ -22,6 +22,7 @@ export class HomeComponent implements OnInit {
         this.reposService.getPublishedRepo().subscribe((repos: Array<RepoDescriptor>) => {
             console.log(repos);
             repos.forEach(repo => {
+                repo['issueMsg'] = 'Issues';
                 this.repos.push(RepoDescriptor.import(repo))
             });
         });

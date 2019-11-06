@@ -10,6 +10,7 @@ export class RepoDescriptor {
     public properties: any = {};
     public lastUpdate: Date;
     public authors: RepoSubmitAuthor[];
+    public issueMsg: string = null;
     public keywords: string[];
 
     constructor() { }
@@ -24,6 +25,7 @@ export class RepoDescriptor {
         asset.status = rawData.hasOwnProperty('status') ? rawData.status : '';
         asset.properties = rawData.hasOwnProperty('properties') ? rawData.properties : '';
         asset.lastUpdate = rawData.hasOwnProperty('properties') ? new Date(rawData.properties.updated_at) : null;
+        asset.issueMsg =  rawData.hasOwnProperty('issueMsg') ? rawData.issueMsg : '';
         if (rawData.hasOwnProperty('metadata')) {
             asset.authors = rawData.metadata.authors;
             asset.keywords = rawData.metadata.keywords ? rawData.metadata.keywords.split(',') : null;

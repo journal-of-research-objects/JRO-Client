@@ -26,6 +26,7 @@ export class ReviewComponent implements OnInit {
         this.repos = [];
         this.reposService.getSubmittedRepo('submitted').subscribe((repos: Array<RepoDescriptor>) => {
             repos.forEach(repo => {
+                repo['issueMsg'] = 'Open a new issue';
                 this.repos.push(RepoDescriptor.import(repo))
             });
         });
