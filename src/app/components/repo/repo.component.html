@@ -1,9 +1,9 @@
 <p-card class="repo-card p-col" styleClass="p-grid">
     <div class="p-grid p-nogutter">
         <div class="p-col-12 p-md-9 p-grid p-dir-col p-nogutter p-justify-center">
-            <h3 *ngIf="repo.name" style="margin: .5em 0;">
+            <h3 *ngIf="repo.properties.name" style="margin: .5em 0;">
                 <i class="fa fas fa-book" style="padding-right: .5em;"></i>
-                <a [href]="repo.url" target="blank">{{repo.name}}</a>
+                <a [href]="repo.url" target="blank">{{repo.properties.name}}</a>
             </h3>
             <p *ngIf="repo.description"><b>Summary: </b>{{repo.description}}</p>
             <div class="data-wrapper">
