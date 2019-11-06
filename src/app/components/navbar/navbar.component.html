@@ -2,7 +2,7 @@
 ================================================== -->
 <header class="header p-grid p-nogutter">
     <div class="header-logo p-col p-grid p-nogutter p-align-center">
-        <i (click)="goToHome()" class="fa fa-github"></i>
+        <img (click)="goToHome()" src="/assets/img/logo.png" class="logo"/>
     </div>
 
     <nav class="p-col-fixed p-grid p-nogutter p-align-center header-nav-wrap">
@@ -21,6 +21,11 @@
             <button (click)="logOutPage()" pButton label="Logout"
                 class="ui-button-rounded ui-button-danger"></button>
         </ng-template>
+        <div class="header-main-nav">
+            <a target="_blank" class="nav-item nav-link" href="https://github.com/journal-of-research-objects">
+                <img src="/assets/img/github.svg">
+            </a>
+        </div>
 
     </nav>
 </header> <!-- /header -->

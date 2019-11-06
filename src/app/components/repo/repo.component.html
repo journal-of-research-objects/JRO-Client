@@ -5,7 +5,7 @@
                 <i class="fa fas fa-book" style="padding-right: .5em;"></i>
                 <a [href]="repo.url" target="blank">{{repo.name}}</a>
             </h3>
-            <p *ngIf="repo.description">{{repo.description}}</p>
+            <p *ngIf="repo.description"><b>Summary: </b>{{repo.description}}</p>
             <div class="data-wrapper">
                 <div class="comp">
                     <h5 class="title">Owner</h5>

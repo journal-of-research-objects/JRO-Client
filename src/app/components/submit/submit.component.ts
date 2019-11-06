@@ -122,7 +122,12 @@ export class SubmitComponent implements OnInit, OnDestroy {
         this.reposService.getRepos(accessToken).subscribe((repos: Array<RepoDescriptor>) => {
             let tempRepos = [];
             repos.forEach(repo => {
-                tempRepos.push(RepoDescriptor.import(repo))
+                let tempRepo = {};
+                tempRepo['fork_url'] = repo['html_url'];
+                tempRepo['name'] = repo['name'];
+                tempRepo['status'] = repo['status'];
+                tempRepo['properties'] = repo;
+                tempRepos.push(RepoDescriptor.import(tempRepo))
             });
             this.githubRepos = tempRepos.sort(this.sortRepos);
             console.log(this.githubRepos);

@@ -12,8 +12,11 @@
         .header-logo {
             font-size: 2.5em;
             color: #bdbdbd;
+            .logo {
+                height: 50px;
+            }
 
-            i:hover {
+            .logo:hover {
                 cursor: pointer;
             }
 

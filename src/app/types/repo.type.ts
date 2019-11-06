@@ -16,14 +16,14 @@ export class RepoDescriptor {
 
     public static import(rawData: any): RepoDescriptor {
         const asset = new RepoDescriptor();
-        asset.id = rawData.hasOwnProperty('id') ? rawData.id : '';
+        asset.id = rawData.hasOwnProperty('properties') ? rawData.properties.id : '';
         asset.name = rawData.hasOwnProperty('name') ? rawData.name : '';
-        asset.description = rawData.hasOwnProperty('description') ? rawData.description : '';
-        asset.url = rawData.hasOwnProperty('html_url') ? rawData.html_url : '';
-        asset.language = rawData.hasOwnProperty('language') ? rawData.language : '';
+        asset.description = rawData.hasOwnProperty('properties') ? rawData.properties.description : '';
+        asset.url = rawData.hasOwnProperty('fork_url') ? rawData.fork_url : '';
+        asset.language = rawData.hasOwnProperty('properties') ? rawData.properties.language : '';
         asset.status = rawData.hasOwnProperty('status') ? rawData.status : '';
-        asset.properties = rawData;
-        asset.lastUpdate = rawData.hasOwnProperty('updated_at') ? new Date(rawData.updated_at) : null;
+        asset.properties = rawData.hasOwnProperty('properties') ? rawData.properties : '';
+        asset.lastUpdate = rawData.hasOwnProperty('properties') ? new Date(rawData.properties.updated_at) : null;
         if (rawData.hasOwnProperty('metadata')) {
             asset.authors = rawData.metadata.authors;
             asset.keywords = rawData.metadata.keywords ? rawData.metadata.keywords.split(',') : null;

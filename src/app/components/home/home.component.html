@@ -1,13 +1,14 @@
 <div class="content">
     <div class="home ui-g">
         <div class="ui-g-8 ui-sm-12 ui-md-8">
-            <h1 class="title">Journal of Research Object</h1>
+            <h1 class="title">Journal of Research Objects</h1>
             <p class="description">
-                Scholarly data and documents are of most value when they are interconnected rather than independent.
+                <i>Scholarly data and documents are of most value when they are interconnected rather than independent.</i>
+                Christine L. Borgman
             </p>
             <div class="text-left btn-inline-panel">
-                <a (click)="goToSubmit()" class="btn">Submit a new repo</a>
-                <a (click)="goToReview()" class="btn">Review a repo</a>
+                <a (click)="goToSubmit()" class="btn">Submit</a>
+                <a (click)="goToReview()" class="btn">Review</a>
             </div>
         </div>
         <div class="ui-g-4 ui-sm-12 ui-md-4">
@@ -32,7 +33,7 @@
         <ng-template [ngIf]="repos.length > 0" [ngIfElse]="zeroState">
             <app-repo *ngFor="let repo of repos" [repo]="repo">
                 <div repo-buttons>
-                    <button (click)="tryIt(repo)" pButton label="Try It" class="ui-button-danger"></button>
+                    <button (click)="tryIt(repo)" pButton label="Go to the publication" class="ui-button-danger"></button>
                 </div>
             </app-repo>
         </ng-template>

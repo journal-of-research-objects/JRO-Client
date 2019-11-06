@@ -26,20 +26,20 @@ export class ReviewComponent implements OnInit {
         this.repos = [];
         this.reposService.getSubmittedRepo('submitted').subscribe((repos: Array<RepoDescriptor>) => {
             repos.forEach(repo => {
-                repo['html_url'] = repo['fork_url'];
                 this.repos.push(RepoDescriptor.import(repo))
             });
         });
     }
 
     goToReview(repo: RepoDescriptor) {
+        this.regenerateNb(repo);
         this.utility.goToJupyter(repo.name);
         // this.utility.goToMyBinder(repo.name);
     }
 
     publish(repo: RepoDescriptor) {
         console.log(repo);
-        this.reposService.publish(repo.properties['fork_url'], repo.name).subscribe( response => {
+        this.reposService.publish(repo['url'], repo.name).subscribe( response => {
             console.log(response);
             setTimeout(() => {
                 this.sendNotification('success', 'Repository published successfully');
@@ -52,7 +52,7 @@ export class ReviewComponent implements OnInit {
 
     regenerateNb(repo: RepoDescriptor) {
         // console.log(repo);
-        this.reposService.regenerateNb(repo.properties['fork_url'], repo.name).subscribe( response => {
+        this.reposService.regenerateNb(repo['url'], repo.name).subscribe( response => {
             this.sendNotification('success', 'Repository regenerated successfully');
         }, error => {
             this.sendNotification('error', 'Error regenerating repository');

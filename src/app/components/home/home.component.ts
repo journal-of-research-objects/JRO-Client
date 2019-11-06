@@ -22,7 +22,6 @@ export class HomeComponent implements OnInit {
         this.reposService.getPublishedRepo().subscribe((repos: Array<RepoDescriptor>) => {
             console.log(repos);
             repos.forEach(repo => {
-                repo['html_url'] = repo['fork_url'];
                 this.repos.push(RepoDescriptor.import(repo))
             });
         });

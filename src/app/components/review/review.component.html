@@ -5,8 +5,6 @@
         <app-repo *ngFor="let repo of repos" [repo]="repo">
             <div repo-buttons>
                 <button pButton (click)="publish(repo)" label="Publish" class="ui-button-danger"></button>
-                <button pButton (click)="regenerateNb(repo)" label="Regenerate Notebook"
-                    class="ui-button-success"></button>
                 <button pButton (click)="goToReview(repo)" label="Review"></button>
             </div>
         </app-repo>
