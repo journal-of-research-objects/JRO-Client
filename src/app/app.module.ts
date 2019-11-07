@@ -22,6 +22,7 @@ import { SubmitRepoFormModule } from './components/submit-repo-form/submit-repo-
 import { TimeAgoPipe } from 'time-ago-pipe';
 import { GithubUserCardModule } from './components/github-user-card/github-user-card.module';
 import { AuthorsGuideModule } from './components/guides/authors-guide/authors-guide.module';
+import { PapersComponent } from "./components/papers/papers.component";
 
 @NgModule({
     declarations: [
@@ -34,7 +35,8 @@ import { AuthorsGuideModule } from './components/guides/authors-guide/authors-gu
         RepoComponent,
         RepoButtonsDirective,
         ZeroStateComponent,
-        TimeAgoPipe
+        TimeAgoPipe,
+        PapersComponent
     ],
     imports: [
         BrowserModule,

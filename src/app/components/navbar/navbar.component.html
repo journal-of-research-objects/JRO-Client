@@ -2,7 +2,7 @@
 ================================================== -->
 <header class="header p-grid p-nogutter">
     <div class="header-logo p-col p-grid p-nogutter p-align-center">
-        <img (click)="goToHome()" src="/assets/img/logo.png" class="logo"/>
+        <img (click)="goToHome()" src="/assets/img/logo.png" class="logo" />
     </div>
 
     <nav class="p-col-fixed p-grid p-nogutter p-align-center header-nav-wrap">
@@ -11,15 +11,14 @@
             <a class="smoothscroll" href="#about" title="about">About</a>
             <a class="smoothscroll" href="#pricing" title="pricing">Pricing</a>
             <a class="smoothscroll" href="#repos" title="repos">Repos</a>
-            <a class="smoothscroll" href="#footer" title="papers">Papers</a>
+            <a class="smoothscroll" [routerLink]="['/papers']" title="papers">Papers</a>
         </div>
         <ng-template [ngIf]="!isLoggedIn">
             <button (click)="login()" pButton label="Sign in with Orcid"
                 class="ui-button-rounded ui-button-success"></button>
         </ng-template>
         <ng-template [ngIf]="isLoggedIn">
-            <button (click)="logOutPage()" pButton label="Logout"
-                class="ui-button-rounded ui-button-danger"></button>
+            <button (click)="logOutPage()" pButton label="Logout" class="ui-button-rounded ui-button-danger"></button>
         </ng-template>
         <div class="header-main-nav">
             <a target="_blank" class="nav-item nav-link" href="https://github.com/journal-of-research-objects">

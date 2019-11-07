@@ -1,5 +1,12 @@
-<div class=" review p-grid p-nogutter p-dir-col">
-    <h2>List of repos submitted</h2>
+<div class="review p-grid p-nogutter p-dir-col">
+    <div class="p-grid p-align-center">
+        <div class="p-col">
+            <h2>List of repos submitted</h2>
+        </div>
+        <div class="p-col-fixed">
+            <p-dropdown [options]="papersFamilies"></p-dropdown>
+        </div>
+    </div>
     <hr />
     <ng-template [ngIf]="repos.length > 0" [ngIfElse]="zeroState">
         <app-repo *ngFor="let repo of repos" [repo]="repo">

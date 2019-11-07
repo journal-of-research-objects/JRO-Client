@@ -1,18 +1,19 @@
-import {NgModule} from '@angular/core';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // PrimeNg modules
-import {InputTextModule} from 'primeng/inputtext';
-import {ButtonModule} from 'primeng/button';
-import {TableModule} from 'primeng/table';
-import {DialogModule} from 'primeng/dialog';
-import {CardModule} from 'primeng/card';
-import {ToastModule} from 'primeng/toast';
-import {ProgressSpinnerModule} from 'primeng/progressspinner';
-import {TooltipModule} from 'primeng/tooltip';
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
+import { TableModule } from 'primeng/table';
+import { DialogModule } from 'primeng/dialog';
+import { CardModule } from 'primeng/card';
+import { ToastModule } from 'primeng/toast';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { TooltipModule } from 'primeng/tooltip';
+import { DropdownModule } from "primeng/dropdown";
 
 // PrimeNg services
-import {MessageService} from 'primeng/api';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
     imports: [
@@ -24,7 +25,8 @@ import {MessageService} from 'primeng/api';
         CardModule,
         ToastModule,
         ProgressSpinnerModule,
-        TooltipModule
+        TooltipModule,
+        DropdownModule
     ],
     exports: [
         BrowserAnimationsModule,
@@ -35,7 +37,8 @@ import {MessageService} from 'primeng/api';
         CardModule,
         ToastModule,
         ProgressSpinnerModule,
-        TooltipModule
+        TooltipModule,
+        DropdownModule
     ],
     providers: [
         MessageService
@@ -43,5 +46,5 @@ import {MessageService} from 'primeng/api';
 })
 
 export class AppCustomPrimeNgModule {
-    constructor() {}
+    constructor() { }
 }

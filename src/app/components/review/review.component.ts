@@ -1,7 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {RepoDescriptor} from '../../types';
-import {ReposService, UtilityService} from '../../services';
-import {MessageService} from 'primeng/api';
+import { Component, Input, OnInit } from '@angular/core';
+import { RepoDescriptor } from '../../types';
+import { ReposService, UtilityService } from '../../services';
+import { MessageService, SelectItem } from 'primeng/api';
 
 @Component({
     selector: 'app-review',
@@ -12,10 +12,14 @@ import {MessageService} from 'primeng/api';
 export class ReviewComponent implements OnInit {
 
     public repos: Array<RepoDescriptor> = [];
+    public papersFamilies: SelectItem[] = [
+        { label: 'Notebook', value: 'notebook' },
+        { label: 'Pdf', value: 'pdf' },
+    ];
 
     constructor(protected reposService: ReposService,
-                protected utility: UtilityService,
-                protected messageService: MessageService) {
+        protected utility: UtilityService,
+        protected messageService: MessageService) {
     }
 
     ngOnInit() {
@@ -41,7 +45,7 @@ export class ReviewComponent implements OnInit {
 
     publish(repo: RepoDescriptor) {
         console.log(repo);
-        this.reposService.publish(repo['url'], repo.name).subscribe( response => {
+        this.reposService.publish(repo['url'], repo.name).subscribe(response => {
             console.log(response);
             setTimeout(() => {
                 this.sendNotification('success', 'Repository published successfully');
