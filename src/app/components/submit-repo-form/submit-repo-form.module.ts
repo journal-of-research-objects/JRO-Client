@@ -6,6 +6,7 @@ import { InputTextModule } from "primeng/inputtext";
 import { ButtonModule } from "primeng/button";
 import { ChipsModule } from 'primeng/chips';
 import { TooltipModule } from 'primeng/tooltip';
+import { SelectButtonModule } from 'primeng/selectbutton';
 
 @NgModule({
   declarations: [SubmitRepoFormComponent],
@@ -17,7 +18,8 @@ import { TooltipModule } from 'primeng/tooltip';
     InputTextModule,
     ButtonModule,
     ChipsModule,
-    TooltipModule
+    TooltipModule,
+    SelectButtonModule
   ]
 })
 export class SubmitRepoFormModule { }

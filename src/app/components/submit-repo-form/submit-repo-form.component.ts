@@ -4,6 +4,7 @@ import { RepoSubmit, RepoSubmitAuthor } from 'src/app/types';
 import { FormsUtils } from 'src/app/core';
 import { StorageService, ReposService } from 'src/app/services';
 import { Chips } from 'primeng/chips';
+import { SelectItem } from 'primeng/api';
 
 @Component({
   selector: 'app-submit-repo-form',
@@ -25,6 +26,10 @@ export class SubmitRepoFormComponent implements OnInit, AfterViewInit {
   public author: RepoSubmitAuthor = { name: '', aff: '' };
   public formAuthoMode: 'edit' | 'new' = 'new';
   private regexAlphanumb = new RegExp(/^[a-zA-Z0-9 ]*$/);
+  public papersTypes: SelectItem[] = [
+    { label: 'Notebook', value: 'notebook', icon: 'pi pi-file' },
+    { label: 'Pdf', value: 'pdf', icon: 'pi pi-file-pdf' },
+  ];
 
   constructor(private formBuilder: FormBuilder, private reposService: ReposService) { }
 
