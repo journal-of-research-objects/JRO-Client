@@ -85,7 +85,7 @@ export class ReposService {
         params = params.set('forked_url', forkedURL);
         params = params.set('repo_name', repoName);
         const url = this.urlBase + '/regenerate_nb/';
-        return this.getResponse(url, params);
+        return this.getResponse(url, params).toPromise();
     }
 
     private getResponse(url: string, params) {

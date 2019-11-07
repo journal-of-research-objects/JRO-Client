@@ -33,8 +33,9 @@ export class ReviewComponent implements OnInit {
     }
 
     goToReview(repo: RepoDescriptor) {
-        this.regenerateNb(repo);
-        this.utility.goToJupyter(repo.name);
+        this.regenerateNb(repo).then(response => {
+            this.utility.goToJupyter(repo.name);
+        });
         // this.utility.goToMyBinder(repo.name);
     }
 
@@ -53,11 +54,11 @@ export class ReviewComponent implements OnInit {
 
     regenerateNb(repo: RepoDescriptor) {
         // console.log(repo);
-        this.reposService.regenerateNb(repo['url'], repo.name).subscribe( response => {
+        return this.reposService.regenerateNb(repo['url'], repo.name).then(response => {
             this.sendNotification('success', 'Repository regenerated successfully');
-        }, error => {
+        }).catch(error => {
             this.sendNotification('error', 'Error regenerating repository');
-        })
+        });
     }
 
     sendNotification(severity: string, detail: string) {
