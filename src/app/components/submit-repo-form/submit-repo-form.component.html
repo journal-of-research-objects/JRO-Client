@@ -43,7 +43,7 @@
                     <input #new_author_start pInputText [required]="true" formControlName="name" type="text"
                         placeholder="LastName, FirstName">
                     <ng-container
-                        *ngIf="(authorForm.controls['name'].touched || authorForm.controls['name'].dirty) && authorForm.controls['name'].errors">
+                        *ngIf="authorForm.controls['name'].dirty && authorForm.controls['name'].errors">
                         <small *ngFor="let error of this.authorForm.controls['name'].errors| keyvalue"
                             class="invalid-field">This field is {{error.key}}</small>
                     </ng-container>
@@ -51,7 +51,7 @@
                 <div class="ui-g-12 ui-md-3 ui-lg-3">
                     <input pInputText formControlName="aff" [required]="true" type="text" placeholder="Affiliation">
                     <ng-container
-                        *ngIf="(authorForm.controls['aff'].touched || authorForm.controls['aff'].dirty) &&  authorForm.controls['aff'].errors">
+                        *ngIf="authorForm.controls['aff'].dirty &&  authorForm.controls['aff'].errors">
                         <small *ngFor="let error of this.authorForm.controls['aff'].errors| keyvalue"
                             class="invalid-field">This field is {{error.key}}</small>
                     </ng-container>
