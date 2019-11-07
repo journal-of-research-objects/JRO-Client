@@ -20,6 +20,7 @@ export class SubmitComponent implements OnInit, OnDestroy {
 
     public repoSubmit: RepoSubmit;
     public showRepoSubmitModal: boolean = false;
+    public procesing: {} = {};
 
     constructor(protected route: ActivatedRoute,
         protected messageService: MessageService,
@@ -64,51 +65,51 @@ export class SubmitComponent implements OnInit, OnDestroy {
     setGetReposInterval() {
         this.interval = setInterval(() => {
             this.getStatusRepos();
-            if(this.githubRepos){
+            if (this.githubRepos) {
                 this.githubRepos.sort(this.sortRepos);
             }
         }, 15000);
     }
 
     /** order: forked, error, submitted, published, initial */
-    sortRepos(a: RepoDescriptor, b: RepoDescriptor){
+    sortRepos(a: RepoDescriptor, b: RepoDescriptor) {
         const statusA = a.status;
         const statusB = b.status;
 
         let comparison = 0;
-        if (statusA == statusB){
+        if (statusA == statusB) {
             comparison = 0;
-        }else if (statusA == "initial"){
-            comparison=1;
-        }else if (statusA.startsWith("error") && statusB.startsWith("error")){
-            comparison=0;
-        }else if (statusB == "initial"){
-            comparison=-1;
-        }else if (statusA == "published"){
-            comparison=1;
-        }else if (statusB == "published"){
-            comparison=-1;
-        }else if (statusA == "submitted"){
-            comparison=1;
-        }else if (statusB == "submitted"){
-            comparison=-1;
-        }else if (statusA.startsWith("error")){
-            comparison=1;
-        }else if (statusB.startsWith("error")){
-            comparison=-1;
-        }else if (statusA == "forked"){
-            comparison=1;
-        }else{
-            comparison=-1;
+        } else if (statusA == "initial") {
+            comparison = 1;
+        } else if (statusA.startsWith("error") && statusB.startsWith("error")) {
+            comparison = 0;
+        } else if (statusB == "initial") {
+            comparison = -1;
+        } else if (statusA == "published") {
+            comparison = 1;
+        } else if (statusB == "published") {
+            comparison = -1;
+        } else if (statusA == "submitted") {
+            comparison = 1;
+        } else if (statusB == "submitted") {
+            comparison = -1;
+        } else if (statusA.startsWith("error")) {
+            comparison = 1;
+        } else if (statusB.startsWith("error")) {
+            comparison = -1;
+        } else if (statusA == "forked") {
+            comparison = 1;
+        } else {
+            comparison = -1;
         }
 
         return comparison;
     }
 
-    getStatusRepos(){
-        if(this.githubRepos){
+    getStatusRepos() {
+        if (this.githubRepos) {
             this.githubRepos.forEach(repo => {
-                if (repo.status!='initial'){
+                if (repo.status != 'initial') {
                     this.reposService.getStatusRepo(repo.url).subscribe((repoStatus: any) => {
                         repo.status = repoStatus.status;
                     });
@@ -193,21 +194,24 @@ export class SubmitComponent implements OnInit, OnDestroy {
     }
 
     deleteRepo(repo: RepoDescriptor) {
+        this.procesing[repo.id] = true;
         this.reposService.deleteRepo(repo.properties['forked_url']).subscribe(response => {
             this.sendNotification('success', 'Repository deleted successfully');
             this.getRepos(this.accessToken);
+            this.procesing[repo.id] = false;
         }, error => {
             if ('error' in error && 'status' in error) {
                 console.log(error.error.status);
-                if (error.error.status=='Error while deleting db record'){
+                if (error.error.status == 'Error while deleting db record') {
                     this.sendNotification('error', 'Error deleting repository')
-                }else{
+                } else {
                     this.sendNotification('success', 'Repository deleted successfully');
                     this.getRepos(this.accessToken);;
                 }
-            }else{
+            } else {
                 this.sendNotification('error', 'Error deleting repository');
             }
+            this.procesing[repo.id] = false;
         });
     }
 

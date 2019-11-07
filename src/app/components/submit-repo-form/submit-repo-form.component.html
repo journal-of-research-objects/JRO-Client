@@ -74,7 +74,8 @@
     </div>
 </div>
 <div class="buttons-wrapper">
-    <button pButton type="button" class="ui-button-success" label="Submit" [disabled]="!valid"
-        (click)="submit()"></button>
-    <button pButton type="button" class="ui-button-danger" label="Cancel" (click)="cancel()"></button>
+    <button pButton type="button" class="ui-button-success" label="Submit" [disabled]="procesing || !valid"
+        (click)="submit()" [icon]="procesing ? 'pi pi-spin pi-spinner' : 'pi pi-save'"></button>
+    <button pButton type="button" class="ui-button-danger" label="Cancel" [disabled]="procesing"
+        (click)="cancel()"></button>
 </div>
