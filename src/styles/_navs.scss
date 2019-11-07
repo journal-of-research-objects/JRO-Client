@@ -1,40 +1,89 @@
 .nav-panel {
-    a {
-        padding: 2em 0;
-        display: block;
-        color: inherit;
-        position: relative;
-        font-weight: 400;
-        border-bottom: 1px solid #ccc;
+  a {
+    padding: 2em 0;
+    display: block;
+    color: inherit;
+    position: relative;
+    font-weight: 400;
+    border-bottom: 1px solid #ccc;
 
-        >* {
-            font-size: 1.5em;
-        }
+    > * {
+      font-size: 1.5em;
+    }
 
-        >i {
-            margin-right: .5em;
-        }
+    > i {
+      margin-right: 0.5em;
+    }
+
+    .nav-panel {
+      padding-left: 1em;
+      font-size: 0.8em;
+      a {
+        border-bottom: none;
+        padding: 0.5em 0;
 
         &:after {
-            content: "";
-            width: 0px;
-            height: 5px;
-            margin: auto;
-            background-color: #4D4482;
-            transition: 300ms width;
-            display: block;
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            right: 0;
+          height: 1px;
+          bottom: 0px;
         }
-
-        &:hover {
-            color: inherit;
-
-            &:after {
-                width: 100%;
-            }
-        }
+      }
     }
+
+    &.with-childs {
+      padding-bottom: 1em;
+      &.on-hover {
+        .nav-panel {
+          height: 0;
+          transition: 500ms height;
+          overflow: hidden;
+        }
+        &:hover {
+          .nav-panel {
+            height: 100%;
+          }
+        }
+      }
+
+      &.d-inline {
+        a {
+          display: inline-block;
+          margin: 0 1em;
+          min-width: 100px;
+          text-align: center;
+          background-color: #f9f9f9;
+          border-radius: 1em;
+          padding: 0.5em 1em;
+          transition: 300ms box-shadow;
+          &:after {
+            display: none;
+          }
+          &:hover {
+            box-shadow: 0 2px 5px rgba(46, 41, 78, 0.3);
+          }
+        }
+      }
+    }
+
+    &:after {
+      content: "";
+      width: 0px;
+      height: 5px;
+      margin: auto;
+      background-color: #4d4482;
+      transition: 600ms width;
+      display: block;
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      right: 0;
+    }
+
+    &:hover {
+      color: inherit;
+
+      &:after {
+        width: 100%;
+      }
+    }
+  }
 }

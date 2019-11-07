@@ -3,7 +3,8 @@
         <div class="ui-g-8 ui-sm-12 ui-md-8">
             <h1 class="title">Journal of Research Objects</h1>
             <p class="description">
-                <i>Scholarly data and documents are of most value when they are interconnected rather than independent.</i>
+                <i>Scholarly data and documents are of most value when they are interconnected rather than
+                    independent.</i>
                 Christine L. Borgman
             </p>
             <div class="text-left btn-inline-panel">
@@ -13,9 +14,17 @@
         </div>
         <div class="ui-g-4 ui-sm-12 ui-md-4">
             <div class="nav-panel">
-                <a href="#papers">
+                <a class="with-childs d-inline" [routerLink]="['/papers']">
                     <i class="fa far fa-sticky-note"></i>
                     <span>Explore Papers</span>
+                    <div class="nav-panel">
+                        <a [routerLink]="['/papers']" [queryParams]="{ type:'notebook'}">
+                            <span>NoteBook</span>
+                        </a>
+                        <a [routerLink]="['/papers']" [queryParams]="{ type:'pdf'}">
+                            <span>Pdf</span>
+                        </a>
+                    </div>
                 </a>
                 <a [routerLink]="['authors-guide']">
                     <i class="fa fas fa-book"></i>
@@ -33,7 +42,8 @@
         <ng-template [ngIf]="repos.length > 0" [ngIfElse]="zeroState">
             <app-repo *ngFor="let repo of repos" [repo]="repo">
                 <div repo-buttons>
-                    <button (click)="tryIt(repo)" pButton label="Go to the publication" class="ui-button-danger"></button>
+                    <button (click)="tryIt(repo)" pButton label="Go to the publication"
+                        class="ui-button-danger"></button>
                 </div>
             </app-repo>
         </ng-template>
