@@ -12,8 +12,8 @@
     <div *ngIf="githubRepos?.length > 0 && !searching">
         <app-repo *ngFor="let repo of githubRepos" [repo]="repo">
             <div repo-buttons>
-                <button pButton (click)="buttonAction(repo)" [disabled]="procesing[repo.id]"
-                    [icon]="procesing[repo.id] ? 'pi pi-spin pi-spinner' : (checkButtonAction(repo.status) ? '' :'pi pi-times')"
+                <button pButton (click)="buttonAction(repo)" [disabled]="processing[repo.id]"
+                    [icon]="processing[repo.id] ? 'pi pi-spin pi-spinner' : (checkButtonAction(repo.status) ? '' :'pi pi-times')"
                     [label]="checkButtonAction(repo.status) ? 'Submit' : 'Delete'"
                     [class]="checkButtonAction(repo.status) ? 'ui-button-success' : 'ui-button-danger'"></button>
             </div>

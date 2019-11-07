@@ -20,7 +20,7 @@ export class SubmitComponent implements OnInit, OnDestroy {
 
     public repoSubmit: RepoSubmit;
     public showRepoSubmitModal: boolean = false;
-    public procesing: {} = {};
+    public processing: {} = {};
 
     constructor(protected route: ActivatedRoute,
         protected messageService: MessageService,
@@ -194,11 +194,11 @@ export class SubmitComponent implements OnInit, OnDestroy {
     }
 
     deleteRepo(repo: RepoDescriptor) {
-        this.procesing[repo.id] = true;
+        this.processing[repo.id] = true;
         this.reposService.deleteRepo(repo.properties['forked_url']).subscribe(response => {
             this.sendNotification('success', 'Repository deleted successfully');
             this.getRepos(this.accessToken);
-            this.procesing[repo.id] = false;
+            this.processing[repo.id] = false;
         }, error => {
             if ('error' in error && 'status' in error) {
                 console.log(error.error.status);
@@ -211,7 +211,7 @@ export class SubmitComponent implements OnInit, OnDestroy {
             } else {
                 this.sendNotification('error', 'Error deleting repository');
             }
-            this.procesing[repo.id] = false;
+            this.processing[repo.id] = false;
         });
     }
 

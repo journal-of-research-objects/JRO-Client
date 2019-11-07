@@ -10,7 +10,7 @@ export class PapersComponent implements OnInit {
 
   public papersFamilies: SelectItem[] = [
     { label: 'Notebook', value: 'notebook' },
-    { label: 'Pdf', value: 'pdf' },
+    { label: 'PDF', value: 'pdf' },
   ];
 
   constructor() { }

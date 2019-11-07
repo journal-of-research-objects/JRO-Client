@@ -28,9 +28,9 @@ export class SubmitRepoFormComponent implements OnInit, AfterViewInit {
   private regexAlphanumb = new RegExp(/^[a-zA-Z0-9 ]*$/);
   public papersTypes: SelectItem[] = [
     { label: 'Notebook', value: 'notebook', icon: 'pi pi-file' },
-    { label: 'Pdf', value: 'pdf', icon: 'pi pi-file-pdf' },
+    { label: 'PDF', value: 'pdf', icon: 'pi pi-file-pdf' },
   ];
-  public procesing: boolean = false;
+  public processing: boolean = false;
 
   constructor(private formBuilder: FormBuilder, private reposService: ReposService) { }
 
@@ -139,13 +139,13 @@ export class SubmitRepoFormComponent implements OnInit, AfterViewInit {
    */
   submit() {
     if (this.repoSubmit) {
-      this.procesing = true
+      this.processing = true
       this.reposService.submitRepo(this.repoSubmit).subscribe(response => {
         this.onSubmit.emit({ status: 'success', data: response });
-        this.procesing = false;
+        this.processing = false;
       }, error => {
         this.onSubmit.emit({ status: 'error', data: error });
-        this.procesing = false;
+        this.processing = false;
       });
     }
   }

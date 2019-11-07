@@ -11,8 +11,12 @@
     <ng-template [ngIf]="repos.length > 0" [ngIfElse]="zeroState">
         <app-repo *ngFor="let repo of repos" [repo]="repo">
             <div repo-buttons>
-                <button pButton (click)="publish(repo)" label="Publish" class="ui-button-danger"></button>
-                <button pButton (click)="goToReview(repo)" label="Review"></button>
+                <button pButton (click)="publish(repo)" [disabled]="processing[repo.id]"
+                [icon]="processing[repo.id] ? 'pi pi-spin pi-spinner' : 'pi pi-check'"
+                label="Publish" class="ui-button-danger"></button>
+                <button pButton (click)="goToReview(repo)" [disabled]="processing[repo.id]"
+                [icon]="processing[repo.id] ? 'pi pi-spin pi-spinner' : 'pi pi-search'"
+                label="Review"></button>
             </div>
         </app-repo>
     </ng-template>

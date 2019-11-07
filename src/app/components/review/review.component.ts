@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { RepoDescriptor } from '../../types';
-import { ReposService, UtilityService } from '../../services';
+import { ReposService, UtilityService, StorageService } from '../../services';
 import { MessageService, SelectItem } from 'primeng/api';
 
 @Component({
@@ -12,14 +12,16 @@ import { MessageService, SelectItem } from 'primeng/api';
 export class ReviewComponent implements OnInit {
 
     public repos: Array<RepoDescriptor> = [];
+    public processing: {} = {};
     public papersFamilies: SelectItem[] = [
         { label: 'Notebook', value: 'notebook' },
-        { label: 'Pdf', value: 'pdf' },
+        { label: 'PDF', value: 'pdf' },
     ];
 
     constructor(protected reposService: ReposService,
         protected utility: UtilityService,
-        protected messageService: MessageService) {
+        protected messageService: MessageService,
+        protected storageService: StorageService) {
     }
 
     ngOnInit() {
@@ -37,22 +39,28 @@ export class ReviewComponent implements OnInit {
     }
 
     goToReview(repo: RepoDescriptor) {
+        this.processing[repo.id] = true;
         this.regenerateNb(repo).then(response => {
-            this.utility.goToJupyter(repo.name);
+            this.processing[repo.id] = false;
+            let orcid = this.storageService.read('user')['orcid'];
+            this.utility.goToJupyter(repo.name, orcid);
         });
         // this.utility.goToMyBinder(repo.name);
     }
 
     publish(repo: RepoDescriptor) {
+        this.processing[repo.id] = true;
         console.log(repo);
         this.reposService.publish(repo['url'], repo.name).subscribe(response => {
             console.log(response);
+            this.processing[repo.id] = false;
             setTimeout(() => {
                 this.sendNotification('success', 'Repository published successfully');
                 this.getRepos();
             }, 1000);
         }, error => {
             this.sendNotification('error', 'Error publishing repository');
+            this.processing[repo.id] = false;
         });
     }
 
