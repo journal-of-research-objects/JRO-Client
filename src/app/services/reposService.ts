@@ -52,16 +52,10 @@ export class ReposService {
         }, { headers: this.headers });
     }
 
-    public getSubmittedRepo(status: string) {
+    public getListRepo(status: string) {
         let params = new HttpParams();
         params = params.set('status', status);
         const url = `${this.urlBase}/list/`;
-        return this.getResponse(url, params);
-    }
-
-    public getPublishedRepo() {
-        let params = new HttpParams();
-        const url = `${this.urlBase}/listpub/`;
         return this.getResponse(url, params);
     }
 

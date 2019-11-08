@@ -19,9 +19,9 @@ export class HomeComponent implements OnInit {
 
     ngOnInit() {
         this.repos = [];
-        this.reposService.getPublishedRepo().subscribe((repos: Array<RepoDescriptor>) => {
-            console.log(repos);
-            repos.forEach(repo => {
+        this.reposService.getListRepo('published').subscribe((repos: Array<RepoDescriptor>) => {
+            console.log(repos['data']);
+            repos['data'].forEach(repo => {
                 repo['issueMsg'] = 'Issues';
                 this.repos.push(RepoDescriptor.import(repo))
             });

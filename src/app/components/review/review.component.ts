@@ -30,8 +30,8 @@ export class ReviewComponent implements OnInit {
 
     getRepos() {
         this.repos = [];
-        this.reposService.getSubmittedRepo('submitted').subscribe((repos: Array<RepoDescriptor>) => {
-            repos.forEach(repo => {
+        this.reposService.getListRepo('submitted').subscribe((repos: Array<RepoDescriptor>) => {
+            repos['data'].forEach(repo => {
                 repo['issueMsg'] = 'Open a new issue';
                 this.repos.push(RepoDescriptor.import(repo))
             });
