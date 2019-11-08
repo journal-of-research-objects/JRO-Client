@@ -15,10 +15,13 @@
             }
         }
 
-        .octicon {
-            display: inline-block;
-            vertical-align: text-bottom;
-            margin: 5px 10px 0 0;
+        .octicon-wrapper{
+            margin: 0.5em 0 0;
+            .octicon {
+                display: inline-block;
+                vertical-align: middle;
+                margin: 5px 10px 0 0;
+            }
         }
 
         .data-wrapper {
