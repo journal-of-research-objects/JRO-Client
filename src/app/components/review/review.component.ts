@@ -58,8 +58,8 @@ export class ReviewComponent implements OnInit, OnDestroy {
             this.getRepos();
         }));
         this.userService.profile().then(response => {
-            if (response && response['role'] && response['role'].lenght) {
-                this.IAM.editor = response['role'] = [].find(value => value == 'editor');
+            if (response && response['role']) {
+                this.IAM.editor = response['role'] == 'editor';
             }
         })
     }
