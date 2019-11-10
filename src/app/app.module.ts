@@ -24,6 +24,7 @@ import { GithubUserCardModule } from './components/github-user-card/github-user-
 import { AuthorsGuideModule } from './components/guides/authors-guide/authors-guide.module';
 import { PapersComponent } from "./components/papers/papers.component";
 import { TokenInterceptor } from './core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [
@@ -47,7 +48,9 @@ import { TokenInterceptor } from './core';
         HttpClientModule,
         SubmitRepoFormModule,
         GithubUserCardModule,
-        AuthorsGuideModule
+        AuthorsGuideModule,
+        FormsModule,
+        ReactiveFormsModule
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },

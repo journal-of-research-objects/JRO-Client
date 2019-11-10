@@ -17,6 +17,12 @@ export class ReviewComponent implements OnInit {
         { label: 'Notebook', value: 'notebook' },
         { label: 'PDF', value: 'pdf' },
     ];
+    public statues: SelectItem[] = [
+        { label: 'Published', value: 'published' },
+        { label: 'Under Review', value: 'submitted' }
+    ];
+
+    public status: string = 'submitted';
 
     constructor(protected reposService: ReposService,
         protected utility: UtilityService,
@@ -30,7 +36,7 @@ export class ReviewComponent implements OnInit {
 
     getRepos() {
         this.repos = [];
-        this.reposService.getListRepo('submitted').subscribe((repos: Array<RepoDescriptor>) => {
+        this.reposService.getListRepo(this.status).subscribe((repos: Array<RepoDescriptor>) => {
             repos['data'].forEach(repo => {
                 repo['issueMsg'] = 'Open a new issue';
                 this.repos.push(RepoDescriptor.import(repo))

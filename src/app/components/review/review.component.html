@@ -7,19 +7,24 @@
             <p-dropdown [options]="papersFamilies"></p-dropdown>
         </div>
     </div>
+    <div>
+        <p-selectButton class="cu-select-button" [options]="statues" [(ngModel)]="status" (onChange)="getRepos()">
+        </p-selectButton>
+    </div>
     <hr />
-    <ng-template [ngIf]="repos.length > 0" [ngIfElse]="zeroState">
-        <app-repo *ngFor="let repo of repos" [repo]="repo">
-            <div repo-buttons>
-                <button pButton (click)="publish(repo)" [disabled]="processing[repo.id]"
-                [icon]="processing[repo.id] ? 'pi pi-spin pi-spinner' : 'pi pi-check'"
-                label="Publish" class="ui-button-danger"></button>
-                <button pButton (click)="goToReview(repo)" [disabled]="processing[repo.id]"
-                [icon]="processing[repo.id] ? 'pi pi-spin pi-spinner' : 'pi pi-search'"
-                label="Review"></button>
-            </div>
-        </app-repo>
-    </ng-template>
+    <div>
+        <ng-template [ngIf]="repos.length > 0" [ngIfElse]="zeroState">
+            <app-repo *ngFor="let repo of repos" [repo]="repo">
+                <div repo-buttons>
+                    <button pButton (click)="publish(repo)" [disabled]="processing[repo.id]"
+                        [icon]="processing[repo.id] ? 'pi pi-spin pi-spinner' : 'pi pi-check'" label="Publish"
+                        class="ui-button-danger"></button>
+                    <button pButton (click)="goToReview(repo)" [disabled]="processing[repo.id]"
+                        [icon]="processing[repo.id] ? 'pi pi-spin pi-spinner' : 'pi pi-search'" label="Review"></button>
+                </div>
+            </app-repo>
+        </ng-template>
+    </div>
     <ng-template #zeroState>
         <app-zero-state></app-zero-state>
     </ng-template>
