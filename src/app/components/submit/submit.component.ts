@@ -142,7 +142,10 @@ export class SubmitComponent implements OnInit, OnDestroy {
         const user = this.storage.user;
         if (repo && user) {
             this.showRepoSubmitModal = true;
-            this.repoSubmit = { name: repo.name, gitUser: repo.properties.owner.login, orcid: user.orcid, authors: [] };
+            this.repoSubmit = {
+                name: repo.name, gitUser: repo.properties.owner.login,
+                orcid: user.orcid, authors: [], paper_type: 'notebook'
+            };
         }
     }
 

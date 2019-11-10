@@ -39,7 +39,8 @@ export class ReposService extends HttpServiceBase {
             user_name: submitData.gitUser,
             orcid: submitData.orcid,
             authors: submitData.authors,
-            keywords: submitData.keywords ? submitData.keywords.join(',') : null
+            keywords: submitData.keywords ? submitData.keywords.join(',') : null,
+            paper_type: submitData.paper_type
         });
     }
 

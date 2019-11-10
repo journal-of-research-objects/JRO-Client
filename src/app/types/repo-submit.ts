@@ -8,6 +8,7 @@ export interface RepoSubmit {
     orcid: string,
     authors?: RepoSubmitAuthor[],
     keywords?: string[];
+    paper_type: 'pdf' | 'notebook';
 }
 
 /**
