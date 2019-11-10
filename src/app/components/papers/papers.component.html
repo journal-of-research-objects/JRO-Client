@@ -4,7 +4,7 @@
             <h2>Journal of Research Objects Papers</h2>
         </div>
         <div class="p-col-fixed">
-            <p-dropdown [options]="papersFamilies"></p-dropdown>
+            <p-dropdown [options]="papersFamilies" [(ngModel)]="paperType" (onChange)="update()"></p-dropdown>
         </div>
     </div>
     <hr />

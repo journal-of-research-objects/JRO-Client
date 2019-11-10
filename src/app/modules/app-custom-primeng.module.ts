@@ -14,6 +14,8 @@ import { DropdownModule } from "primeng/dropdown";
 
 // PrimeNg services
 import { MessageService } from 'primeng/api';
+import { SelectButtonModule } from 'primeng/selectbutton';
+import { PaginatorModule } from 'primeng/paginator';
 
 @NgModule({
     imports: [
@@ -26,7 +28,9 @@ import { MessageService } from 'primeng/api';
         ToastModule,
         ProgressSpinnerModule,
         TooltipModule,
-        DropdownModule
+        DropdownModule,
+        SelectButtonModule,
+        PaginatorModule
     ],
     exports: [
         BrowserAnimationsModule,
@@ -38,7 +42,9 @@ import { MessageService } from 'primeng/api';
         ToastModule,
         ProgressSpinnerModule,
         TooltipModule,
-        DropdownModule
+        DropdownModule,
+        SelectButtonModule,
+        PaginatorModule
     ],
     providers: [
         MessageService

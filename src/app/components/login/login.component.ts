@@ -33,7 +33,6 @@ export class LoginComponent implements OnInit {
 
                 if (code) {
                     this.userService.autenticate(code).subscribe(response => {
-                        console.log('response',response);
                         if (response.access_token) {
                             this.storageService.write('user', response);
                             this.storageService.write('token', response.access_token);

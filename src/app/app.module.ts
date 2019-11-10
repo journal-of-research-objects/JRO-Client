@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppCustomPrimeNgModule } from './modules/app-custom-primeng.module';
 
 // Local Components
@@ -23,6 +23,8 @@ import { TimeAgoPipe } from 'time-ago-pipe';
 import { GithubUserCardModule } from './components/github-user-card/github-user-card.module';
 import { AuthorsGuideModule } from './components/guides/authors-guide/authors-guide.module';
 import { PapersComponent } from "./components/papers/papers.component";
+import { TokenInterceptor } from './core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [
@@ -46,9 +48,12 @@ import { PapersComponent } from "./components/papers/papers.component";
         HttpClientModule,
         SubmitRepoFormModule,
         GithubUserCardModule,
-        AuthorsGuideModule
+        AuthorsGuideModule,
+        FormsModule,
+        ReactiveFormsModule
     ],
     providers: [
+        { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
         RouteGuard,
         UtilityService,
         StorageService,
