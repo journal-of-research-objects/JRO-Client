@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { RepoDescriptor } from '../../types';
-import { ReposService, UtilityService, StorageService } from '../../services';
+import { ReposService, UtilityService, StorageService, UserService } from '../../services';
 import { MessageService, SelectItem } from 'primeng/api';
 
 @Component({
@@ -23,15 +23,21 @@ export class ReviewComponent implements OnInit {
     ];
 
     public status: string = 'submitted';
+    public IAM: { editor: boolean } = { editor: false };
 
     constructor(protected reposService: ReposService,
-        protected utility: UtilityService,
+        protected utility: UtilityService, protected userService: UserService,
         protected messageService: MessageService,
         protected storageService: StorageService) {
     }
 
     ngOnInit() {
         this.getRepos();
+        this.userService.profile().then(response => {
+            if (response && response['role'] && response['role'].lenght) {
+                this.IAM.editor = response['role'] = [].find(value => value == 'editor');
+            }
+        })
     }
 
     getRepos() {

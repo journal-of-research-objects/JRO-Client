@@ -18,4 +18,8 @@ export class UserService extends HttpServiceBase {
             headers: this.ignoreAuthInterceptorHeader()
         });
     }
+
+    public profile() {
+        return this.http.get(this.makeUrlFor('/profile/')).toPromise();
+    }
 }
