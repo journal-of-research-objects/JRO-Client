@@ -3,15 +3,19 @@ import { CREDENTIALS } from '../credentials/credentials';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../types';
+import { HttpServiceBase } from '../core/services';
 
 @Injectable()
-export class UserService {
-    public urlBase = CREDENTIALS.backendURL;
+export class UserService extends HttpServiceBase {
 
-    constructor(protected http: HttpClient) { }
+    constructor(http: HttpClient) {
+        super(http);
+    }
 
     public autenticate(code: string): Observable<User> {
-        const url = `${this.urlBase}/login/?orcid_auth_code=${code}`;
-        return this.http.get<User>(url);
+        return this.http.get<User>(this.makeUrlFor(`/login/`), {
+            params: { 'orcid_auth_code': code },
+            headers: this.ignoreAuthInterceptorHeader()
+        });
     }
 }

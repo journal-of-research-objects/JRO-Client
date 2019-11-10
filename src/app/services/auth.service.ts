@@ -1,19 +1,24 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
+import { StorageService } from './storage.service';
 
 @Injectable()
 export class AuthService {
 
     public redirectUrl: string;
 
-    constructor() {
+    constructor(private storageService: StorageService) {
     }
 
     logOut() {
         localStorage.clear();
     }
 
-    isLoggedIn(): boolean{
-        return localStorage.getItem('token') ? true : false;
+    isLoggedIn(): boolean {
+        return this.storageService.authToken ? true : false;
+    }
+
+    get sessionToken() {
+        return this.storageService.authToken;
     }
 
 }
