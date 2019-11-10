@@ -12,12 +12,21 @@
     .header-logo {
       font-size: 2.5em;
       color: #bdbdbd;
+      display: flex;
       .logo {
         height: 50px;
       }
 
       .logo:hover {
         cursor: pointer;
+      }
+
+      .title {
+        flex: 1;
+        font-size: 0.4em;
+        color: #4c4481;
+        padding-left: 0.4em;
+        word-break: break-word;
       }
     }
 
