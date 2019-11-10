@@ -44,9 +44,9 @@ export class ReposService extends HttpServiceBase {
         });
     }
 
-    public getListRepo(status: string) {
+    public getListRepo(page: number = 1, status: string = 'submitted') {
         return this.http.get(this.makeUrlFor('/list/'), {
-            params: this.httpParams({ 'status': status }),
+            params: this.httpParams({ 'page': page, 'status': status }),
             headers: this.ignoreAuthInterceptorHeader()
         })
     }

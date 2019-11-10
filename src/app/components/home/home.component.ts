@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
-import {UtilityService} from '../../services/utility.service';
-import {RepoDescriptor} from '../../types';
-import {ReposService} from '../../services';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { UtilityService } from '../../services/utility.service';
+import { RepoDescriptor } from '../../types';
+import { ReposService } from '../../services';
 
 @Component({
     selector: 'app-home',
@@ -13,13 +13,13 @@ import {ReposService} from '../../services';
 export class HomeComponent implements OnInit {
     public repos: Array<RepoDescriptor> = [];
     constructor(protected router: Router,
-                protected reposService: ReposService,
-                protected utility: UtilityService) {
+        protected reposService: ReposService,
+        protected utility: UtilityService) {
     }
 
     ngOnInit() {
         this.repos = [];
-        this.reposService.getListRepo('published').subscribe((repos: Array<RepoDescriptor>) => {
+        this.reposService.getListRepo(1, 'published').subscribe((repos: Array<RepoDescriptor>) => {
             console.log(repos['data']);
             repos['data'].forEach(repo => {
                 repo['issueMsg'] = 'Issues';

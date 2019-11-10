@@ -4,11 +4,11 @@
             <h2>List of repos submitted</h2>
         </div>
         <div class="p-col-fixed">
-            <p-dropdown [options]="papersFamilies"></p-dropdown>
+            <p-dropdown [options]="papersFamilies" [(ngModel)]="paperType" (onChange)="update()"></p-dropdown>
         </div>
     </div>
     <div>
-        <p-selectButton class="cu-select-button" [options]="statues" [(ngModel)]="status" (onChange)="getRepos()">
+        <p-selectButton class="cu-select-button" [options]="statues" [(ngModel)]="status" (onChange)="update()">
         </p-selectButton>
     </div>
     <hr />
@@ -23,6 +23,8 @@
                         [icon]="processing[repo.id] ? 'pi pi-spin pi-spinner' : 'pi pi-search'" label="Review"></button>
                 </div>
             </app-repo>
+            <p-paginator class="cu-nav-paginator" [rows]="10" totalRecords="allRecords"
+                (onPageChange)="paginate($event)"></p-paginator>
         </ng-template>
     </div>
     <ng-template #zeroState>
