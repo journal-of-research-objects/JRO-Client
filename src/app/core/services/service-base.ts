@@ -41,11 +41,14 @@ export class HttpServiceBase {
      * convierte el mapa de valores pasado a una instancia de HttpParams
      * valida
      * @param params mapa de los parametros a pasar a HttpParams
+     * @param ignoreNulls true para ignorar los valores en null, false de lo contrario
      */
-    protected httpParams(params: { [key: string]: any }): HttpParams {
+    protected httpParams(params: { [key: string]: any }, ignoreNulls: boolean = false): HttpParams {
         let httpparams = new HttpParams();
         for (const key in params) {
-            httpparams = httpparams.set(key, params[key]);
+            if (params[key] != null || !ignoreNulls) {
+                httpparams = httpparams.set(key, params[key]);
+            }
         }
         return httpparams;
     }

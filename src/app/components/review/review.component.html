@@ -7,10 +7,6 @@
             <p-dropdown [options]="papersFamilies" [(ngModel)]="paperType" (onChange)="update()"></p-dropdown>
         </div>
     </div>
-    <div>
-        <p-selectButton class="cu-select-button" [options]="statues" [(ngModel)]="status" (onChange)="update()">
-        </p-selectButton>
-    </div>
     <hr />
     <div>
         <ng-template [ngIf]="repos.length > 0" [ngIfElse]="zeroState">

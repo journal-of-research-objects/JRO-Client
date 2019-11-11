@@ -16,16 +16,12 @@ export class ReviewComponent implements OnInit, OnDestroy {
     public repos: Array<RepoDescriptor> = [];
     public processing: {} = {};
     public papersFamilies: SelectItem[] = [
+        { label: 'All', value: null },
         { label: 'Notebook', value: 'notebook' },
-        { label: 'PDF', value: 'pdf' },
-    ];
-    public statues: SelectItem[] = [
-        { label: 'Published', value: 'published' },
-        { label: 'Under Review', value: 'submitted' }
+        { label: 'OpenSoft', value: 'opensoft' },
     ];
     private subscriptions: Subscription[] = [];
-    public paperType: string = 'notebook';
-    public status: string = 'submitted';
+    public paperType: string = null;
     public IAM: { editor: boolean } = { editor: false };
     public allRecords: number = 0;
     public page: number = 1;
@@ -42,12 +38,6 @@ export class ReviewComponent implements OnInit, OnDestroy {
             if (queryParams['page']) {
                 this.page = parseInt(queryParams['page']);
                 this.page = isNaN(this.page) ? 1 : this.page
-            }
-            if (queryParams['status']) {
-                this.status = queryParams['status'];
-                if (!this.statues.find(status => status.value == this.status)) {
-                    this.status = 'submitted';
-                }
             }
             if (queryParams['type']) {
                 this.paperType = queryParams['type'];
@@ -70,7 +60,7 @@ export class ReviewComponent implements OnInit, OnDestroy {
 
     getRepos() {
         this.repos = [];
-        this.reposService.getListRepo(this.page, this.status).subscribe((repos: any) => {
+        this.reposService.getListRepo(this.page, 'submitted', this.paperType).subscribe((repos: any) => {
             repos['data'].forEach(repo => {
                 repo['issueMsg'] = 'Open a new issue';
                 this.repos.push(RepoDescriptor.import(repo))
@@ -130,7 +120,7 @@ export class ReviewComponent implements OnInit, OnDestroy {
 
     update() {
         this.router.navigate([], {
-            queryParams: { page: this.page, status: this.status, type: this.paperType },
+            queryParams: { page: this.page, type: this.paperType },
             queryParamsHandling: "merge"
         });
     }

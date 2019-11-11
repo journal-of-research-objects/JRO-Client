@@ -7,6 +7,19 @@
             <p-dropdown [options]="papersFamilies" [(ngModel)]="paperType" (onChange)="update()"></p-dropdown>
         </div>
     </div>
+    <div>
+        <p-selectButton class="cu-select-button" [options]="statues" [(ngModel)]="status" (onChange)="update()">
+        </p-selectButton>
+    </div>
     <hr />
-    <app-zero-state></app-zero-state>
+    <div>
+        <ng-template [ngIf]="repos.length > 0" [ngIfElse]="zeroState">
+            <app-repo *ngFor="let repo of repos" [repo]="repo"></app-repo>
+            <p-paginator class="cu-nav-paginator" [rows]="10" totalRecords="allRecords"
+                (onPageChange)="paginate($event)"></p-paginator>
+        </ng-template>
+    </div>
+    <ng-template #zeroState>
+        <app-zero-state></app-zero-state>
+    </ng-template>
 </div>

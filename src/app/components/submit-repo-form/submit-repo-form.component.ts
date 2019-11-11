@@ -28,7 +28,7 @@ export class SubmitRepoFormComponent implements OnInit, AfterViewInit {
   private regexAlphanumb = new RegExp(/^[a-zA-Z0-9 ]*$/);
   public papersTypes: SelectItem[] = [
     { label: 'Notebook', value: 'notebook', icon: 'pi pi-file' },
-    { label: 'PDF', value: 'pdf', icon: 'pi pi-file-pdf' },
+    { label: 'OpenSoft', value: 'opensoft', icon: 'pi pi-file-pdf' },
   ];
   public processing: boolean = false;
 
