@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="papers p-grid p-nogutter p-dir-col">
     <div class="p-grid p-align-center">
         <div class="p-col">
@@ -9,4 +10,30 @@
     </div>
     <hr />
     <app-zero-state></app-zero-state>
+=======
+<div class="papers p-grid p-nogutter p-dir-col">
+    <div class="p-grid p-align-center">
+        <div class="p-col">
+            <h2>Journal of Research Objects Papers</h2>
+        </div>
+        <div class="p-col-fixed">
+            <p-dropdown [options]="papersFamilies" [(ngModel)]="paperType" (onChange)="update()"></p-dropdown>
+        </div>
+    </div>
+    <div>
+        <p-selectButton class="cu-select-button" [options]="statues" [(ngModel)]="status" (onChange)="update()">
+        </p-selectButton>
+    </div>
+    <hr />
+    <div>
+        <ng-template [ngIf]="repos.length > 0" [ngIfElse]="zeroState">
+            <app-repo *ngFor="let repo of repos" [repo]="repo"></app-repo>
+            <p-paginator class="cu-nav-paginator" [rows]="10" totalRecords="allRecords"
+                (onPageChange)="paginate($event)"></p-paginator>
+        </ng-template>
+    </div>
+    <ng-template #zeroState>
+        <app-zero-state></app-zero-state>
+    </ng-template>
+>>>>>>> 82038f6c1932fbc6cf0d34494fdceac63c299744
 </div>
