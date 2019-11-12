@@ -71,12 +71,18 @@ export class ReviewComponent implements OnInit, OnDestroy {
     }
 
     goToReview(repo: RepoDescriptor) {
-        this.processing[repo.id] = true;
-        this.regenerateNb(repo).then(response => {
-            this.processing[repo.id] = false;
-            let orcid = this.storageService.read('user')['orcid'];
-            this.utility.goToJupyter(repo.name, orcid);
-        });
+        if (repo['paper_type'] == 'notebook'){
+            this.processing[repo.id] = true;
+            this.regenerateNb(repo).then(response => {
+                this.processing[repo.id] = false;
+                let orcid = this.storageService.read('user')['orcid'];
+                this.utility.goToJupyter(repo.name, orcid);
+            });
+        }else{
+            if (repo['paper_type'] == 'opensoft'){
+                this.utility.goToOpenSoftPub(repo.name);
+            }
+        }
         // this.utility.goToMyBinder(repo.name);
     }
 

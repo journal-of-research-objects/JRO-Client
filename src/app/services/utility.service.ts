@@ -29,6 +29,11 @@ export class UtilityService {
         this.navigate(url, '_blank');
     }
 
+    public goToOpenSoftPub(forkName: string) {
+        const url = `#`; //go to publication page
+        this.navigate(url, '_blank');
+    }
+
     private navigate(url: string, tab: string) {
         window.open(url, tab);
     }
