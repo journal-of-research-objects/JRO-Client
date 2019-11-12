@@ -9,11 +9,11 @@
 </div>
 <ng-template #notebook>
     <div class="doc">
-        <p class="c17 title" id="h.a3lwf0n0qhjl"><strong class="c9 c22">BioHackathon Author Guidelines</strong></p>
+        <p class="c17 title" id="h.a3lwf0n0qhjl"><strong class="c9 c22">Author Guidelines</strong></p>
         <h1 class="c15" id="h.rlqvi0n5zwh7"><span>Preparing Your Jupyter Notebook&rsquo;s Git Repo For
                 MyBinder</span></h1>
         <p class="c4"><span class="c0"></span></p>
-        <p class="c5"><span>This document provides a simplified list of requirements for BioHackathon authors to prepare
+        <p class="c5"><span>This page provides a simplified list of requirements for BioHackathon authors to prepare
                 a
                 repository so that mybinder.org can build a corresponding Jupyter notebook. More detailed instructions
                 can
@@ -62,7 +62,8 @@
                     </li>
                 </ul>
             </li>
-            <li class="c2"><span class="c0 c12">Author the Markdown paper &ldquo;paper.md&rdquo; which will be compiled
+            <li class="c2"><span class="c0 c12">Author the Markdown paper </span><span class="c18">paper.md</span><span
+                class="c1">; which will be compiled
                     to a
                     Jupyter Notebook. </span></li>
             <li class="c2"><span class="c0 c12">Author a command-line (pip) installable list of dependencies in
@@ -71,7 +72,7 @@
                     BIBTEX
                     format with all the resources in which you based the app.</span></li>
         </ul>
-        <h3 class="c6" id="h.nwg4eoq757r6"><span class="c19">Markdown Paper &ldquo;notebook.md&rdquo;</span></h3>
+        <h3 class="c6" id="h.nwg4eoq757r6"><span class="c19">Markdown Paper </span><span class="c18">paper.md</span></h3>
         <p class="c5"><span class="c0">Besides the common parts of a research paper, your Markdown paper should include
                 the
                 excerpts of working PYTHON code that support each part of the paper and generate the research outcomes.
@@ -125,43 +126,64 @@
 </ng-template>
 <ng-template #opensource>
     <div class="doc">
-        <h1 class="c15" id="h.k417cp1nxg4p"><span class="c5">Submitting a paper to JOSS</span></h1>
-        <p class="c14"><span class="c4">If you&rsquo;ve already developed a fully-featured research code, released it
-                under an </span><span class="c0"><a class="c6" href="https://opensource.org/licenses">OSI-approved
-                    license</a></span><span class="c1">, and written good documentation and tests, then we expect that
-                it should take perhaps an hour or two to prepare and submit your paper to JOSS. But please read these
-                instructions carefully for a streamlined submission.</span></p>
-        <h2 class="c7" id="h.odl47uilhx0s"><span class="c10">Submission requirements</span></h2>
-        <ul class="c13 lst-kix_infyzi81cwmm-0 start">
-            <li class="c3"><span class="c4">The software should have an </span><span class="c4 c16">obvious</span><span
-                    class="c1">&nbsp;research application.</span></li>
-            <li class="c3"><span class="c1">The software should be a significant contribution to the available
-                    open-source software that either enables some new research challenges to be addressed or makes
-                    addressing research challenges significantly better (e.g., faster, easier, simpler).</span></li>
-            <li class="c3"><span class="c4">The software should be feature-complete (no half-baked solutions) and
-                    designed for maintainable extension (not one-off modifications). </span><span class="c4 c16">Minor
-                    &lsquo;utility&rsquo; packages, including &lsquo;thin&rsquo; API clients, are not
-                    acceptable</span><span class="c1">.</span></li>
-            <li class="c3"><span class="c4">Your paper (</span><span class="c18">paper.md</span><span
-                    class="c1">&nbsp;and BibTeX files, plus any figures) must be hosted in a Git-based repository,
-                    ideally together with your software.</span></li>
-        </ul>
-        <p class="c9"><span class="c1">In addition, the software associated with your submission must:</span></p>
-        <ul class="c13 lst-kix_ygdnp2iq2hdn-0 start">
-            <li class="c3"><span class="c1">Be stored in a repository that can be cloned without registration.</span>
+        <p class="c17 title" id="h.a3lwf0n0qhjl"><strong class="c9 c22">Author Guidelines</strong></p>
+        <h1 class="c15" id="h.rlqvi0n5zwh7"><span>Preparing Your Open Software&rsquo;s Git Repo For
+                JRO</span></h1>
+        <p class="c4"><span class="c0"></span></p>
+        <h2 class="c16" id="h.acmr0zn9uvky"><span class="c9 c11">Requirements</span></h2>
+        <ul class="c3 lst-kix_w3jtbowemaak-0 start">
+            <li class="c2"><span class="c0">Software associated with the submission must be stored in a repository
+                    that:</span>
+                <ul class="c3 lst-kix_w3jtbowemaak-1 start">
+                    <li class="c1"><span class="c0">Is browsable online without user registration</span></li>
+                    <li class="c1"><span class="c0">Can be cloned without user registration</span></li>
+                    <li class="c1"><span class="c0">Has an issue tracker that is readable without user
+                            registration</span>
+                    </li>
+                    <li class="c1"><span class="c0">Permits individuals to create issues</span></li>
+                    <li class="c1"><span class="c0">Abstracts the paper in the description</span></li>
+                    <li class="c1"><span class="c0">Allows seeing the contributors</span></li>
+                </ul>
             </li>
-            <li class="c3"><span class="c1">Be stored in a repository that is browsable online without
-                    registration.</span></li>
-            <li class="c3"><span class="c1">Have an issue tracker that is readable without registration.</span></li>
-            <li class="c3"><span class="c1">Permit individuals to create issues/file tickets against your
-                    repository.</span></li>
+            <li class="c2">
+                <span class="c0">The following repositories should work:</span>
+                <ul class="c3 lst-kix_w3jtbowemaak-1 start">
+                    <li class="c1"><span class="c0">Git repositories including GitHub and GitLab.com</span></li>
+                    <li class="c1"><span class="c0">Zenodo</span></li>
+                </ul>
+            </li>
+            <li class="c2"><span class="c0">Code executes without errors</span></li>
+            <li class="c2"><span class="c0">Code function and performance claims have been confirmed</span></li>
+            <li class="c2"><span>Follow next paper: </span></li>
+        </ul>
+        <h2 class="c16" id="h.aagq7ywr7204"><span class="c9 c11">Typical paper submission flow</span></h2>
+        <ul class="c3 lst-kix_g7j9erps4i46-0 start">
+            <li class="c2"><span class="c0">Make a significant contribution to the available open source software that either enables 
+                some new research challenges to be addressed or makes addressing research challenges significantly better 
+                (e.g., faster, easier, simpler). </span></li>
+            <li class="c2"><span class="c0">Make it available in an open repository (GitHub, Bitbucket etc.).</span>
+            </li>
+            <li class="c2"><span>Make sure that the software complies with the JRO</span>
+                <span class="c0">&nbsp;review criteria (a straightforward checklist that a technical editor will
+                    process)</span>
+                <ul class="c3 lst-kix_g7j9erps4i46-1 start">
+                    <li class="c1"><span class="c0">is the work non-trivial (i.e. not just an empty experiment)?</span>
+                    </li>
+                </ul>
+            </li>
+            <li class="c2"><span class="c0 c12">Author the Markdown paper </span><span class="c18">paper.md</span><span
+                class="c1"> which will be compiled
+                    to a
+                    PDF file. </span></li>
+            <li class="c2"><span class="c0 c12">Author a references file, called &ldquo;references.bib&rdquo;, in a
+                    BIBTEX
+                    format with all the resources in which you based your Open Software.</span></li>
         </ul>
         <h2 class="c7" id="h.2f0wbhmu860j"><span class="c2">Checking that your paper compiles</span></h2>
-        <p class="c9"><span class="c4">JOSS uses Pandoc to compile papers from their Markdown form into a PDF. You can
-                test that your paper is properly structured using the </span><span class="c0"><a class="c6"
-                    href="https://whedon.theoj.org">JOSS
-                    paper preview service</a></span><span class="c1">.</span></p>
-        <p class="c9 c11"><span class="c1"></span></p>
-        <p class="c11 c17"><span class="c8"></span></p>
+        <p class="c9"><span class="c4">JRO uses md2pdf to compile papers from their Markdown form into a PDF. You can
+                test that your paper (</span><span class="c18">paper.md</span><span
+                class="c1">) is properly structured using </span><span class="c0"><a class="c6"
+                    href="https://md2pdf.netlify.com/" target="_blank">this
+                    tool to transform it</a></span><span class="c1">.</span></p>
     </div>
 </ng-template>

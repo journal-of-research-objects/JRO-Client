@@ -14,7 +14,12 @@
     <hr />
     <div>
         <ng-template [ngIf]="repos.length > 0" [ngIfElse]="zeroState">
-            <app-repo *ngFor="let repo of repos" [repo]="repo"></app-repo>
+            <app-repo *ngFor="let repo of repos" [repo]="repo">
+                <div repo-buttons *ngIf="repo.status=='published'">
+                    <button (click)="tryIt(repo)" pButton label="Go to the publication"
+                        class="ui-button-danger"></button>
+                </div>
+            </app-repo>
             <p-paginator class="cu-nav-paginator" [rows]="10" totalRecords="allRecords"
                 (onPageChange)="paginate($event)"></p-paginator>
         </ng-template>
