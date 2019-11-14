@@ -32,12 +32,28 @@
     .ui-button {
       padding: 0.5em 1em;
       background-color: white;
+      .ui-button-text {
+        .badge {
+          background-color: rgba($color: #4d4482, $alpha: 0.63);
+          border-radius: 0.5em;
+          padding: 0.1em 0.5em;
+          color: white;
+          margin-left: 1em;
+        }
+      }
+
       &:not(.ui-state-disabled):not(.ui-state-active):hover {
         background-color: #dadada;
       }
       &.ui-state-active {
         background-color: #4d4482 !important;
         border-color: #4d4482 !important;
+        .ui-button-text {
+          .badge {
+            background-color: rgba(255, 255, 255, 0.63);
+            color: black;
+          }
+        }
         &:not(.ui-state-disabled):hover {
           background-color: darken($color: #4d4482, $amount: 10) !important;
         }

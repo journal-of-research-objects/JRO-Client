@@ -9,6 +9,12 @@
     </div>
     <div>
         <p-selectButton class="cu-select-button" [options]="statues" [(ngModel)]="status" (onChange)="update()">
+            <ng-template let-item>
+                <span class="ui-button-text ui-clickable">
+                    <span>{{item.label}}</span>
+                    <small *ngIf="item.value == status" class="badge">{{allRecords}}</small>
+                </span>
+            </ng-template>
         </p-selectButton>
     </div>
     <hr />
