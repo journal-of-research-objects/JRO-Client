@@ -12,6 +12,7 @@ export class RepoDescriptor {
     public authors: RepoSubmitAuthor[];
     public issueMsg: string = null;
     public keywords: string[];
+    public paperType: string;
 
     constructor() { }
 
@@ -25,7 +26,8 @@ export class RepoDescriptor {
         asset.status = rawData.hasOwnProperty('status') ? rawData.status : '';
         asset.properties = rawData.hasOwnProperty('properties') ? rawData.properties : '';
         asset.lastUpdate = rawData.hasOwnProperty('properties') ? new Date(rawData.properties.updated_at) : null;
-        asset.issueMsg =  rawData.hasOwnProperty('issueMsg') ? rawData.issueMsg : '';
+        asset.issueMsg = rawData.hasOwnProperty('issueMsg') ? rawData.issueMsg : '';
+        asset.paperType = rawData.hasOwnProperty('paper_type') ? rawData.paper_type : null;
         if (rawData.hasOwnProperty('metadata')) {
             asset.authors = rawData.metadata.authors;
             asset.keywords = rawData.metadata.keywords ? rawData.metadata.keywords.split(',') : null;

@@ -1,99 +1,123 @@
 :host ::ng-deep {
-    .repo-card {
-        margin: 2.5px 0;
+  .repo-card {
+    margin: 2.5px 0;
 
-        .ui-card-body {
-            padding-right: 30px;
-            width: 100%;
-
-            h4 {
-                margin: 0;
-            }
-
-            [repo-buttons] {
-                margin: auto;
-            }
+    .head {
+      font-size: 0.7em;
+      .badge {
+        padding: 0.3em 1em;
+        margin: 0 0.2em;
+        border-radius: 0.4em;
+        display: inline-block;
+        background-color: #862dca;
+        color: white;
+        text-transform: uppercase;
+        &.yellow {
+          background-color: #fff82b;
+          color: black;
         }
-
-        .octicon-wrapper{
-            margin: 0.5em 0 0;
-            .octicon {
-                display: inline-block;
-                vertical-align: middle;
-                margin: 5px 10px 0 0;
-            }
+        &.green {
+          background-color: #bdf629;
+          color: black;
         }
-
-        .data-wrapper {
-            padding-top: .5em;
-            margin: 0 -.5em;
-
-            .comp {
-                padding: .5em;
-                display: inline-block;
-
-                .title {
-                    margin: 0 0 .2em
-                }
-
-                .badge {
-                    background-color: #333;
-                    border-radius: .4em;
-                    color: white;
-                    padding: .3em;
-                    margin: .2em;
-                    display: inline-block;
-                }
-            }
-        }
-
-        .badges-wrapper {
-            padding: .3em 0 .5em;
-            color: #524949;
-
-            .badge {
-                margin: 0 .5em;
-
-                &.star i {
-                    color: #f88800
-                }
-
-                &.blue i {
-                    color: #1272df;
-                }
-
-                &:first-child {
-                    padding-left: 0;
-                }
-
-                &:last-child {
-                    padding-right: 0;
-                }
-            }
-        }
-
-        .repo-status {
-            .dot {
-                height: 10px;
-                width: 10px;
-                background-color: gray;
-                //background: radial-gradient(circle at 100px 100px, #ff0000, #7d0000);
-                border-radius: 50%;
-                display: inline-block;
-                margin-right: 5px;
-
-                &.green {
-                    background: radial-gradient(circle at 100px 100px, #00ff00, #007d00);
-                }
-
-                &.red {
-                    background: radial-gradient(circle at 100px 100px, #ff0000, #7d0000);
-                }
-
-                &.yellow {
-                    background: radial-gradient(circle at 100px 100px, #ffff00, #7d7d00);
-                }
-            }
-        }
+      }
     }
+
+    .ui-card-body {
+      padding-right: 30px;
+      width: 100%;
+
+      h4 {
+        margin: 0;
+      }
+
+      [repo-buttons] {
+        margin: auto;
+      }
+    }
+
+    .octicon-wrapper {
+      margin: 0.5em 0 0;
+      .octicon {
+        display: inline-block;
+        vertical-align: middle;
+        margin: 5px 10px 0 0;
+      }
+    }
+
+    .data-wrapper {
+      padding-top: 0.5em;
+      margin: 0 -0.5em;
+
+      .comp {
+        padding: 0.5em;
+        display: inline-block;
+
+        .title {
+          margin: 0 0 0.2em;
+        }
+
+        .badge {
+          background-color: #333;
+          border-radius: 0.4em;
+          color: white;
+          padding: 0.3em;
+          margin: 0.2em;
+          display: inline-block;
+          &.violet {
+            background-color: #862dca;
+          }
+        }
+      }
+    }
+
+    .badges-wrapper {
+      padding: 0.3em 0 0.5em;
+      color: #524949;
+
+      .badge {
+        margin: 0 0.5em;
+
+        &.star i {
+          color: #f88800;
+        }
+
+        &.blue i {
+          color: #1272df;
+        }
+
+        &:first-child {
+          padding-left: 0;
+        }
+
+        &:last-child {
+          padding-right: 0;
+        }
+      }
+    }
+
+    .repo-status {
+      .dot {
+        height: 10px;
+        width: 10px;
+        background-color: gray;
+        //background: radial-gradient(circle at 100px 100px, #ff0000, #7d0000);
+        border-radius: 50%;
+        display: inline-block;
+        margin-right: 5px;
+
+        &.green {
+          background: radial-gradient(circle at 100px 100px, #00ff00, #007d00);
+        }
+
+        &.red {
+          background: radial-gradient(circle at 100px 100px, #ff0000, #7d0000);
+        }
+
+        &.yellow {
+          background: radial-gradient(circle at 100px 100px, #ffff00, #7d7d00);
+        }
+      }
+    }
+  }
 }
