@@ -29,9 +29,17 @@
                         </a>
                     </div>
                 </a>
-                <a [routerLink]="['authors-guide']">
+                <a class="with-childs d-inline" [routerLink]="['authors-guide']">
                     <i class="fa fas fa-book"></i>
                     <span>Author Guidelines</span>
+                    <div class="nav-panel">
+                        <a [routerLink]="['/authors-guide']" [queryParams]="{ type:'notebook'}">
+                            <span>Jupyter Notebooks</span>
+                        </a>
+                        <a [routerLink]="['/authors-guide']" [queryParams]="{ type:'opensoft'}">
+                            <span>Open Softwares</span>
+                        </a>
+                    </div>
                 </a>
                 <a href="#about">
                     <i class="fa fas fa-info"></i>
