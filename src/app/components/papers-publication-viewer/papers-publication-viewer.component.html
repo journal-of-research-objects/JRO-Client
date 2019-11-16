@@ -1,0 +1,49 @@
+<ng-container *ngIf="!loaded; else body">
+    <div style="text-align: center; padding: 2em;">
+        <p-progressSpinner class="p-col"></p-progressSpinner>
+    </div>
+</ng-container>
+
+<ng-template #body>
+    <div class="published-paper">
+        <div>
+            <h1>{{repository.name}}</h1>
+            <span>
+                <span *ngIf="repository.language" class="badge">{{repository.language}}</span>
+                <span>Submitted {{repository.submittedAt|date}}</span>
+                <span>• Accepted {{repository.publishedAt|date}}</span>
+            </span>
+        </div>
+        <div class="body p-grid">
+            <div class="p-xl-9 p-lg-8 p-md-7 p-col-12 document-embed">
+                <embed *ngIf="_pdf_shows" [src]="_pdfContents" type="application/pdf">
+            </div>
+            <div class="p-xl-3 p-lg-4 p-md-5 p-col-12 options-panel">
+                <div class="nav-panel compact with-borders">
+                    <a [href]="repoUrl">
+                        <i class="fa far fa-github"></i>
+                        <span>Software Repository</span>
+                    </a>
+                    <a [href]="repoPaperReview">
+                        <i class="fa far fa-book"></i>
+                        <span>Paper Review</span>
+                    </a>
+                    <a [href]="pdfSrcUrl" download>
+                        <i class="fa far fa-download"></i>
+                        <span>Download Paper</span>
+                    </a>
+                </div>
+                <div class="data-wrapper">
+                    <div class="data-item">
+                        <span class="title">Authors</span>
+                        <span *ngFor="let author of repoAuthors" class="field d-block">
+                            <span>{{author.name}} </span>
+                            <span *ngIf="author.orcid">({{author.orcid}})</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</ng-template>

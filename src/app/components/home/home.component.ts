@@ -37,6 +37,17 @@ export class HomeComponent implements OnInit {
     }
 
     tryIt(repo: RepoDescriptor) {
-        this.utility.goToMyBinder(repo.name);
+        if (repo.paperType == 'notebook') {
+            this.utility.goToMyBinder(repo.name);
+        } else {
+            if (repo.paperType == 'opensoft') {
+                console.log(repo.url, '=>', encodeURIComponent(repo.url));
+                this.router.navigate(['paper-pub'], {
+                    queryParams: {
+                        fork_url: encodeURIComponent(repo.url)
+                    }
+                });
+            }
+        }
     }
 }

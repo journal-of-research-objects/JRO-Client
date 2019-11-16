@@ -24,6 +24,24 @@ export class ReposService extends HttpServiceBase {
         });
     }
 
+    /**
+     * return published report data
+     * @param forkUrl fork_url of report
+     */
+    public getPublishedRepo(forkUrl: string) {
+        return this.http.get(this.makeUrlFor('/get_repo/'), {
+            params: this.httpParams({ 'fork_url': forkUrl })
+        });
+    }
+
+    public getGitHubApiContents(repo_name: string, resource: string) {
+        let url = `https://api.github.com/repos/${CREDENTIALS.ghOrganizationName}/${repo_name}/contents/${resource}`;
+        console.log('getting url', url);
+        return this.http.get(url, {
+            headers: this.ignoreAuthInterceptorHeader()
+        }).toPromise();
+    }
+
     /**WARNING: Any user can access to the status of a repo of any other user.
      * SUG: To employ sockets.
      */

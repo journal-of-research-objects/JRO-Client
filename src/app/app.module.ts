@@ -25,6 +25,7 @@ import { AuthorsGuideModule } from './components/guides/authors-guide/authors-gu
 import { PapersComponent } from "./components/papers/papers.component";
 import { TokenInterceptor } from './core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PapersPublicationViewerComponent } from './components/papers-publication-viewer/papers-publication-viewer.component';
 
 @NgModule({
     declarations: [
@@ -38,7 +39,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
         RepoButtonsDirective,
         ZeroStateComponent,
         TimeAgoPipe,
-        PapersComponent
+        PapersComponent,
+        PapersPublicationViewerComponent
     ],
     imports: [
         BrowserModule,

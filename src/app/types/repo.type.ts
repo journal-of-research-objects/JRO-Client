@@ -13,6 +13,12 @@ export class RepoDescriptor {
     public issueMsg: string = null;
     public keywords: string[];
     public paperType: string;
+    public createdAt: Date;
+    public modifiedAt: Date;
+    public submittedAt: Date;
+    public publishedAt: Date;
+    public oriUrl: string;
+    public ownerOrcid: string;
 
     constructor() { }
 
@@ -28,6 +34,13 @@ export class RepoDescriptor {
         asset.lastUpdate = rawData.hasOwnProperty('properties') ? new Date(rawData.properties.updated_at) : null;
         asset.issueMsg = rawData.hasOwnProperty('issueMsg') ? rawData.issueMsg : '';
         asset.paperType = rawData.hasOwnProperty('paper_type') ? rawData.paper_type : null;
+        asset.createdAt = rawData.hasOwnProperty('date_created') ? new Date(rawData.date_created) : null;
+        asset.modifiedAt = rawData.hasOwnProperty('date_modified') ? new Date(rawData.date_modified) : null;
+        asset.submittedAt = rawData.hasOwnProperty('date_submitted') ? new Date(rawData.date_submitted) : null;
+        asset.publishedAt = rawData.hasOwnProperty('date_published') ? new Date(rawData.date_published) : null;
+        asset.oriUrl = rawData.hasOwnProperty('ori_url') ? rawData.ori_url : null;
+        asset.ownerOrcid = rawData.hasOwnProperty('owner') ? rawData.owner : null;
+
         if (rawData.hasOwnProperty('metadata')) {
             asset.authors = rawData.metadata.authors;
             asset.keywords = rawData.metadata.keywords ? rawData.metadata.keywords.split(',') : null;
