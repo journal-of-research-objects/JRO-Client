@@ -68,13 +68,16 @@
               padding: 0.5em;
             }
           }
-
-          &:hover {
-            border-color: #2e294e;
+          &:hover{
             .header-main-nav.child {
               display: block;
             }
           }
+        }
+        
+        .smoothscroll:hover {
+          border-color: #2e294e;
+          cursor: pointer;
         }
       }
     }

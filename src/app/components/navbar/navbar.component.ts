@@ -27,6 +27,10 @@ export class NavbarComponent implements OnInit {
         this.router.navigate(['/'])
     }
 
+    goToGithubRepos(){
+        this.utility.goToGithubRepos();
+    }
+
 
     login() {
         this.utility.loginOrcid();

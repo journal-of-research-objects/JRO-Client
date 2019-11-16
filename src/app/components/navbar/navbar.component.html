@@ -1,5 +1,3 @@
-<!-- header
-================================================== -->
 <header class="header p-grid p-nogutter">
     <div class="header-logo p-col p-grid p-nogutter p-align-center">
         <img (click)="goToHome()" src="/assets/img/logo.png" class="logo" />
@@ -35,13 +33,13 @@
             <a class="nav-item nav-link">
                 <img src="/assets/img/github.svg">
                 <div class="header-main-nav child">
-                    <a class="smoothscroll" href="https://github.com/journal-of-research-objects" target="_blank"
-                        title="Journal code">Journal Code</a>
-                    <a class="smoothscroll" href="https://github.com/journalofresearchobjects" target="_blank"
-                        title="Published Papers">Published Papers</a>
+                    <a class="smoothscroll" href="https://github.com/journal-of-research-objects"
+                        target="_blank" title="Journal code">Journal Code</a>
+                    <a class="smoothscroll" (click)="goToGithubRepos()" 
+                        target="_blank" title="Papers">Papers</a>
                 </div>
             </a>
         </div>
 
     </nav>
-</header> <!-- /header -->
+</header> 

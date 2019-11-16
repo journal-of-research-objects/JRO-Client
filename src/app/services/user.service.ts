@@ -22,4 +22,10 @@ export class UserService extends HttpServiceBase {
     public profile() {
         return this.http.get(this.makeUrlFor('/profile/')).toPromise();
     }
+
+    public getUser(orcid: string): Observable<User>{
+        return this.http.get<User>(this.makeUrlFor(`/get_user/`), {
+            params: { 'orcid': orcid },
+            headers: this.ignoreAuthInterceptorHeader()
+        });    }
 }

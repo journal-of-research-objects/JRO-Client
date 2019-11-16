@@ -34,6 +34,11 @@ export class UtilityService {
         this.navigate(url, '_blank');
     }
 
+    public goToGithubRepos(){
+        const url = `https://github.com/${cred.ghOrganizationName}`;
+        this.navigate(url, '_blank');
+    }
+
     private navigate(url: string, tab: string) {
         window.open(url, tab);
     }
