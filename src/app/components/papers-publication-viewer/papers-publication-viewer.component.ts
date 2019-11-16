@@ -74,7 +74,6 @@ export class PapersPublicationViewerComponent implements OnInit {
     }
   }
 
-  //https://api.github.com/repos/journal-of-research-objects/Miguel08241993-dumb-repo/contents/paper.pdf
 
   get repoUrl() {
     return this._sanitizer.bypassSecurityTrustResourceUrl(this.repository.url);
