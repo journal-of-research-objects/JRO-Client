@@ -7,7 +7,7 @@
 <ng-template #body>
     <div class="published-paper">
         <div>
-            <h1>{{repository.name}}</h1>
+            <h1>{{repository.properties.name}}</h1>
             <span>
                 <span *ngIf="repository.language" class="badge">{{repository.language}}</span>
                 <span>Submitted {{repository.submittedAt|date}}</span>
@@ -20,11 +20,11 @@
             </div>
             <div class="p-xl-3 p-lg-4 p-md-5 p-col-12 options-panel">
                 <div class="nav-panel compact with-borders">
-                    <a [href]="repoUrl">
+                    <a [href]="repoUrl" target="_blank">
                         <i class="fa far fa-github"></i>
                         <span>Software Repository</span>
                     </a>
-                    <a [href]="repoPaperReview">
+                    <a [href]="repoIssuesUrl" target="_blank">
                         <i class="fa far fa-book"></i>
                         <span>Paper Review</span>
                     </a>

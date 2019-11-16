@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ReposService } from 'src/app/services';
+import { UserService } from 'src/app/services';
 import { MessageService } from 'primeng/api';
-import { RepoDescriptor } from 'src/app/types';
+import { RepoDescriptor, User } from 'src/app/types';
 import { DomSanitizer } from '@angular/platform-browser';
 import { CREDENTIALS } from 'src/app/credentials/credentials';
 
@@ -17,13 +18,16 @@ export class PapersPublicationViewerComponent implements OnInit {
   public loaded: boolean = false;
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute, protected _sanitizer: DomSanitizer,
-    private reposService: ReposService, protected messageService: MessageService) { }
+    private reposService: ReposService, private userService: UserService, protected messageService: MessageService) { }
 
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe(params => {
       if (params['fork_url']) {
         this.reposService.getPublishedRepo(decodeURIComponent(params['fork_url'])).toPromise().then(response => {
           this.repository = RepoDescriptor.import(response);
+          this.userService.getUser(this.repository.ownerOrcid).subscribe(response =>{
+            this.repository['orcidOwnerName'] = response.name;
+          });
           this.pullPdfContents();
           this.loaded = true;
         }).catch(error => {
@@ -73,11 +77,11 @@ export class PapersPublicationViewerComponent implements OnInit {
   //https://api.github.com/repos/journal-of-research-objects/Miguel08241993-dumb-repo/contents/paper.pdf
 
   get repoUrl() {
-    return this._sanitizer.bypassSecurityTrustResourceUrl(this.repository.oriUrl);
+    return this._sanitizer.bypassSecurityTrustResourceUrl(this.repository.url);
   }
 
   get repoIssuesUrl() {
-    return this._sanitizer.bypassSecurityTrustResourceUrl(`${this.repoUrl}/issues`);
+    return this._sanitizer.bypassSecurityTrustResourceUrl(`${this.repository.url}/issues`);
   }
 
   get repoPaperReview() {
@@ -90,7 +94,7 @@ export class PapersPublicationViewerComponent implements OnInit {
   get repoAuthors() {
     const authors = [];
     //owner data added
-    authors.push({ name: this.repository.properties.owner.login, orcid: this.repository.ownerOrcid });
+    authors.push({ name: this.repository['orcidOwnerName'], orcid: this.repository.ownerOrcid });
     if (this.repository.authors) {
       this.repository.authors.forEach(author => {
         authors.push(author);
