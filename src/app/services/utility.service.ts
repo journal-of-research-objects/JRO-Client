@@ -19,7 +19,7 @@ export class UtilityService {
     }
 
     public goToJupyter(forkName: string, orcid: string) {
-        const url = `${cred.jupyterURL}/user/${orcid}/notebooks/repos/${forkName}/paper.ipynb?kernel_name=${forkName}`;
+        const url = `${cred.jupyterURL}/user/${orcid}/notebooks/repos/${forkName}/paper.ipynb?kernel_name=${forkName.toLowerCase()}`;
         this.navigate(url, '_blank');
     }
 
