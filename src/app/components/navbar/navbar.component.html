@@ -1,5 +1,3 @@
-<!-- header
-================================================== -->
 <header class="header p-grid p-nogutter">
     <div class="header-logo p-col p-grid p-nogutter p-align-center">
         <img (click)="goToHome()" src="/assets/img/logo.png" class="logo" />
@@ -10,7 +8,16 @@
         <div class="header-main-nav">
             <a class="smoothscroll" href="#home" title="home">Home</a>
             <a class="smoothscroll" href="#about" title="about">About</a>
-            <a class="smoothscroll" [routerLink]="['/authors-guide']" title="guides">Guidelines
+            <a class="smoothscroll nav-item nav-link" [routerLink]="['/authors-guide']" title="guides">
+                <span>Guidelines</span>
+                <div class="header-main-nav child">
+                    <a class="smoothscroll" [routerLink]="['/authors-guide']" [queryParams]="{ type:'notebook'}">
+                        <span>Jupyter Notebooks</span>
+                    </a>
+                    <a class="smoothscroll" [routerLink]="['/authors-guide']" [queryParams]="{ type:'opensoft'}">
+                        <span>Open Software</span>
+                    </a>
+                </div>
             </a>
             <a class="smoothscroll" href="#repos" title="repos">Repos</a>
             <a class="smoothscroll" [routerLink]="['/papers']" title="papers">Papers</a>
@@ -35,4 +42,4 @@
         </div>
 
     </nav>
-</header> <!-- /header -->
+</header> 
