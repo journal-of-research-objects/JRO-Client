@@ -7,6 +7,7 @@ import { RouteGuard } from './services/route-guard.service';
 import { ReviewComponent } from './components/review/review.component';
 import { AuthorsGuideComponent } from './components/guides/authors-guide/authors-guide.component';
 import { PapersComponent } from './components/papers/papers.component';
+import { PapersPublicationViewerComponent } from './components/papers-publication-viewer/papers-publication-viewer.component';
 
 const routes: Routes = [
     // {path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -15,6 +16,7 @@ const routes: Routes = [
     { path: 'submit', component: SubmitComponent, canActivate: [RouteGuard] },
     { path: 'review', component: ReviewComponent, canActivate: [RouteGuard] },
     { path: 'papers', component: PapersComponent },
+    { path: 'paper-pub', component: PapersPublicationViewerComponent },
     { path: 'authors-guide', component: AuthorsGuideComponent }
 ];
 

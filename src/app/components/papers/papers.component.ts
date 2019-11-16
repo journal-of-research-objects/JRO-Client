@@ -83,13 +83,18 @@ export class PapersComponent implements OnInit, OnDestroy {
   }
 
   tryIt(repo: RepoDescriptor) {
-      if (repo['paper_type'] == 'notebook'){
-        this.utility.goToMyBinder(repo.name);
-      }else{
-        if (repo['paper_type'] == 'opensoft'){
-          //goToOpenSoftPub(repo.name)
-        }
+    if (repo.paperType == 'notebook') {
+      this.utility.goToMyBinder(repo.name);
+    } else {
+      if (repo.paperType == 'opensoft') {
+        console.log(repo.url,'=>',encodeURIComponent(repo.url));
+        this.router.navigate(['paper-pub'], {
+          queryParams: {
+            fork_url: encodeURIComponent(repo.url)
+          }
+        });
       }
+    }
   }
 
 }
