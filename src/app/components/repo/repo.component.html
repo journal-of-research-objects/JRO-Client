@@ -55,6 +55,12 @@
             </div>
         </div>
         <div class="p-col-12 p-md-3 p-grid p-dir-col p-nogutter" style="padding: 1em 0;">
+            <div *ngIf="repo.status == 'published'" style="text-align: right;">
+                <a class="btn btn-bubble btn-transparent btn-without-hover" title="Research object"
+                    style="width: 42px;height: auto;padding: .2em;">
+                    <img alt="logo" src="/assets/icons/researchobject.png">
+                </a>
+            </div>
             <ng-content select="[repo-buttons]"></ng-content>
         </div>
     </div>
