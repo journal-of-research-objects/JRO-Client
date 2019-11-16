@@ -16,8 +16,8 @@ export class PapersComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
   public papersFamilies: SelectItem[] = [
     { label: 'All', value: null },
-    { label: 'Notebook', value: 'notebook' },
-    { label: 'OpenSoft', value: 'opensoft' },
+    { label: 'Jupyter Notebook', value: 'notebook' },
+    { label: 'Open Software', value: 'opensoft' },
   ];
   public paperType: string = 'notebook';
   public statues: SelectItem[] = [
