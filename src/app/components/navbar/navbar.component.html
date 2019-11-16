@@ -10,7 +10,16 @@
         <div class="header-main-nav">
             <a class="smoothscroll" href="#home" title="home">Home</a>
             <a class="smoothscroll" href="#about" title="about">About</a>
-            <a class="smoothscroll" [routerLink]="['/authors-guide']" title="guides">Guidelines
+            <a class="smoothscroll nav-item nav-link" [routerLink]="['/authors-guide']" title="guides">
+                <span>Guidelines</span>
+                <div class="header-main-nav child">
+                    <a class="smoothscroll" [routerLink]="['/authors-guide']" [queryParams]="{ type:'notebook'}">
+                        <span>Jupyter Notebooks</span>
+                    </a>
+                    <a class="smoothscroll" [routerLink]="['/authors-guide']" [queryParams]="{ type:'opensoft'}">
+                        <span>Open Software</span>
+                    </a>
+                </div>
             </a>
             <a class="smoothscroll" href="#repos" title="repos">Repos</a>
             <a class="smoothscroll" [routerLink]="['/papers']" title="papers">Papers</a>
@@ -26,10 +35,10 @@
             <a class="nav-item nav-link">
                 <img src="/assets/img/github.svg">
                 <div class="header-main-nav child">
-                    <a class="smoothscroll" href="https://github.com/journal-of-research-objects" 
-                        target="_blank" title="Journal code">Journal Code</a>
-                    <a class="smoothscroll" href="https://github.com/journalofresearchobjects"
-                        target="_blank" title="Published Papers">Published Papers</a>
+                    <a class="smoothscroll" href="https://github.com/journal-of-research-objects" target="_blank"
+                        title="Journal code">Journal Code</a>
+                    <a class="smoothscroll" href="https://github.com/journalofresearchobjects" target="_blank"
+                        title="Published Papers">Published Papers</a>
                 </div>
             </a>
         </div>
