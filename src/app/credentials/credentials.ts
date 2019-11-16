@@ -16,6 +16,6 @@ export const CREDENTIALS: Credentials = {
     clientId: 'APP-K70GZLOWTPC33OAB',
     ghClientId: '6398f62bbae4c0aedd39',
     // ghClientId: 'f138a92ba20b764638d6'
-    ghOrganizationName: 'journal-of-research-objects',
+    ghOrganizationName: 'journal-of-research-objects-pubs',
     myBinderURL: 'https://mybinder.org/v2/gh'
 };
