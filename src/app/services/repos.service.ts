@@ -60,11 +60,17 @@ export class ReposService extends HttpServiceBase {
     public publish(forkURL: string, repoName: string) {
         return this.http.get(this.makeUrlFor('/publish/'), {
             params: this.httpParams({ 'fork_url': forkURL, 'repo_name': repoName })
-        });
+        }).toPromise();
     }
 
     public regenerateNb(forkedURL: string, repoName: string) {
         return this.http.get(this.makeUrlFor('/regenerate_nb/'), {
+            params: this.httpParams({ 'forked_url': forkedURL, 'repo_name': repoName })
+        }).toPromise();
+    }
+
+    public regeneratePdf(forkedURL: string, repoName: string) {
+        return this.http.get(this.makeUrlFor('/regenerate_pdf/'), {
             params: this.httpParams({ 'forked_url': forkedURL, 'repo_name': repoName })
         }).toPromise();
     }

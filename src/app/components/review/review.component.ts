@@ -71,40 +71,75 @@ export class ReviewComponent implements OnInit, OnDestroy {
     }
 
     goToReview(repo: RepoDescriptor) {
-        if (repo['paper_type'] == 'notebook'){
-            this.processing[repo.id] = true;
+        this.processing[repo.id] = true;
+        console.log(repo);
+        if (repo['paperType'] == 'notebook'){
             this.regenerateNb(repo).then(response => {
                 this.processing[repo.id] = false;
                 let orcid = this.storageService.read('user')['orcid'];
                 this.utility.goToJupyter(repo.name, orcid);
+            }).catch( error => {
+                this.processing[repo.id] = false;
             });
         }else{
-            if (repo['paper_type'] == 'opensoft'){
+            if (repo['paperType'] == 'opensoft'){
                 this.utility.goToOpenSoftPub(repo.name);
+                this.processing[repo.id] = false;
             }
         }
         // this.utility.goToMyBinder(repo.name);
     }
 
-    publish(repo: RepoDescriptor) {
+    regenAndPublish(repo: RepoDescriptor) {
         this.processing[repo.id] = true;
         console.log(repo);
-        this.reposService.publish(repo['url'], repo.name).subscribe(response => {
+        if (repo['paperType'] == 'notebook'){
+            this.regenerateNb(repo).then(response => {
+                this.publish(repo).then(response => {
+                    this.processing[repo.id] = false;
+                }).catch( error => {
+                    this.processing[repo.id] = false;
+                });
+            });
+        }else{
+            if (repo['paperType'] == 'opensoft'){
+                this.regeneratePdf(repo).then(response => {
+                    this.publish(repo).then(response => {
+                        this.processing[repo.id] = false;
+                    }).catch( error => {
+                        this.processing[repo.id] = false;
+                    });
+                });
+            }else{
+                this.processing[repo.id] = false;
+            }
+        }
+    }
+
+    publish(repo: RepoDescriptor) {
+        return this.reposService.publish(repo['url'], repo.name).then(response => {
             console.log(response);
-            this.processing[repo.id] = false;
             setTimeout(() => {
                 this.sendNotification('success', 'Repository published successfully');
                 this.getRepos();
             }, 1000);
-        }, error => {
+        }).catch (error => {
             this.sendNotification('error', 'Error publishing repository');
-            this.processing[repo.id] = false;
         });
     }
 
     regenerateNb(repo: RepoDescriptor) {
         // console.log(repo);
         return this.reposService.regenerateNb(repo['url'], repo.name).then(response => {
+            this.sendNotification('success', 'Repository regenerated successfully');
+        }).catch(error => {
+            this.sendNotification('error', 'Error regenerating repository');
+        });
+    }
+
+    regeneratePdf(repo: RepoDescriptor) {
+        // console.log(repo);
+        return this.reposService.regeneratePdf(repo['url'], repo.name).then(response => {
             this.sendNotification('success', 'Repository regenerated successfully');
         }).catch(error => {
             this.sendNotification('error', 'Error regenerating repository');
