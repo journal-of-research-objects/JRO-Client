@@ -27,8 +27,8 @@ export class SubmitRepoFormComponent implements OnInit, AfterViewInit {
   public formAuthoMode: 'edit' | 'new' = 'new';
   private regexAlphanumb = new RegExp(/^[a-zA-Z0-9 ]*$/);
   public papersTypes: SelectItem[] = [
-    { label: 'Notebook', value: 'notebook', icon: 'pi pi-file' },
-    { label: 'OpenSoft', value: 'opensoft', icon: 'pi pi-file-pdf' },
+    { label: 'Jupyter Notebook', value: 'notebook', icon: 'pi pi-file' },
+    { label: 'Open Software', value: 'opensoft', icon: 'pi pi-file-pdf' },
   ];
   public processing: boolean = false;
 

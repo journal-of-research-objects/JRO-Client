@@ -17,8 +17,8 @@ export class ReviewComponent implements OnInit, OnDestroy {
     public processing: {} = {};
     public papersFamilies: SelectItem[] = [
         { label: 'All', value: null },
-        { label: 'Notebook', value: 'notebook' },
-        { label: 'OpenSoft', value: 'opensoft' },
+        { label: 'Jupyter Notebook', value: 'notebook' },
+        { label: 'Open Software', value: 'opensoft' },
     ];
     private subscriptions: Subscription[] = [];
     public paperType: string = null;

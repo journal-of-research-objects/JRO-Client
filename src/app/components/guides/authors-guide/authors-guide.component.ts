@@ -13,8 +13,8 @@ export class AuthorsGuideComponent implements OnInit, OnDestroy {
 
   public paperType: string = 'notebook';
   public papersFamilies: SelectItem[] = [
-    { label: 'Notebook', value: 'notebook' },
-    { label: 'OpenSoft', value: 'opensoft' },
+    { label: 'Jupyter Notebook', value: 'notebook' },
+    { label: 'Open Software', value: 'opensoft' },
   ];
 
   private subscriptions: Subscription[] = [];

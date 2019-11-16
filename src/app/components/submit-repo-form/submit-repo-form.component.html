@@ -15,7 +15,7 @@
 </div>
 <div class="authors-wrapper">
     <h3>
-        <li class="pi pi-users"></li> Authors
+        <li class="pi pi-users"></li> Co-authors
     </h3>
     <div class="authors-list-wrapper">
         <div *ngFor="let lauthor of authors" class="authors-list-item" (click)="selectAuthor(lauthor)"
@@ -37,7 +37,7 @@
     </div>
     <div class="authors-plus-wrapper">
         <form [formGroup]="authorForm" (submit)="processAuthor();new_author_start.focus()">
-            <h5 style="margin: 0;">Add Author</h5>
+            <h5 style="margin: 0;">Add Co-author</h5>
             <div class="ui-g ui-fluid">
                 <div class="ui-g-12 ui-md-4 ui-lg-4">
                     <input #new_author_start pInputText [required]="true" formControlName="name" type="text"
