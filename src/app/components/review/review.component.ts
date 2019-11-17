@@ -83,7 +83,7 @@ export class ReviewComponent implements OnInit, OnDestroy {
             });
         }else{
             if (repo['paperType'] == 'opensoft'){
-                this.utility.goToOpenSoftPub(repo.name);
+                this.utility.goToPaper(repo.url);
                 this.processing[repo.id] = false;
             }
         }

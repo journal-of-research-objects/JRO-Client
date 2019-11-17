@@ -29,8 +29,9 @@ export class UtilityService {
         this.navigate(url, '_blank');
     }
 
-    public goToOpenSoftPub(forkName: string) {
-        const url = `#`; //go to publication page
+    public goToPaper(forkUrl: string) {
+        console.log(forkUrl)
+        const url = `${forkUrl}/blob/master/paper.md`
         this.navigate(url, '_blank');
     }
 
