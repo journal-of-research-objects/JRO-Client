@@ -1,9 +1,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subscription, interval, pipe } from 'rxjs';
 import { StorageService, ReposService, UtilityService } from '../../services';
 import { MessageService } from 'primeng/api';
 import { RepoDescriptor, User, RepoSubmit } from '../../types';
+import { Observable, Subject } from "rxjs-compat";
+import { switchMap } from 'rxjs-compat/operator/switchMap';
+import { scan } from 'rxjs-compat/operator/scan';
+import { takeWhile } from 'rxjs-compat/operator/takeWhile';
 
 @Component({
     selector: 'app-submit',
@@ -21,6 +25,7 @@ export class SubmitComponent implements OnInit, OnDestroy {
     public repoSubmit: RepoSubmit;
     public showRepoSubmitModal: boolean = false;
     public processing: {} = {};
+    private scrollToSource: Subject<number> = new Subject<number>();
 
     constructor(protected route: ActivatedRoute,
         protected messageService: MessageService,
@@ -54,6 +59,9 @@ export class SubmitComponent implements OnInit, OnDestroy {
                 }
             });
         }
+        this.scrollToSource.switchMap(targetYPos => interval(5)
+            .scan((acc, curr) => acc - 5, window.pageYOffset)
+            .takeWhile(val => val > targetYPos)).subscribe(position => window.scrollTo(0, position));
     }
 
     ngOnDestroy() {
@@ -150,6 +158,7 @@ export class SubmitComponent implements OnInit, OnDestroy {
     }
 
     onConfirm(event: { status: string, data: any }) {
+        this.scrollTop();
         if (event.status == 'success') {
             setTimeout(() => {
                 this.getRepos(this.accessToken);
@@ -225,5 +234,9 @@ export class SubmitComponent implements OnInit, OnDestroy {
             detail: detail,
             life: 10000
         });
+    }
+
+    scrollTop() {
+        this.scrollToSource.next(0);
     }
 }
