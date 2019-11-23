@@ -12,7 +12,7 @@
         <ng-template [ngIf]="repos.length > 0" [ngIfElse]="zeroState">
             <app-repo *ngFor="let repo of repos" [repo]="repo">
                 <div repo-buttons>
-                    <button *ngIf="IAM.editor" pButton (click)="regenAndPublish(repo)" [disabled]="processing[repo.id]"
+                    <button *ngIf="IAM.editor" pButton (click)="confirmPublished(repo)" [disabled]="processing[repo.id]"
                         [icon]="processing[repo.id] ? 'pi pi-spin pi-spinner' : 'pi pi-check'" label="Publish"
                         class="ui-button-danger"></button>
                     <button pButton (click)="goToReview(repo)" [disabled]="processing[repo.id]"
@@ -27,3 +27,5 @@
         <app-zero-state></app-zero-state>
     </ng-template>
 </div>
+
+<p-confirmDialog [style]="{ 'max-width': '300px', width: '100%' }"></p-confirmDialog>

@@ -4,11 +4,13 @@ import { ReposService, UtilityService, StorageService, UserService } from '../..
 import { MessageService, SelectItem } from 'primeng/api';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { ConfirmationService } from 'primeng/api';
 
 @Component({
     selector: 'app-review',
     templateUrl: 'review.component.html',
-    styleUrls: ['review.component.scss']
+    styleUrls: ['review.component.scss'],
+    providers: [ConfirmationService]
 })
 
 export class ReviewComponent implements OnInit, OnDestroy {
@@ -30,7 +32,7 @@ export class ReviewComponent implements OnInit, OnDestroy {
     constructor(protected reposService: ReposService, protected activeRouter: ActivatedRoute,
         protected utility: UtilityService, protected userService: UserService,
         protected messageService: MessageService, protected router: Router,
-        protected storageService: StorageService) {
+        protected storageService: StorageService, private confirmService: ConfirmationService) {
     }
 
     ngOnInit() {
@@ -73,16 +75,16 @@ export class ReviewComponent implements OnInit, OnDestroy {
     goToReview(repo: RepoDescriptor) {
         this.processing[repo.id] = true;
         console.log(repo);
-        if (repo['paperType'] == 'notebook'){
+        if (repo['paperType'] == 'notebook') {
             this.regenerateNb(repo).then(response => {
                 this.processing[repo.id] = false;
                 let orcid = this.storageService.read('user')['orcid'];
                 this.utility.goToJupyter(repo.name, orcid);
-            }).catch( error => {
+            }).catch(error => {
                 this.processing[repo.id] = false;
             });
-        }else{
-            if (repo['paperType'] == 'opensoft'){
+        } else {
+            if (repo['paperType'] == 'opensoft') {
                 this.utility.goToPaper(repo.url);
                 this.processing[repo.id] = false;
             }
@@ -90,27 +92,40 @@ export class ReviewComponent implements OnInit, OnDestroy {
         // this.utility.goToMyBinder(repo.name);
     }
 
+    confirmPublished(repo: RepoDescriptor) {
+        this.confirmService.confirm({
+            message: 'Please, make sure you review the github current version',
+            header: 'Confirmation',
+            icon: 'pi pi-exclamation-triangle',
+            rejectLabel: 'Cancel',
+            acceptLabel: 'Continue',
+            accept: () => {
+                this.regenAndPublish(repo);
+            }
+        });
+    }
+
     regenAndPublish(repo: RepoDescriptor) {
         this.processing[repo.id] = true;
         console.log(repo);
-        if (repo['paperType'] == 'notebook'){
+        if (repo['paperType'] == 'notebook') {
             this.regenerateNb(repo).then(response => {
                 this.publish(repo).then(response => {
                     this.processing[repo.id] = false;
-                }).catch( error => {
+                }).catch(error => {
                     this.processing[repo.id] = false;
                 });
             });
-        }else{
-            if (repo['paperType'] == 'opensoft'){
+        } else {
+            if (repo['paperType'] == 'opensoft') {
                 this.regeneratePdf(repo).then(response => {
                     this.publish(repo).then(response => {
                         this.processing[repo.id] = false;
-                    }).catch( error => {
+                    }).catch(error => {
                         this.processing[repo.id] = false;
                     });
                 });
-            }else{
+            } else {
                 this.processing[repo.id] = false;
             }
         }
@@ -123,7 +138,7 @@ export class ReviewComponent implements OnInit, OnDestroy {
                 this.sendNotification('success', 'Repository published successfully');
                 this.getRepos();
             }, 1000);
-        }).catch (error => {
+        }).catch(error => {
             this.sendNotification('error', 'Error publishing repository');
         });
     }

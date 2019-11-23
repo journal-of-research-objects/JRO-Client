@@ -16,6 +16,7 @@ import { DropdownModule } from "primeng/dropdown";
 import { MessageService } from 'primeng/api';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { PaginatorModule } from 'primeng/paginator';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @NgModule({
     imports: [
@@ -30,7 +31,8 @@ import { PaginatorModule } from 'primeng/paginator';
         TooltipModule,
         DropdownModule,
         SelectButtonModule,
-        PaginatorModule
+        PaginatorModule,
+        ConfirmDialogModule
     ],
     exports: [
         BrowserAnimationsModule,
@@ -44,7 +46,8 @@ import { PaginatorModule } from 'primeng/paginator';
         TooltipModule,
         DropdownModule,
         SelectButtonModule,
-        PaginatorModule
+        PaginatorModule,
+        ConfirmDialogModule
     ],
     providers: [
         MessageService
