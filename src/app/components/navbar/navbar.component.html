@@ -3,8 +3,12 @@
         <img (click)="goToHome()" src="/assets/img/logo.png" class="logo" />
         <span class="title">Journal of Research Objects</span>
     </div>
-
-    <nav class="p-col-fixed p-grid p-nogutter p-align-center header-nav-wrap">
+    <div class="header-collapse-menu">
+        <button type="button" class="collapse-button" (click)="expand($event)">
+            <i class="fa fa-bars"></i>
+        </button>
+    </div>
+    <nav class="p-col-fixed p-grid p-nogutter p-align-center header-nav-wrap" [ngClass]="{'show':expanded}">
         <div class="header-main-nav">
             <a class="smoothscroll" href="#home" title="home">Home</a>
             <a class="smoothscroll" [routerLink]="['about']" title="about">About</a>
@@ -24,10 +28,11 @@
         </div>
         <ng-template [ngIf]="!isLoggedIn">
             <button (click)="login()" pButton label="Sign in with Orcid"
-                class="ui-button-rounded ui-button-success"></button>
+                class="ui-button-rounded ui-button-success btn-session"></button>
         </ng-template>
         <ng-template [ngIf]="isLoggedIn">
-            <button (click)="logOutPage()" pButton label="Logout" class="ui-button-rounded ui-button-danger"></button>
+            <button (click)="logOutPage()" pButton label="Logout"
+                class="ui-button-rounded ui-button-danger btn-session"></button>
         </ng-template>
         <div class="header-main-nav">
             <a class="nav-item nav-link">
@@ -39,6 +44,5 @@
                 </div>
             </a>
         </div>
-
     </nav>
 </header>

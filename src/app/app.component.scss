@@ -1,39 +1,39 @@
 :host ::ng-deep {
-    .container {
-        padding: 72px 1em 0;
-        max-width: 1600px;
-        margin: 0 auto;
-        min-height: 80vh;
+  .container {
+    padding: 80px 1em 2em;
+    max-width: 1600px;
+    margin: 0 auto;
+    min-height: 80vh;
+  }
+
+  .notification-toast {
+    .ui-toast {
+      width: 50%;
+      margin: 0;
+      left: 25%;
+
+      .ui-toast-message-content {
+        padding: 1em 2em;
+      }
+
+      .ui-toast-icon {
+        top: 0.5em;
+      }
     }
+  }
 
-    .notification-toast {
-        .ui-toast {
-            width: 50%;
-            margin: 0;
-            left: 25%;
-
-            .ui-toast-message-content {
-                padding: 1em 2em;
-            }
-
-            .ui-toast-icon {
-                top: .5em;
-            }
-        }
-    }
-
-    .footer {
-        height: 250px;
-        padding: 0 80px;
-        background-color: #424242;
-        color: white;
-        text-align: center;
-    }
+  .footer {
+    height: 250px;
+    padding: 0 80px;
+    background-color: #424242;
+    color: white;
+    text-align: center;
+  }
 }
 
 @media screen and (max-width: 40em) {
-    .container {
-        padding-left: .5em;
-        padding-right: .5em;
-    }
+  .container {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
 }

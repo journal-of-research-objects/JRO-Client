@@ -1,11 +1,29 @@
+@import "../../../styles/responsive_vars";
+
 :host {
-    .review {
-        padding: 100px 15%;
-        display: block;
-        [repo-buttons] {
-            button {
-                margin: 0 10px;
-            }
-        }
+  .review {
+    max-width: 1200px;
+    padding-top: 100px;
+    margin: auto;
+    display: block;
+    [repo-buttons] {
+      button {
+        margin: 0 10px;
+      }
     }
+  }
+  @media screen and (max-width: $sm-size) {
+    .review {
+      padding-top: 1em;
+      .review-head {
+        padding: 1em;
+        h2 {
+          margin: 0;
+        }
+        .ui-dropdown {
+          width: 100%;
+        }
+      }
+    }
+  }
 }

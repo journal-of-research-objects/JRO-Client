@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, HostListener } from '@angular/core';
 import { UtilityService } from '../../services/utility.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services';
@@ -10,6 +10,8 @@ import { AuthService } from '../../services';
 })
 
 export class NavbarComponent implements OnInit {
+
+    public expanded: boolean = false;
 
     constructor(protected utility: UtilityService,
         protected router: Router,
@@ -27,7 +29,7 @@ export class NavbarComponent implements OnInit {
         this.router.navigate(['/'])
     }
 
-    goToGithubRepos(){
+    goToGithubRepos() {
         this.utility.goToGithubRepos();
     }
 
@@ -41,5 +43,21 @@ export class NavbarComponent implements OnInit {
         this.authService.logOut();
         // this.utility.logOutOrcid();
         this.router.navigate(['']);
+    }
+
+    @HostListener('document:click', ['$event'])
+    globalClick(event) {
+        console.log('expanded', this.expanded);
+        if (this.expanded) {
+            this.expanded = false;
+        }
+    }
+
+    expand(event) {
+        this.expanded = !this.expanded;
+        if (event) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
     }
 }

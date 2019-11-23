@@ -1,10 +1,11 @@
 <div class="papers p-grid p-nogutter p-dir-col">
-    <div class="p-grid p-align-center">
-        <div class="p-col">
+    <div class="p-grid p-align-center paper-head">
+        <div class="p-col-12 p-xl-9 p-lg-8 p-md-7 p-sm-6">
             <h2>Journal of Research Objects Papers</h2>
         </div>
-        <div class="p-col-fixed">
-            <p-dropdown [options]="papersFamilies" [(ngModel)]="paperType" (onChange)="update()"></p-dropdown>
+        <div class="p-col-12 p-xl-3 p-lg-4 p-md-5 p-sm-6" style="text-align: right;">
+            <p-dropdown [options]="papersFamilies" [style]="{'text-align': 'left'}" [(ngModel)]="paperType"
+                (onChange)="update()"></p-dropdown>
         </div>
     </div>
     <div>
