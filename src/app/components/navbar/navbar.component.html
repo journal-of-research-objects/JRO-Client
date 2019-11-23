@@ -7,7 +7,7 @@
     <nav class="p-col-fixed p-grid p-nogutter p-align-center header-nav-wrap">
         <div class="header-main-nav">
             <a class="smoothscroll" href="#home" title="home">Home</a>
-            <a class="smoothscroll" href="#about" title="about">About</a>
+            <a class="smoothscroll" [routerLink]="['about']" title="about">About</a>
             <a class="smoothscroll nav-item nav-link" [routerLink]="['/authors-guide']" title="guides">
                 <span>Guidelines</span>
                 <div class="header-main-nav child">
@@ -33,13 +33,12 @@
             <a class="nav-item nav-link">
                 <img src="/assets/img/github.svg">
                 <div class="header-main-nav child">
-                    <a class="smoothscroll" href="https://github.com/journal-of-research-objects"
-                        target="_blank" title="Journal code">Journal Code</a>
-                    <a class="smoothscroll" (click)="goToGithubRepos()" 
-                        target="_blank" title="Papers">Papers</a>
+                    <a class="smoothscroll" href="https://github.com/journal-of-research-objects" target="_blank"
+                        title="Journal code">Journal Code</a>
+                    <a class="smoothscroll" (click)="goToGithubRepos()" target="_blank" title="Papers">Papers</a>
                 </div>
             </a>
         </div>
 
     </nav>
-</header> 
+</header>

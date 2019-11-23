@@ -1,0 +1,26 @@
+<div class="team-wrapper">
+    <h1 class="title">Our team</h1>
+    <div class="team-participants-wrapper">
+        <div class="participant" *ngFor="let participant of team">
+            <div class="avatar-wrapper">
+                <img [src]="participant.avatar" [alt]="participant.name">
+            </div>
+            <div class="participant-legend">
+                <h2 class="name">{{participant.name}}</h2>
+                <div class="info">
+                    <span *ngIf="participant.info" [outerHTML]="participant.info"></span>
+                </div>
+                <div class="links">
+                    <a *ngIf="participant.githubid" [href]="'https://github.com/'+participant.githubid" target="_blank">
+                        <img src="/assets/img/github.svg" alt="github">
+                    </a>
+                    <ng-template [ngIf]="participant.otherSites">
+                        <a *ngFor="let site of participant.otherSites" [href]="site.link" target="_blank">
+                            <img [src]="site.icon" alt="icon">
+                        </a>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

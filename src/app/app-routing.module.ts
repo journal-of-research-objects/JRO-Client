@@ -8,6 +8,7 @@ import { ReviewComponent } from './components/review/review.component';
 import { AuthorsGuideComponent } from './components/guides/authors-guide/authors-guide.component';
 import { PapersComponent } from './components/papers/papers.component';
 import { PapersPublicationViewerComponent } from './components/papers-publication-viewer/papers-publication-viewer.component';
+import { AboutComponent } from './components/about/about.component';
 
 const routes: Routes = [
     // {path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -17,7 +18,8 @@ const routes: Routes = [
     { path: 'review', component: ReviewComponent, canActivate: [RouteGuard] },
     { path: 'papers', component: PapersComponent },
     { path: 'paper-pub', component: PapersPublicationViewerComponent },
-    { path: 'authors-guide', component: AuthorsGuideComponent }
+    { path: 'authors-guide', component: AuthorsGuideComponent },
+    { path: 'about', component: AboutComponent }
 ];
 
 @NgModule({
