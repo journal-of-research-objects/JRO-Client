@@ -19,8 +19,9 @@
             </div>
         </app-repo>
     </div>
-    <p-dialog [(visible)]="showRepoSubmitModal" [style]="{width: '650px','max-height': '100%'}" [maximizable]="false"
-        [modal]="true" [responsive]="true" [resizable]="false" header="Submit Repository" [closable]="true">
+    <p-dialog [(visible)]="showRepoSubmitModal" [contentStyle]="{'max-width': '650px','max-height': '90%'}"
+        [maximizable]="false" [modal]="true" [responsive]="true" [resizable]="false" [blockScroll]="true"
+        header="Submit Repository" [closable]="true">
         <div class="submit-dialog-wrapper">
             <app-submit-repo-form *ngIf="repoSubmit" [showHeader]="false" [repoSubmit]="repoSubmit"
                 (onSubmit)="onConfirm($event)" (onCancel)="showRepoSubmitModal = false">
