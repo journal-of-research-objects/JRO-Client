@@ -94,7 +94,7 @@ export class ReviewComponent implements OnInit, OnDestroy {
 
     confirmPublished(repo: RepoDescriptor) {
         this.confirmService.confirm({
-            message: 'Please, make sure you review the github current version',
+            message: 'Please, make sure that you reviewed the current github version',
             header: 'Confirmation',
             icon: 'pi pi-exclamation-triangle',
             rejectLabel: 'Cancel',
