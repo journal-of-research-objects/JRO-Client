@@ -23,7 +23,7 @@ export class AuthorsGuideComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscriptions.push(this.activatedRouter.queryParams.subscribe(params => {
-      if (params['type'] && this.papersFamilies.findIndex(fam => fam.value == params['type'])) {
+      if (params['type'] && this.papersFamilies.findIndex(fam => fam.value == params['type'])!=-1) {
         this.paperType = params['type']
       }
     }));
