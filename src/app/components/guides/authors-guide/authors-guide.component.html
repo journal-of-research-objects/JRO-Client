@@ -4,7 +4,7 @@
         <p-dropdown [options]="papersFamilies" [(ngModel)]="paperType"></p-dropdown>
     </div>
     <div class="p-col-12">
-        <ng-container *ngIf="paperType == 'notebook';then notebook else opensource"></ng-container>
+        <ng-container *ngIf="paperType == 'notebook';then notebook else opensoft"></ng-container>
     </div>
 </div>
 <ng-template #notebook>
@@ -124,7 +124,7 @@
         </div>
     </div>
 </ng-template>
-<ng-template #opensource>
+<ng-template #opensoft>
     <div class="doc">
         <p class="c17 title" id="h.a3lwf0n0qhjl"><strong class="c9 c22">Author Guidelines</strong></p>
         <h1 class="c15" id="h.rlqvi0n5zwh7"><span>Preparing Your Open Software&rsquo;s Git Repo For
