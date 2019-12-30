@@ -68,7 +68,8 @@
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "options": {
-                        "browserTarget": "JRO-Client:build"
+                        "browserTarget": "JRO-Client:build",
+                        "disableHostCheck": true
                     },
                     "configurations": {
                         "production": {
@@ -97,7 +98,7 @@
                             "src/styles.scss"
                         ],
                         "scripts": []
-                    }
+                   }
                 },
                 "lint": {
                     "builder": "@angular-devkit/build-angular:tslint",
