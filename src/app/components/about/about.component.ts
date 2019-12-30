@@ -22,7 +22,7 @@ export class AboutComponent implements OnInit {
     },
     {
       name: 'Pjotr Prins',
-      info: 'Director of <a target="_blank" href="https://genenetwork.org">Genenetwork.org</a>',
+      info: 'Director of <a target="_blank" href="http://gn2.genenetwork.org/">Genenetwork.org</a>',
       avatar: '/assets/team/prins.jpeg', githubid: 'pjotrp',
       otherSites: [{ icon: '/assets/img/www.svg', link: 'http://thebird.nl/' }]
     },
