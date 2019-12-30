@@ -21,8 +21,8 @@ export class AboutComponent implements OnInit {
       otherSites: [{ icon: '/assets/img/researchgate.png', link: 'http://blockchain4openscience.com/examples/imgs/researchgate.png' }]
     },
     {
-      name: 'Pjotor Prins',
-      info: 'Director of <a target="_blank" href="https://genenetwork.org">Genenetwork.org</a>',
+      name: 'Pjotr Prins',
+      info: 'Director of <a target="_blank" href="http://gn2.genenetwork.org/">Genenetwork.org</a>',
       avatar: '/assets/team/prins.jpeg', githubid: 'pjotrp',
       otherSites: [{ icon: '/assets/img/www.svg', link: 'http://thebird.nl/' }]
     },
