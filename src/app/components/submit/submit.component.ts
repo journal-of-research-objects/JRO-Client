@@ -59,9 +59,9 @@ export class SubmitComponent implements OnInit, OnDestroy {
                 }
             });
         }
-        this.scrollToSource.switchMap(targetYPos => interval(5)
-            .scan((acc, curr) => acc - 5, window.pageYOffset)
-            .takeWhile(val => val > targetYPos)).subscribe(position => window.scrollTo(0, position));
+        // this.scrollToSource.switchMap(targetYPos => interval(5)
+        //     .scan((acc, curr) => acc - 5, window.pageYOffset)
+        //     .takeWhile(val => val > targetYPos)).subscribe(position => window.scrollTo(0, position));
     }
 
     ngOnDestroy() {
