@@ -237,6 +237,6 @@ export class SubmitComponent implements OnInit, OnDestroy {
     }
 
     scrollTop() {
-        this.scrollToSource.next(0);
+        window.scrollTo(0,0);
     }
 }
