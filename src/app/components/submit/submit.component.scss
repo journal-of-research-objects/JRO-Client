@@ -1,5 +1,17 @@
 :host ::ng-deep {
     .submit {
+        .repo-fields{
+            margin-top: 50px;
+            div {
+                margin: auto;
+            }
+            .submit-form-wrapper{
+                display: flex;
+                .ui-inputtext{
+                    width: 100%;
+                }
+            }
+        }
         .repos-header {
             margin-bottom: 20px;
 

@@ -1,9 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription, interval, pipe } from 'rxjs';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { StorageService, ReposService, UtilityService } from '../../services';
 import { MessageService } from 'primeng/api';
-import { RepoDescriptor, User, RepoSubmit } from '../../types';
+import { RepoDescriptor, User, RepoSubmit,RepoForm } from '../../types';
+import { FormsUtils } from 'src/app/core';
 import { Observable, Subject } from "rxjs-compat";
 import { switchMap } from 'rxjs-compat/operator/switchMap';
 import { scan } from 'rxjs-compat/operator/scan';
@@ -23,16 +25,22 @@ export class SubmitComponent implements OnInit, OnDestroy {
     private interval: number;
 
     public repoSubmit: RepoSubmit;
+    public repoForm: RepoForm = { url: '', branch: '' };
     public showRepoSubmitModal: boolean = false;
     public processing: {} = {};
+    public processingForm: boolean = false;
+
     private scrollToSource: Subject<number> = new Subject<number>();
+
+    private _submitForm: FormGroup;
 
     constructor(protected route: ActivatedRoute,
         protected messageService: MessageService,
         private reposService: ReposService,
         protected router: Router,
         protected utilityService: UtilityService,
-        protected storage: StorageService) {
+        protected storage: StorageService,
+        private formBuilder: FormBuilder) {
     }
 
     ngOnInit() {
@@ -238,5 +246,38 @@ export class SubmitComponent implements OnInit, OnDestroy {
 
     scrollTop() {
         window.scrollTo(0,0);
+    }
+
+
+    /**
+     * determina el formulario de captura de datos 
+     */
+    get submitForm(): FormGroup {
+        if (!this._submitForm) {
+            this._submitForm = this.formBuilder.group({
+                url: ['', Validators.required],
+                branch: []
+            });
+        }
+        return this._submitForm;
+    }
+
+    submitFormButton(){
+        if (this.submitForm.valid) {
+            const user = this.storage.user;
+            this.processingForm = true;
+            let repo = FormsUtils.extractModel(this.submitForm, this.repoForm);
+            this.repoSubmit = {
+                name: repo.url.split("/")[4], gitUser: repo.url.split("/")[3],
+                orcid: user.orcid, paper_type: 'opensoft', branch: repo.branch
+            };
+            this.reposService.submitRepo(this.repoSubmit).subscribe(response => {  
+                this.processingForm = false;
+                this.notify(this.repoSubmit, true);
+            }, error => {
+                this.processingForm = false;    
+                this.notify(this.repoSubmit, false);
+            });
+          }
     }
 }

@@ -58,7 +58,8 @@ export class ReposService extends HttpServiceBase {
             orcid: submitData.orcid,
             authors: submitData.authors,
             keywords: submitData.keywords ? submitData.keywords.join(',') : null,
-            paper_type: submitData.paper_type
+            paper_type: submitData.paper_type,
+            branch: submitData.branch
         });
     }
 

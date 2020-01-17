@@ -1,4 +1,25 @@
 <div class="submit p-grid p-nogutter p-dir-col">
+    <div class="repo-fields">
+        <p>
+            Enter the location and the branch of your Github repository that contains your paper.md and paper.bib files
+        </p>
+        <form [formGroup]="submitForm" (submit)="submitFormButton()">
+            <div class="submit-form-wrapper">
+                <div class="ui-g-12 ui-md-4 ui-lg-4">
+                    <span class="required-field">Paper repository address</span><br>
+                    <input pInputText formControlName="url" type="text" placeholder="e.g. https://github.com/journal-of-research-objects/Deleteme">
+                </div>
+                <div class="ui-g-12 ui-md-4 ui-lg-4">
+                    <span>Custom branch (optional)</span> <br>
+                    <input pInputText formControlName="branch" type="text" placeholder="custom-branch">
+                </div>
+            </div>
+            <button pButton [icon]="processingForm ? 'pi pi-spin pi-spinner' : 'pi pi-save'"
+                type="submit" title="submitForm" class="ui-button-success" [disabled]="processingForm"
+                label="Submit">
+            </button>
+        </form>
+    </div>
     <div class="repos-header">
         <h2>My Github Repos</h2>
         <hr />
